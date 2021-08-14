@@ -1,6 +1,6 @@
 # New World Crafting Calculator (👷 WIP)
 
-Web app for calculating item crafting ingredients 
+Web app for calculating New item crafting ingredients in [New World](https://www.newworld.com/en-us/)
 
 ## Local Dev
 
