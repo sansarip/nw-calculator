@@ -58,7 +58,7 @@
   (timbre/info "\uD83D\uDD77️ Crawling...")
   (-> (crawl-crafting-categories)
       (into (crawl-raw-resource-category))
-      vec
+      set
       write-items-edn!
       (cond-> download-pngs? (http/download-pngs! config/image-path)))
   (timbre/info "✨ Done!"))
