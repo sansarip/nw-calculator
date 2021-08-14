@@ -11,5 +11,7 @@
                                       [com.taoensso/timbre "5.1.2"]
                                       [progrock "0.1.2"]
                                       [slingshot "0.12.2"]]
+                       :main         nw-calculator.scraper.main
                        :repl-options {:init-ns nw-calculator.scraper.main}}})
+
 

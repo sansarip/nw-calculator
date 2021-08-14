@@ -62,3 +62,6 @@
       write-items-edn!
       (cond-> download-pngs? (http/download-pngs! config/image-path)))
   (timbre/info "✨ Done!"))
+
+(defn -main []
+  (download-item-data!))
