@@ -11,3 +11,7 @@ pom.xml.asc
 .hgignore
 .hg/
 /.idea
+/resources/public/js/compiled
+*.log
+*.log.lck
+*.iml
