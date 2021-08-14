@@ -1,10 +1,17 @@
-# nw-calculator (👷 WIP)
+# New World Crafting Calculator (👷 WIP)
 
-A Clojure library designed to ... well, that part is up to you.
+Web app for calculating item crafting ingredients 
 
-## Usage
+## Local Dev
 
-FIXME
+### Prerequisites
+
+* [Clojure](https://clojure.org/guides/getting_started)
+* [Leiningen](https://leiningen.org/)
+
+### Scraper
+
+`lein with-profiles scraper run`
 
 ## License
 
