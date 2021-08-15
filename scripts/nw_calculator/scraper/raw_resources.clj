@@ -57,4 +57,4 @@
           extract-tier)))
 
 (defn extract-raw-resource-data [rows]
-  (into [] (map extract-raw-resource-data*) rows))
+  (into #{} (map extract-raw-resource-data*) rows))

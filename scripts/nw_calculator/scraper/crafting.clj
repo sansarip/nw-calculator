@@ -77,7 +77,7 @@
                                  :content
                                  rest
                                  (->> (take-nth 2)))]
-    (into []
+    (into #{}
           (map (fn [{[amount {{path :href} :attrs}] :content}]
                  (let [name (-> path
                                 util/prepend-origin
@@ -122,7 +122,7 @@
     [{:external-url str :image str :name str :tier int :skill-level int :ingredients seq} ...]
   ```"
   [rows]
-  (into [] (map extract-crafting-data*) rows))
+  (into #{} (map extract-crafting-data*) rows))
 
 (defn get-crafting-category-urls []
   (let [list-item-maps (-> (util/prepend-origin "/crafting")
@@ -132,4 +132,4 @@
                            :content
                            rest
                            (->> (take-nth 2)))]
-    (into [] (map (comp util/prepend-origin html/extract-first-href) list-item-maps))))
+    (into #{} (map (comp util/prepend-origin html/extract-first-href) list-item-maps))))

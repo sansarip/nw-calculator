@@ -48,7 +48,7 @@
 (defn crawl-crafting-categories []
   (let [crafting-category-urls (crafting/get-crafting-category-urls)
         crawl-category-fn (fn [url] (crawl-category url [] crafting/extract-crafting-data))]
-    (mapcat crawl-category-fn crafting-category-urls)))
+    (set (mapcat crawl-category-fn crafting-category-urls))))
 
 (defn download-item-data!
   "Crawls all crafting category (paginated) pages _and_ the raw resources (paginated) pages,
@@ -58,7 +58,6 @@
   (timbre/info "\uD83D\uDD77️ Crawling...")
   (-> (crawl-crafting-categories)
       (into (crawl-raw-resource-category))
-      set
       write-items-edn!
       (cond-> download-pngs? (http/download-pngs! config/image-path)))
   (timbre/info "✨ Done!"))
