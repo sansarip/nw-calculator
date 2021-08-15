@@ -13,12 +13,14 @@
                  [cljsjs/react "17.0.2-0"]
                  [cljsjs/react-dom "17.0.2-0"]
                  [net.dhleong/spade "1.1.0"]
-                 [riverford/compound "2020.01.09"]]
+                 [riverford/compound "2020.01.09"]
+                 [cljstache "2.0.6"]]
   :repl-options {:init-ns nw-calculator.core}
   :source-paths ["src/cljs"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
   :aliases {:fig:dev ["trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]}
   :profiles {:dev     {:dependencies [[binaryage/devtools "1.0.3"]
+                                      [devcards "0.2.7"]
                                       [day8.re-frame/re-frame-10x "1.1.13"]
                                       [day8.re-frame/tracing "0.6.2"]
                                       [com.bhauman/figwheel-main "0.2.14"]]}
