@@ -9,6 +9,15 @@ Web app for calculating New item crafting ingredients in [New World](https://www
 * [Clojure](https://clojure.org/guides/getting_started)
 * [Leiningen](https://leiningen.org/)
 
+### Web App
+
+Run the web application (figwheel-main) server with the following command:
+
+`lein fig:dev`
+
+After some time, you should be able to browse to http://localhost:9500 to 
+view the main app and http://localhost:9500/devcards.html to view the devcards.
+
 ### Scraper
 
 `lein with-profiles scraper run`
