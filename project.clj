@@ -18,7 +18,7 @@
   :repl-options {:init-ns nw-calculator.core}
   :source-paths ["src/cljs"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
-  :aliases {:fig:dev ["trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]}
+  :aliases {"fig:dev" ["with-profiles" "dev" "trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]}
   :profiles {:dev     {:dependencies [[binaryage/devtools "1.0.3"]
                                       [devcards "0.2.7"]
                                       [day8.re-frame/re-frame-10x "1.1.13"]
