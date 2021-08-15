@@ -20,7 +20,7 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 
 ### Scraper
 
-`lein with-profiles scraper run`
+`lein scrape`
 
 ## License
 
