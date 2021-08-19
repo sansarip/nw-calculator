@@ -1,13 +1,15 @@
 (ns nw-calculator.components.collapsible-tree.styles
   (:require
-    [spade.core :as spade]
-    [nw-calculator.styles :as styles]))
+    [nw-calculator.styles]
+    [spade.core :as spade]))
 
 (spade/defclass collapsible-list-class []
   [:.bg-white-imp {:background-color "white !important"}]
-  [:.translate-4% {:transform "translate(4%, 4%)"}]
   [:.flip-y {:transform "scaleY(-1)"}])
 
 (spade/defclass tree-class []
-  [:&>dt {:border-left :none}]
-  [:&>dt>div>button {:display :none}])
+  ["&>dt"
+   "&>dt:first-child>dl:first-child>dt:first-child"
+   "&>dt>dl:last-child>dt:first-child>dl:first-child>dt" {:border-left :none
+                                                          :padding     :0px}]
+  ["&>dt:first-child>dl:first-child>dt:first-child>div" {:display :none}])

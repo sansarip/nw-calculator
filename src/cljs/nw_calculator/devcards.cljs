@@ -1,7 +1,9 @@
 (ns nw-calculator.devcards
   (:require
     [devcards.core :as dc]
-    [nw-calculator.devcards.collapsible-tree]))
+    [nw-calculator.devcards.collapsible-tree]
+    [nw-calculator.devcards.item]
+    [nw-calculator.devcards.search]))
 
 (enable-console-print!)
 
