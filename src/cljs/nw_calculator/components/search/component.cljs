@@ -33,7 +33,7 @@
       [:div.relative {:class (styles/search-class)}
        [:input
         {:id          input-id
-         :placeholder "Search for an item"
+         :placeholder "Search for an item \uD83D\uDD0D"
          :on-input    on-search*}]
        (when (not-empty input-value)
          [icb/icon-button
