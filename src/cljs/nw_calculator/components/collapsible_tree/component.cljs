@@ -3,40 +3,63 @@
     [clojure.walk :as w]
     [reagent.core :as r]
     [nw-calculator.components.collapsible-tree.styles :as styles]
-    [nw-calculator.utilities :as util]
-    [nw-calculator.components.icon-button.component :as icb]))
+    [nw-calculator.components.circular-button.component :as cb]
+    [react]
+    [nw-calculator.hooks :as hooks]
+    [nw-calculator.utilities :as util]))
 
-(defn spacer [border?]
+(defonce collapsible-list-context (react/createContext
+                                    #js {"setCollapsedUpdater"   util/no-op
+                                         "unsetCollapsedUpdater" util/no-op}))
+(def collapsible-list-provider (.-Provider collapsible-list-context))
+(def collapsible-list-consumer (.-Consumer collapsible-list-context))
+
+(defn spacer []
   [:dl.mt-0.mb-0
-     [:dt.m-0.pl-4.border-opacity-30.border-purple
-      {:class (when border? "border-l-2")}
-      [:div.h-6]]])
+   [:dt.m-0.pl-4.border-opacity-30.border-purple
+    {:class "border-l-2"}
+    [:div.h-6]]])
 
-(defn list-item [props item & children]
+(defn list-item [{:keys [list-item-props child-container-props]} item & children]
   [:dt.m-0.pl-4.border-l-2.border-opacity-30.border-purple
-   props
-   [spacer children]
+   list-item-props
+   [spacer]
    [:div.relative.flex-auto
-    {:class "pl-3.5"}
+    (r/merge-props {:class "pl-3.5"} child-container-props)
     item]
    (into [:<>] children)])
 
-(defn collapsible-list [root-node? content children & [set-state]]
-  (r/with-let [state (r/atom {:collapse? false})
-               _ (when-not root-node? ((or set-state util/no-op) state))
-               toggle-collapsed (fn [& _] (swap! state update :collapse? not))]
-    (let [collapse? (:collapse? @state)]
-      [list-item {:class (styles/collapsible-list-class)}
-       [:<>
-        (when-not root-node?
-          [icb/icon-button
-           {:on-click toggle-collapsed
-            :class    "absolute -left-10 bg-white-imp"}
-           [:i.fas.fa-chevron-up.text-base.transition-transform
-            {:class (when collapse? "flip-y")}]])
-        content]
-       (when-not collapse?
-         (into [:dl.mt-0.mb-0] children))])))
+(defn collapsible-list
+  [{:keys [root-node?
+           node-id
+           content
+           set-collapsed-updater
+           unset-collapsed-updater]
+    :or   {set-collapsed-updater   util/no-op
+           unset-collapsed-updater util/no-op}}
+   & children]
+  (let [[collapsed?
+         toggle-collapsed!
+         set-collapsed!] (hooks/use-toggle false)]
+    (react/useEffect
+      (fn []
+        (when-not root-node? (set-collapsed-updater node-id set-collapsed!))
+        #(unset-collapsed-updater node-id))
+      #js [set-collapsed-updater])
+    [list-item
+     {:list-item-props       {:class (styles/collapsible-list-class)}
+      :child-container-props {:class (when root-node? "z-10")}}
+     [:<>
+      (when-not root-node?
+        [cb/circular-button
+         {:on-click toggle-collapsed!
+          :class    "absolute -left-10 bg-white-imp"}
+         [:i.fas.fa-chevron-up.text-base.transition-transform
+          {:class (when collapsed? "flip-y")}]])
+      content]
+     (when-not collapsed?
+       [:dl.mt-0.mb-0
+        (into [:<>] children)])]))
 
 (defn collapsible-tree
   "Returns collapsible tree (description) list.
@@ -44,19 +67,33 @@
   `tree-map` is the root node.
   `children` is a fn that, given a branch node, returns a seq of its children.
   `make-node` is a fn that, given an existing node, returns a new node."
-  [{:keys                           [children make-node set-state]
-    :or                             {make-node identity
-                                     set-state util/no-op}
-    {root-node-id :id :as tree-map} :tree-map}]
+  [{:keys                   [children
+                             make-node]
+    :or                     {make-node identity}
+    {root-node-id :id
+     :as          tree-map} :tree-map}]
   [:dl {:class (styles/tree-class)}
    (w/postwalk
      (fn [node]
-       (cond (and (map? node) (children node)) (let [node-id (:id node)]
-                                                 [collapsible-list
-                                                  (= node-id root-node-id)
-                                                  [make-node node]
-                                                  (children node)
-                                                  #(set-state node-id %)])
-             (map? node) [list-item {} [make-node node]]
-             :else node))
+       (if (map? node)
+         (let [node-id (:id node)
+               root-node? (= node-id root-node-id)]
+           (if-let [node-children (children node)]
+             [:> collapsible-list-consumer {}
+              (fn [context]
+                (r/as-element
+                  [:f> collapsible-list
+                   {:root-node?              (= node-id root-node-id)
+                    :node-id                 node-id
+                    :set-collapsed-updater   (.-setCollapsedUpdater context)
+                    :unset-collapsed-updater (.-unsetCollapsedUpdater context)
+                    :content                 [:f> make-node
+                                              {:node node
+                                               :root-node? root-node?}]}
+                   (into [:<>] node-children)]))]
+             [list-item {}
+              [:f> make-node
+               {:node node
+                :root-node? root-node?}]]))
+         node))
      tree-map)])
