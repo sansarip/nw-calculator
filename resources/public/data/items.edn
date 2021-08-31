@@ -2423,6 +2423,20 @@
      {:name "Stone Block", :id "2080358755", :amount 50}
      {:name "Iron Chisel", :id "766026684", :amount 1}},
    :id "-2047837723"}
+  {:name "Tannin"
+   :external-url
+   "https://newworldfans.com/db/item/tannin-86e682"
+   :png-url
+   "https://cdn.newworldfans.com/db_images/db/items_hires/tannint3.png"
+   :tier 3
+   :id "-1268530099"}
+  {:name "Crossweave"
+   :external-url
+   "https://newworldfans.com/db/item/crossweave-472def"
+   :png-url
+   "https://cdn.newworldfans.com/db_images/db/items_hires/clothweavet3.png"
+   :tier 3
+   :id "1837889123"}
   {:external-url
    "https://newworldfans.com/crafting/Leatherworking/2981-rugged-leather",
    :png-url
@@ -12952,9 +12966,9 @@
   {:external-url "https://newworldfans.com/db/item/rawhide-c6cf2e",
    :png-url
    "https://cdn.newworldfans.com/db_images/db/items_hires/rawhidet1.png",
-   :name "Rawhide",
+   :name "Rawhide Scraps",
    :tier 1,
-   :id "1092522207"}
+   :id "-1544375071"}
   {:external-url
    "https://newworldfans.com/crafting/Engineering/5483-the-huntress",
    :png-url
