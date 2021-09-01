@@ -8,5 +8,4 @@
                 :on-conflict (fn [a _] a)}]))
 
 (def default-db
-  {:state :start
-   :items default-items})
+   :items default-items})   :items               default-items

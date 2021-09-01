@@ -4,6 +4,7 @@
     [reagent.core :as r]
     [nw-calculator.components.search.styles :as styles]
     [nw-calculator.components.circular-button.component :as cb]
+    [nw-calculator.components.loader.component :as lc]
     [react]
     [cljstache.core :as fmt]
     [nw-calculator.hooks :as hooks]))
@@ -27,7 +28,8 @@
            props
            make-result
            get-value
-           input-props]
+           input-props
+           loading?]
     :or   {on-search   util/no-op
            on-select   util/no-op
            on-clear    util/no-op
@@ -111,12 +113,15 @@
            :ref         input-ref
            :placeholder "Search something \uD83D\uDD0D"
            :on-input    search!}
-          (dissoc input-props :id :on-input))]
-       (when (not-empty input-value)
+          (dissoc input-props :on-input))]
+       (when (and (not-empty input-value) (not loading?))
          [cb/circular-button
           {:on-click clear-input-value!
            :class    "absolute pb-3 right-2 top-2 border-0"}
           [:i.fas.fa-times.text-base]])
+       (when loading?
+         [lc/loader
+          {:class "absolute text-2xl right-5 top-2"}])
        (when (> num-results 0)
          [:dl.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
           {:multiple true

@@ -10,17 +10,23 @@
 (dc/defcard-rg
   search
   (fn [state]
-    (r/with-let [on-search (util/debounce
+    (r/with-let [set-loading!  #(swap! state assoc :loading? %)
+                 on-search (util/debounce
                              (fn [search-term]
-                               (swap!
-                                 state
-                                 assoc
-                                 :results
-                                 (->> sd/items
-                                      (filter
-                                        (comp #(util/fuzzy-search % search-term) :name))
-                                      (take 10)
-                                      vec)))
+                               (set-loading! true)
+                               (js/setTimeout
+                                 (fn [& _]
+                                   (swap!
+                                     state
+                                     assoc
+                                     :results
+                                     (->> sd/items
+                                          (filter
+                                            (comp #(util/fuzzy-search % search-term) :name))
+                                          (take 10)
+                                          vec))
+                                   (set-loading! false))
+                                 100))
                              100)
                  clear-results #(swap! state assoc :results [])
                  on-clear clear-results
@@ -29,6 +35,7 @@
       [:f> nwc/search-component
        {:make-result make-result
         :input-props {:placeholder "Search for an item \uD83D\uDD0D"}
+        :loading?    (:loading? @state)
         :on-search   on-search
         :on-select   on-select
         :on-clear    on-clear
