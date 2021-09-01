@@ -8,4 +8,7 @@
                 :on-conflict (fn [a _] a)}]))
 
 (def default-db
-   :items default-items})   :items               default-items
+  {:state             :loading
+   :items             default-items
+   :search-results    []
+   :amount-multiplier 1})

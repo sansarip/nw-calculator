@@ -6,7 +6,7 @@
 
 (defn image-with-popup [{:keys [src show? show-popup hide-popup]}]
   [:div.popup.relative.w-12.h-12.min-w-12
-   [:img.bg-white.rounded-full.border-purple.border-opacity-30.border-2.w-full.h-full.object-cover
+   [:img.bg-white.rounded-full.border-purple.border-opacity-30.border-2.w-full.h-full.min-w-full.object-cover
     {:src           (util/localize-external-img src)
      :on-mouse-over show-popup
      :on-mouse-out  hide-popup}]
@@ -14,13 +14,14 @@
     {:src src :class (str "left-10 " (if show? "visible" "hidden"))}]])
 
 (defn placeholder-icon []
-  [:div.flex.items-center.justify-center.rounded-full.border-purple.border-opacity-30.border-2.w-12.h-12
+  [:div.flex.items-center.justify-center.rounded-full.border-purple.border-opacity-30.border-2.w-12.h-12.min-w-12
    [:i.text-purple.text-opacity-50.text-lg.far.fa-question]])
 
 (defn item
   [{:keys          [popup-on-hover?
                     custom-name
-                    custom-amount]
+                    custom-amount
+                    container-props]
     {:keys [amount
             png-url
             name
@@ -31,6 +32,7 @@
                show-popup (if popup-on-hover? (fn [& _] (reset! show-popup? true)) util/no-op)
                labels-key (str "labels_" (util/short-uuid-str))]
     [:div.flex.items-center.mx-3.gap-3.relative
+     container-props
      (if png-url
        [image-with-popup
         {:src        png-url
@@ -39,11 +41,11 @@
          :show-popup show-popup}]
        [placeholder-icon])
      ^{:key labels-key}
-     [:div.flex.items-end.gap-4
+     [:div.labels.w-full.flex.items-end.gap-4
       (or custom-amount amount)
       " "
       (or custom-name name)
-      [:span.text-base.align-text-bottom.min-w-32
+      [:span.basic-info.text-base.align-text-bottom.whitespace-nowrap
        (let [tier-label (when tier (str "T" tier))
              xp-label (when xp (str xp "XP"))
              basic-info (->> [tier-label xp-label]

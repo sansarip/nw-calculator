@@ -78,7 +78,7 @@
        (if (map? node)
          (let [node-id (:id node)
                root-node? (= node-id root-node-id)]
-           (if-let [node-children (children node)]
+           (if-let [node-children (not-empty (children node))]
              [:> collapsible-list-consumer {}
               (fn [context]
                 (r/as-element
