@@ -53,7 +53,7 @@
   item
   "Searchable item"
   (fn [state]
-    (r/with-let [clear-selected-item! #(swap! state assoc :selected-item nil)
+    (r/with-let [clear-selected-item! #(swap! state assoc :selected-item {:ingredients []})
                  on-search (util/debounce
                              (fn [search-term]
                                (swap!
