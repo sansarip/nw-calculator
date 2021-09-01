@@ -2430,6 +2430,20 @@
    "https://cdn.newworldfans.com/db_images/db/items_hires/tannint3.png"
    :tier 3
    :id "-1268530099"}
+  {:name "Sand Flux"
+   :external-url
+   "https://newworldfans.com/db/item/sand-flux-be7a8a"
+   :png-url
+   "https://cdn.newworldfans.com/db_images/db/items_hires/fluxt3.png"
+   :tier 3
+   :id "-1338482220"}
+  {:name "Coarse Sandpaper"
+   :external-url
+   "https://newworldfans.com/db/item/coarse-sandpaper-b3ddcf"
+   :png-url
+   "https://cdn.newworldfans.com/db_images/db/items_hires/sandpapert3.png"
+   :tier 3
+   :id "-1694875577"}
   {:name "Crossweave"
    :external-url
    "https://newworldfans.com/db/item/crossweave-472def"
