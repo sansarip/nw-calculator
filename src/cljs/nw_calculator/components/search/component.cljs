@@ -126,13 +126,13 @@
          [:dl.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
           {:multiple true
            :size     (count results)}
-          (into [:<>]
-                (map-indexed
-                  (fn [result-index result]
-                    [result-list-item
-                     {:on-select    select-result!
-                      :on-hover     set-active-result-index!
-                      :result-index result-index
-                      :result       result}
-                     [make-result result]]))
-                results)])])))
+          (map-indexed
+            (fn [result-index {:keys [id] :as result}]
+              ^{:key (str "result_" result-index "_" id)}
+              [result-list-item
+               {:on-select    select-result!
+                :on-hover     set-active-result-index!
+                :result-index result-index
+                :result       result}
+               [make-result result]])
+            results)])])))
