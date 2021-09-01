@@ -14,7 +14,8 @@
                  [cljsjs/react-dom "17.0.2-0"]
                  [net.dhleong/spade "1.1.0"]
                  [riverford/compound "2020.01.09"]
-                 [cljstache "2.0.6"]]
+                 [cljstache "2.0.6"]
+                 [peanuts "0.7.2"]]
   :repl-options {:init-ns nw-calculator.core}
   :source-paths ["src/cljs"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
