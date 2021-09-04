@@ -80,7 +80,7 @@
                        :name         name
                        :item-index   item-index}]}])
 
-(defn collapsible-tree [item-index]
+(defn searchable-item-tree [item-index]
   (r/with-let [collapsed-item-updaters (atom {})
                set-collapsed-updater (fn [id updater]
                                        (swap! collapsed-item-updaters assoc id updater))
@@ -109,13 +109,13 @@
            {:on-click collapse-all}
            "collapse all"]])])))
 
-(defn collapsible-trees []
+(defn searchable-item-trees []
   (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
     [:div.flex.gap-28.flex-col.items-center.flex-col
      (for [item-index (range num-selected-items)]
        ^{:key item-index}
        [nwc/card-component
-        [collapsible-tree item-index]])]))
+        [searchable-item-tree item-index]])]))
 
 (defn page-loader []
   (when @(rf/subscribe [::subs/loading?])
@@ -126,4 +126,4 @@
 (defn main-panel []
   [:div.h-screen.pt-52.text-2xl
    [page-loader]
-   [collapsible-trees]])
+   [searchable-item-trees]])
