@@ -24,7 +24,6 @@
 
 (defn collapsible-list
   [{:keys [root-node?
-           node-id
            content
            set-collapsed-updater
            unset-collapsed-updater]
@@ -36,8 +35,9 @@
          set-collapsed!] (hooks/use-toggle true)]
     (react/useEffect
       (fn []
-        (when-not root-node? (set-collapsed-updater node-id set-collapsed!))
-        #(unset-collapsed-updater node-id))
+        (let [uuid (random-uuid)]
+          (when-not root-node? (set-collapsed-updater uuid set-collapsed!))
+          #(unset-collapsed-updater uuid)))
       #js [set-collapsed-updater])
     [list-item
      {:list-item-props       {:class (styles/collapsible-list-class)}
@@ -79,7 +79,6 @@
                 (r/as-element
                   [:f> collapsible-list
                    {:root-node?              root-node?
-                    :node-id                 node-id
                     :set-collapsed-updater   (.-setCollapsedUpdater context)
                     :unset-collapsed-updater (.-unsetCollapsedUpdater context)
                     :content                 [:f> make-node
