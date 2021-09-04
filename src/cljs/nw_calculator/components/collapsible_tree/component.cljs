@@ -40,9 +40,7 @@
         #(unset-collapsed-updater node-id))
       #js [set-collapsed-updater])
     [list-item
-     {:list-item-props       {:class (str
-                                       (when root-node? "w-full overflow-x-auto ")
-                                       (styles/collapsible-list-class))}
+     {:list-item-props       {:class (styles/collapsible-list-class)}
       :child-container-props {:class (when root-node? "z-10")}}
      [:<>
       (when-not root-node?
