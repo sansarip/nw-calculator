@@ -60,3 +60,22 @@
 (defn craftable-item [{:keys [ingredients] :as item}]
   (when (not-empty ingredients)
     item))
+
+(defn get-ele-offsets [ele]
+  (let [scroll-left (or js/window.pageXOffset
+                        js/document.documentElement.scrollLeft
+                        js/document.body.scrollLeft
+                        0)
+        scroll-top (or js/window.pageYOffset
+                       js/document.documentElement.scrollTop
+                       js/document.body.scrollTop
+                       0)
+        box (.getBoundingClientRect ele)
+        left (+ (.-left box) scroll-left)
+        top (+ (.-top box) scroll-top)]
+    [left top]))
+
+(defn html->ele [html]
+  (let [template (js/document.createElement "template")]
+    (set! (.-innerHTML template) (string/trim html))
+    (.. template -content -firstChild)))

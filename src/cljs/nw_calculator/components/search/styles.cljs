@@ -4,4 +4,5 @@
     [nw-calculator.styles]))
 
 (spade/defclass search-class []
-  [:input.search.basic-input {:padding-right :4rem}])
+  [:input.search.basic-input
+   {:padding-right :2rem}])

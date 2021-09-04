@@ -61,9 +61,9 @@
 (rf/reg-event-db
   ::search-success
   (tr/fn-traced
-    [db [_ search-results]]
+    [db [_ item-index search-results]]
     (-> db
-        (assoc :search-results search-results)
+        (assoc-in [:search-results item-index] search-results)
         (handlers/next-state
           []
           fsm/fsm
@@ -71,7 +71,7 @@
 
 (rf/reg-fx
   ::search
-  (fn [[items-by-id search-query]]
+  (fn [[items-by-id item-index search-query]]
     (let [search-results (->> items-by-id
                               vals
                               (filter
@@ -80,37 +80,43 @@
                                       util/craftable-item))
                               (take 10)
                               vec)]
-      (rf/dispatch [::search-success search-results]))))
+      (rf/dispatch [::search-success item-index search-results]))))
 
 (rf/reg-event-fx
   ::search
   (tr/fn-traced
-    [{{{items-by-id :by-id} :items :as db} :db} [_ search-query]]
+    [{{{items-by-id :by-id} :items :as db} :db} [_ item-index search-query]]
     {:db      (handlers/next-state
                 db
                 []
                 fsm/fsm
                 :search)
-     ::search [items-by-id search-query]}))
+     ::search [items-by-id item-index search-query]}))
 
 (rf/reg-event-db
   ::clear-search
   (tr/fn-traced
-    [db _]
-    (assoc db
-      :selected-item {}
-      :search-results {})))
+    [db [_ item-index]]
+    (-> db
+        (assoc-in [:selected-items item-index :item] {})
+        (assoc-in [:search-results item-index] []))))
 
 (rf/reg-event-db
   ::select-item
   (tr/fn-traced
-    [db [_ item]]
-    (assoc db
-      :selected-item item
-      :search-results {})))
+    [db [_ item-index item]]
+    (-> db
+        (assoc-in [:selected-items item-index :item] item)
+        (update :selected-items #(conj % df/default-selected-item))
+        (update-in [:selected-items item-index :amount-multiplier] #(or % 1))
+        (assoc-in [:search-results item-index] []))))
 
 (rf/reg-event-db
   ::set-amount-multiplier
   (tr/fn-traced
-    [db [_ multiplier]]
-    (assoc db :amount-multiplier (if (js/isNaN multiplier) 1 multiplier))))
+    [db [_ item-index multiplier]]
+    (assoc-in db
+              [:selected-items item-index :amount-multiplier]
+              (if (or (js/isNaN multiplier) (<= multiplier 0))
+                1
+                multiplier))))

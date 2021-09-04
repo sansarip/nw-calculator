@@ -9,14 +9,14 @@
     [nw-calculator.utilities :as util]
     [nw-calculator.styles :as styles]))
 
-(defn search []
+(defn search [item-index]
   (r/with-let [search! (util/debounce
-                         (fn [query] (rf/dispatch [::events/search query]))
+                         (fn [query] (rf/dispatch [::events/search item-index query]))
                          100)
-               select-item! (fn [item] (rf/dispatch [::events/select-item item]))
-               clear-search! #(rf/dispatch [::events/clear-search])]
-    (let [results @(rf/subscribe [::subs/search-results])
-          {item-name :name} @(rf/subscribe [::subs/selected-item])
+               select-item! (fn [item] (rf/dispatch [::events/select-item item-index item]))
+               clear-search! #(rf/dispatch [::events/clear-search item-index])]
+    (let [results @(rf/subscribe [::subs/search-results item-index])
+          {item-name :name} @(rf/subscribe [::subs/selected-item item-index])
           item-component (fn [item-map]
                            [nwc/item-component
                             {:item-map        item-map
@@ -33,51 +33,54 @@
         :on-clear    clear-search!
         :on-select   select-item!}])))
 
-(defn item
-  [{{:keys [external-url name] :as item-map} :node
-    :keys                                    [root-node?]}]
+(defn custom-item-amount [{:keys [editable? amount item-index]}]
   (r/with-let [set-amount-multiplier (fn [event]
                                        (let [multiplier (js/parseInt (.. event -target -value))]
-                                         (rf/dispatch [::events/set-amount-multiplier multiplier])))
+                                         (rf/dispatch [::events/set-amount-multiplier item-index multiplier])))
                min-amount-multiplier 1]
-    (let [amount-multiplier* @(rf/subscribe [::subs/amount-multiplier])
+    (let [amount-multiplier* @(rf/subscribe [::subs/amount-multiplier item-index])
           amount-multiplier (if (js/isNaN amount-multiplier*)
                               min-amount-multiplier
                               amount-multiplier*)]
-      [nwc/item-component
-       {:popup-on-hover? true
-        :item-map        item-map
-        :custom-amount   (when root-node?
-                           [:input.basic-input.w-16-imp
-                            {:type          :number
-                             :default-value amount-multiplier
-                             :placeholder   min-amount-multiplier
-                             :on-input      set-amount-multiplier}])
-        :custom-name     (if root-node?
-                           [:<>
-                            [search {:amount-multiplier amount-multiplier}]
-                            (when external-url
-                              [:a {:href external-url :target "_blank"}
-                               [:i.text-base.fas.fa-external-link-alt]])]
-                           (if external-url
-                             [:a {:href external-url :target "_blank"} name]
-                             name))}])))
+      (if editable?
+        [:input.basic-input.w-11-imp
+         {:type          :number
+          :default-value amount-multiplier
+          :placeholder   min-amount-multiplier
+          :on-input      set-amount-multiplier}]
+        [:span.self-center amount]))))
 
-(defn collapsible-tree []
-  (let [selected-item @(rf/subscribe [::subs/selected-item])]
-    [nwc/collapsible-tree-component
-     {:tree-map  selected-item
-      :children  :ingredients
-      :make-node item}]))
+(defn custom-item-name [{:keys [searchable? name item-index external-url]}]
+  (if searchable?
+    [:<>
+     [search item-index]
+     (when external-url
+       [:a {:href external-url :target "_blank"}
+        [:i.text-sm.md:text-base.fas.fa-external-link-alt]])]
+    (if external-url
+      [:a.whitespace-nowrap {:href external-url :target "_blank"} name]
+      [:span.whitespace-nowrap name])))
 
-(defn loader []
-  (when @(rf/subscribe [::subs/app-loading?])
-    [:div.absolute.pt-52.bg-white.z-50.h-screen.w-screen.flex.flex-col.gap-4.items-center
-     [nwc/loader-component
-      {:class "fa-6x"}]
-     [:h3 "Steering ship"]]))
+(defn item
+  [{{:keys [external-url name amount] :as item-map} :node
+    :keys                                           [root-node?]}
+   item-index]
+  [nwc/item-component
+   {:popup-on-hover? true
+    :container-props {:class "m-0-imp"}
+    :item-map        item-map
+    :stacked-labels? (not root-node?)
+    :custom-amount   [custom-item-amount
+                      {:editable?  root-node?
+                       :amount     amount
+                       :item-index item-index}]
+    :custom-name     [custom-item-name
+                      {:searchable?  root-node?
+                       :external-url external-url
+                       :name         name
+                       :item-index   item-index}]}])
 
-(defn main-panel []
+(defn collapsible-tree [item-index]
   (r/with-let [collapsed-item-updaters (atom {})
                set-collapsed-updater (fn [id updater]
                                        (swap! collapsed-item-updaters assoc id updater))
@@ -86,14 +89,41 @@
                expand-all #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
                              (set-collapsed-item false))
                collapse-all #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
-                               (set-collapsed-item true))]
-    [:<>
-     [loader]
-     [:div.h-screen.pt-52.flex.gap-6.flex-col.items-center.flex-col
-      [:div.flex
-       [:button.button.m-4.w-72 {:on-click expand-all} "expand all"]
-       [:button.button.m-4.w-72 {:on-click collapse-all} "collapse all"]]
-      [:> ctc/collapsible-list-provider
-       {:value {:set-collapsed-updater   set-collapsed-updater
-                :unset-collapsed-updater unset-collapsed-updater}}
-       [collapsible-tree]]]]))
+                               (set-collapsed-item true))
+               item* (fn [node] [item node item-index])]
+    (let [{:keys [ingredients] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
+      [:div.flex.flex-col.gap-6.items-center
+       [:> ctc/collapsible-list-provider
+        {:value {:set-collapsed-updater   set-collapsed-updater
+                 :unset-collapsed-updater unset-collapsed-updater}}
+        [nwc/collapsible-tree-component
+         {:tree-map  selected-item
+          :children  :ingredients
+          :make-node item*}]]
+       (when (not-empty ingredients)
+         [:div.flex
+          [:button.button.button-outline.m-4.w-52.md:w-60
+           {:on-click expand-all}
+           "expand all"]
+          [:button.button.button-outline.m-4.w-52.md:w-60
+           {:on-click collapse-all}
+           "collapse all"]])])))
+
+(defn collapsible-trees []
+  (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
+    [:div.flex.gap-28.flex-col.items-center.flex-col
+     (for [item-index (range num-selected-items)]
+       ^{:key item-index}
+       [nwc/card-component
+        [collapsible-tree item-index]])]))
+
+(defn page-loader []
+  (when @(rf/subscribe [::subs/loading?])
+    [:div.absolute.bg-white.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
+     [nwc/loader-component {:class "fa-6x"}]
+     [:h3 "Steering ship"]]))
+
+(defn main-panel []
+  [:div.h-screen.pt-52.text-2xl
+   [page-loader]
+   [collapsible-trees]])

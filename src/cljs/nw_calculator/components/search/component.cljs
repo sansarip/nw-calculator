@@ -106,8 +106,8 @@
         (fn []
           (highlight-result! active-result-index num-results))
         #js [active-result-index])
-      [:div.relative.min-w-96.w-full (r/merge-props {:class (styles/search-class)} props)
-       [:input.basic-input.search
+      [:div.relative.w-full (r/merge-props {:class (styles/search-class)} props)
+       [:input.basic-input.search.w-full.flex-grow.md:pr-12-imp
         (r/merge-props
           {:spell-check false
            :ref         input-ref
@@ -117,11 +117,11 @@
        (when (and (not-empty input-value) (not loading?))
          [cb/circular-button
           {:on-click clear-input-value!
-           :class    "absolute pb-3 right-2 top-2 border-0"}
-          [:i.fas.fa-times.text-base]])
+           :class    "absolute pb-3 -right-2 md:right-0 top-2 border-0 flex-none"}
+          [:i.fas.fa-times.text-sm.md:text-base]])
        (when loading?
          [lc/loader
-          {:class "absolute text-2xl right-5 top-2"}])
+          {:class "absolute text-lg md:text-2xl right-2 md:right-3 top-3 md:top-2 flex-none"}])
        (when (> num-results 0)
          [:dl.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
           {:multiple true

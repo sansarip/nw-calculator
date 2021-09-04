@@ -14,17 +14,10 @@
 (def collapsible-list-provider (.-Provider collapsible-list-context))
 (def collapsible-list-consumer (.-Consumer collapsible-list-context))
 
-(defn spacer []
-  [:dl.mt-0.mb-0
-   [:dt.m-0.pl-4.border-opacity-30.border-purple
-    {:class "border-l-2"}
-    [:div.h-6]]])
-
 (defn list-item [{:keys [list-item-props child-container-props]} item & children]
-  [:dt.m-0.pl-4.border-l-2.border-opacity-30.border-purple
+  [:dt.mb-0.mr-0.mt-6.ml-7
    list-item-props
-   [spacer]
-   [:div.relative.flex-auto
+   [:div.relative.flex-auto.ml-7
     (r/merge-props {:class "pl-3.5"} child-container-props)
     item]
    (into [:<>] children)])
@@ -40,60 +33,64 @@
    & children]
   (let [[collapsed?
          toggle-collapsed!
-         set-collapsed!] (hooks/use-toggle false)]
+         set-collapsed!] (hooks/use-toggle true)]
     (react/useEffect
       (fn []
         (when-not root-node? (set-collapsed-updater node-id set-collapsed!))
         #(unset-collapsed-updater node-id))
       #js [set-collapsed-updater])
     [list-item
-     {:list-item-props       {:class (styles/collapsible-list-class)}
+     {:list-item-props       {:class (str
+                                       (when root-node? "w-full overflow-x-auto ")
+                                       (styles/collapsible-list-class))}
       :child-container-props {:class (when root-node? "z-10")}}
      [:<>
       (when-not root-node?
         [cb/circular-button
          {:on-click toggle-collapsed!
-          :class    "absolute -left-10 bg-white-imp"}
+          :class    "absolute -left-14 bg-white-imp"}
          [:i.fas.fa-chevron-up.text-base.transition-transform
           {:class (when collapsed? "flip-y")}]])
       content]
-     (when-not collapsed?
-       [:dl.mt-0.mb-0
-        (into [:<>] children)])]))
+     [:dl.mt-0.mb-0.overflow-x-auto
+      {:class (when (and (not root-node?) collapsed?) "hidden")}
+      (into [:<>] children)]]))
 
 (defn collapsible-tree
   "Returns collapsible tree (description) list.
 
   `tree-map` is the root node.
   `children` is a fn that, given a branch node, returns a seq of its children.
-  `make-node` is a fn that, given an existing node, returns a new node."
-  [{:keys                   [children
-                             make-node]
-    :or                     {make-node identity}
-    {root-node-id :id
-     :as          tree-map} :tree-map}]
-  [:dl {:class (styles/tree-class)}
+  `make-node` is a fn that, given an existing node, returns a new node.
+  `id` is a dn that, given an existing node, returns a unique identifier for that node."
+  [{:keys [children
+           make-node
+           tree-map
+           id]
+    :or   {make-node identity
+           id        :id}}]
+  [:dl.w-full {:class (styles/tree-class)}
    (w/postwalk
      (fn [node]
        (if (map? node)
-         (let [node-id (:id node)
-               root-node? (= node-id root-node-id)]
+         (let [node-id (id node)
+               root-node? (= node-id (id tree-map))]
            (if-let [node-children (not-empty (children node))]
              [:> collapsible-list-consumer {}
               (fn [context]
                 (r/as-element
                   [:f> collapsible-list
-                   {:root-node?              (= node-id root-node-id)
+                   {:root-node?              root-node?
                     :node-id                 node-id
                     :set-collapsed-updater   (.-setCollapsedUpdater context)
                     :unset-collapsed-updater (.-unsetCollapsedUpdater context)
                     :content                 [:f> make-node
-                                              {:node node
+                                              {:node       node
                                                :root-node? root-node?}]}
                    (into [:<>] node-children)]))]
              [list-item {}
               [:f> make-node
-               {:node node
+               {:node       node
                 :root-node? root-node?}]]))
          node))
      tree-map)])

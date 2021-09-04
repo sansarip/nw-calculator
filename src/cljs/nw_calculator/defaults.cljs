@@ -7,8 +7,13 @@
                 :kfn         :id
                 :on-conflict (fn [a _] a)}]))
 
+(def default-item {:ingredients []})
+
+(def default-selected-item {:item default-item
+                            :amount-multiplier 1})
+
 (def default-db
-  {:state             :loading
-   :items             default-items
-   :search-results    []
-   :amount-multiplier 1})
+  {:state              :loading
+   :items              default-items
+   :selected-items     [default-selected-item]
+   :search-results     []})

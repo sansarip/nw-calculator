@@ -8,8 +8,6 @@
   [:.flip-y {:transform "scaleY(-1)"}])
 
 (spade/defclass tree-class []
-  ["&>dt"
-   "&>dt:first-child>dl:first-child>dt:first-child"
-   "&>dt>dl:last-child>dt:first-child>dl:first-child>dt" {:border-left :none
-                                                          :padding     :0px}]
-  ["&>dt:first-child>dl:first-child>dt:first-child>div" {:display :none}])
+  ["&>dt" "&>dt>dl" "&>dt>div" "&>dl>dt"
+   {:margin  "0px !important"
+    :padding "0px !important"}])
