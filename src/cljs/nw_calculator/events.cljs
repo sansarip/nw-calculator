@@ -69,29 +69,18 @@
           fsm/fsm
           :success))))
 
-(rf/reg-fx
-  ::search
-  (fn [[items-by-id item-index search-query]]
-    (let [search-results (->> items-by-id
-                              vals
-                              (filter
-                                (comp #(util/fuzzy-search % search-query)
-                                      :name
-                                      util/craftable-item))
-                              (take 10)
-                              vec)]
-      (rf/dispatch [::search-success item-index search-results]))))
-
 (rf/reg-event-fx
   ::search
   (tr/fn-traced
-    [{{{items-by-id :by-id} :items :as db} :db} [_ item-index search-query]]
-    {:db      (handlers/next-state
-                db
-                []
-                fsm/fsm
-                :search)
-     ::search [items-by-id item-index search-query]}))
+    [{{{items-by-id :by-id} :items :as db} :db} [_ item-index query]]
+    {:db              (handlers/next-state
+                        db
+                        []
+                        fsm/fsm
+                        :search)
+     ::effects/search {:query       query
+                       :items-by-id items-by-id
+                       :on-success  [::search-success item-index]}}))
 
 (rf/reg-event-db
   ::clear-search
@@ -107,7 +96,6 @@
     [db [_ item-index item]]
     (-> db
         (assoc-in [:selected-items item-index :item] item)
-        (update :selected-items #(conj % df/default-selected-item))
         (update-in [:selected-items item-index :amount-multiplier] #(or % 1))
         (assoc-in [:search-results item-index] []))))
 
