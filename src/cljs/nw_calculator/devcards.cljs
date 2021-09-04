@@ -4,7 +4,8 @@
     [nw-calculator.devcards.collapsible-tree]
     [nw-calculator.devcards.item]
     [nw-calculator.devcards.loader]
-    [nw-calculator.devcards.search]))
+    [nw-calculator.devcards.search]
+    [nw-calculator.devcards.card]))
 
 (enable-console-print!)
 
