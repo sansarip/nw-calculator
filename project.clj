@@ -15,12 +15,14 @@
                  [net.dhleong/spade "1.1.0"]
                  [riverford/compound "2020.01.09"]
                  [cljstache "2.0.6"]
+                 [binaryage/oops "0.7.1"]
                  [peanuts "0.7.2"]]
   :repl-options {:init-ns nw-calculator.core}
   :source-paths ["src/cljs"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
-  :aliases {"fig:dev" ["with-profiles" "dev" "trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]
-            "scrape"  ["with-profiles" "scraper" "run"]}
+  :aliases {"fig:dev"  ["with-profiles" "dev" "trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]
+            "fig:prod" ["run" "-m" "figwheel.main" "-bo" "prod"]
+            "scrape"   ["with-profiles" "scraper" "run"]}
   :profiles {:dev     {:dependencies [[binaryage/devtools "1.0.3"]
                                       [devcards "0.2.7"]
                                       [day8.re-frame/re-frame-10x "1.1.13"]

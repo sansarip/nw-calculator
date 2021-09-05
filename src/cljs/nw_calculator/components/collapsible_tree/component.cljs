@@ -6,7 +6,8 @@
     [nw-calculator.components.circular-button.component :as cb]
     [react]
     [nw-calculator.hooks :as hooks]
-    [nw-calculator.utilities :as util]))
+    [nw-calculator.utilities :as util]
+    [oops.core :as oops]))
 
 (defonce collapsible-list-context (react/createContext
                                     #js {"setCollapsedUpdater"   util/no-op
@@ -79,8 +80,8 @@
                 (r/as-element
                   [:f> collapsible-list
                    {:root-node?              root-node?
-                    :set-collapsed-updater   (.-setCollapsedUpdater context)
-                    :unset-collapsed-updater (.-unsetCollapsedUpdater context)
+                    :set-collapsed-updater   (oops/oget context "setCollapsedUpdater")
+                    :unset-collapsed-updater (oops/oget context "unsetCollapsedUpdater")
                     :content                 [:f> make-node
                                               {:node       node
                                                :root-node? root-node?}]}
