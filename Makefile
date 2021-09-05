@@ -1,5 +1,5 @@
 build:
 	lein clean
 	lein fig:prod
-	mkdir app/ || true
+	mkdir docs/ || true
 	cp -rf resources/public/* app/
