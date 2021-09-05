@@ -34,9 +34,9 @@
         :on-select   select-item!}])))
 
 (defn custom-item-amount [{:keys [editable? amount item-index]}]
-  (r/with-let [set-amount-multiplier (fn [event]
-                                       (let [multiplier (js/parseInt (.. event -target -value))]
-                                         (rf/dispatch [::events/set-amount-multiplier item-index multiplier])))
+  (r/with-let [set-amount-multiplier! (fn [event]
+                                        (let [multiplier (js/parseInt (.. event -target -value))]
+                                          (rf/dispatch [::events/set-amount-multiplier item-index multiplier])))
                min-amount-multiplier 1]
     (let [amount-multiplier* @(rf/subscribe [::subs/amount-multiplier item-index])
           amount-multiplier (if (js/isNaN amount-multiplier*)
@@ -81,31 +81,32 @@
 
 (defn searchable-item-tree [item-index]
   (r/with-let [collapsed-item-updaters (atom {})
-               set-collapsed-updater (fn [id updater]
-                                       (swap! collapsed-item-updaters assoc id updater))
-               unset-collapsed-updater (fn [id]
-                                         (swap! collapsed-item-updaters dissoc id))
-               expand-all #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
-                             (set-collapsed-item false))
-               collapse-all #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
-                               (set-collapsed-item true))
-               item* (fn [node] [item node item-index])]
+               set-collapsed-updater! (fn [id updater]
+                                        (swap! collapsed-item-updaters assoc id updater))
+               unset-collapsed-updater! (fn [id]
+                                          (swap! collapsed-item-updaters dissoc id))
+               expand-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
+                              (set-collapsed-item false))
+               collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
+                                (set-collapsed-item true))
+               item* (fn [node] [item node item-index])
+               button :button.button.button-outline.w-52.md:w-60]
     (let [{:keys [ingredients] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
       [:div.flex.flex-col.gap-6.items-center
        [:> ctc/collapsible-list-provider
-        {:value {:set-collapsed-updater   set-collapsed-updater
-                 :unset-collapsed-updater unset-collapsed-updater}}
+        {:value {:set-collapsed-updater   set-collapsed-updater!
+                 :unset-collapsed-updater unset-collapsed-updater!}}
         [nwc/collapsible-tree-component
          {:tree-map  selected-item
           :children  :ingredients
           :make-node item*}]]
        (when (not-empty ingredients)
-         [:div.flex
-          [:button.button.button-outline.m-4.w-52.md:w-60
-           {:on-click expand-all}
+         [:div.flex.gap-6
+          [button
+           {:on-click expand-all!}
            "expand all"]
-          [:button.button.button-outline.m-4.w-52.md:w-60
-           {:on-click collapse-all}
+          [button
+           {:on-click collapse-all!}
            "collapse all"]])])))
 
 (defn searchable-item-trees []
