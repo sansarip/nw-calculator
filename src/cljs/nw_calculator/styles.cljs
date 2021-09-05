@@ -13,7 +13,7 @@
             [".md\\:w-152-imp" {:width "40rem !important"}]
             [".md\\:pr-12-imp" {:padding-right "3rem !important"}])
   [:body {:font-family "'Roboto', sans-serif"}]
-  [:button.button {:padding-left :1rem :padding-right :1rem}]
+  [:button.button {:padding "0px 1rem 0px 1rem"}]
   [:.border-purple {:border-color (with-color "rgba({{purple.rgb}}, var(--tw-border-opacity))")}]
   [:.bg-purple {:background-color (with-color "rgba({{purple.rgb}}, var(--tw-bg-opacity))")}]
   [:.text-purple {:color (with-color "rgba({{purple.rgb}}, var(--tw-text-opacity))")}]

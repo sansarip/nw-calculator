@@ -79,3 +79,8 @@
   (let [template (js/document.createElement "template")]
     (set! (.-innerHTML template) (string/trim html))
     (.. template -content -firstChild)))
+
+(defn vec-remove-nth [v n]
+  (let [left (subvec v 0 n)
+        right (subvec v (inc n))]
+    (vec (concat left right))))

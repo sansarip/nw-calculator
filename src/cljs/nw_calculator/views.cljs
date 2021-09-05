@@ -109,12 +109,23 @@
            {:on-click collapse-all!}
            "collapse all"]])])))
 
-(defn searchable-item-trees []
+(defn delete-item-button [item-index]
+  (r/with-let [delete-item! #(rf/dispatch [::events/delete-item item-index])]
+    (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
+          disable-delete-button? (= 1 num-selected-items)]
+      [nwc/circular-button-component
+       {:class    "absolute text-xl top-2 right-0 border-0 flex-none"
+        :disabled disable-delete-button?
+        :on-click delete-item!}
+       [:i.fas.fa-trash-alt]])))
+
+(defn searchable-item-tree-cards []
   (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
-    [:div.flex.gap-28.flex-col.items-center.flex-col
+    [:<>
      (for [item-index (range num-selected-items)]
        ^{:key item-index}
        [nwc/card-component
+        [delete-item-button item-index]
         [searchable-item-tree item-index]])]))
 
 (defn page-loader []
@@ -123,7 +134,15 @@
      [nwc/loader-component {:class "fa-6x"}]
      [:h3 "Steering ship"]]))
 
+(defn new-searchable-item-tree-card-button []
+  (r/with-let [add-empty-item! #(rf/dispatch [::events/add-empty-item])]
+    [:button.button.w-52.md:w-60
+     {:on-click add-empty-item!}
+     "Add item"]))
+
 (defn main-panel []
   [:div.h-screen.pt-52.text-2xl
    [page-loader]
-   [searchable-item-trees]])
+   [:div.flex.gap-14.flex-col.items-center.flex-col
+    [searchable-item-tree-cards]
+    [new-searchable-item-tree-card-button]]])

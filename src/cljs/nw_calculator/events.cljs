@@ -29,8 +29,8 @@
     (-> db
         (update
           :items
-          (fn [items]
-            (c/add-items items (edn/read-string (str items-edn)))))
+          c/add-items
+          (edn/read-string (str items-edn)))
         (handlers/next-state
           []
           fsm/fsm
@@ -108,3 +108,15 @@
               (if (or (js/isNaN multiplier) (<= multiplier 0))
                 1
                 multiplier))))
+
+(rf/reg-event-db
+  ::add-empty-item
+  (tr/fn-traced
+    [db _]
+    (update db :selected-items conj df/empty-selected-item)))
+
+(rf/reg-event-db
+  ::delete-item
+  (tr/fn-traced
+    [db [_ item-index]]
+    (update db :selected-items util/vec-remove-nth item-index)))
