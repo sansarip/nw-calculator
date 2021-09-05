@@ -3,8 +3,9 @@
     [nw-calculator.utilities :as util]
     [reagent.core :as r]
     [clojure.string :as string]
-    [react]
-    [cljstache.core :as fmt]))
+    [cljstache.core :as fmt]
+    [nw-calculator.components.item.styles :as styles]
+    [react]))
 
 (defn image-with-popup [{:keys [src disable-popup?]}]
   (r/with-let [popup-ele (atom nil)]
@@ -38,8 +39,9 @@
 
 
 (defn placeholder-icon []
-  [:div.flex.items-center.justify-center.rounded-full.border-purple.border-opacity-30.border-2.w-12.h-12.min-w-12
-   [:i.text-purple.text-opacity-50.text-lg.far.fa-question]])
+  [:div.flex.items-center.justify-center
+   {:class (styles/placeholder-icon-class)}
+   [:i.text-purple.text-opacity-50.fa-1x.text-2xl.fas.fa-question]])
 
 (defn item
   [{:keys          [popup-on-hover?
