@@ -17,9 +17,11 @@
     (let [search-results (->> items-by-id
                               vals
                               (filter
-                                (comp #(util/fuzzy-search % query)
-                                      :name
-                                      util/craftable-item))
+                                (comp
+                                  first
+                                  #(util/fuzzy-search [%] query)
+                                  :name
+                                  util/craftable-item))
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))

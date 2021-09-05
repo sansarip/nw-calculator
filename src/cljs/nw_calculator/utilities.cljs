@@ -14,11 +14,9 @@
   (let [dbnc (Debouncer. f interval)]
     (fn [& args] (.apply (.-fire dbnc) dbnc (to-array args)))))
 
-(defn fuzzy-search [s substr]
-  (when (and (not-empty substr) (not-empty s))
-    (string/includes?
-      (string/lower-case s)
-      (string/lower-case substr))))
+(defn fuzzy-search [items substr]
+  (let [fuse (new js/Fuse (clj->js items) #js {})]
+    (into [] (map #(.-item %)) (.search fuse substr))))
 
 (defn short-uuid-str []
   (string/join (take 8 (str (random-uuid)))))
