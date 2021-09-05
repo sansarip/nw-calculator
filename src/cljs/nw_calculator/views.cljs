@@ -119,7 +119,7 @@
         :on-click delete-item!}
        [:i.fas.fa-trash-alt]])))
 
-(defn searchable-item-tree-cards []
+(defn item-cards []
   (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
     [:<>
      (for [item-index (range num-selected-items)]
@@ -134,7 +134,7 @@
      [nwc/loader-component {:class "fa-6x"}]
      [:h3 "Steering ship"]]))
 
-(defn new-searchable-item-tree-card-button []
+(defn add-item-card-button []
   (r/with-let [add-empty-item! #(rf/dispatch [::events/add-empty-item])]
     [:button.button.w-52.md:w-60
      {:on-click add-empty-item!}
@@ -144,5 +144,5 @@
   [:div.h-screen.pt-52.text-2xl
    [page-loader]
    [:div.flex.gap-14.flex-col.items-center.flex-col
-    [searchable-item-tree-cards]
-    [new-searchable-item-tree-card-button]]])
+    [item-cards]
+    [add-item-card-button]]])
