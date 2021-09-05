@@ -25,18 +25,16 @@
             (if  popup-target-ele
               (.. popup-ele* -classList (remove "hidden"))
               (.. popup-ele* -classList (add "hidden"))))
-          (fn []
-            (when-let [popup-ele* @popup-ele]
-              (reset! popup-ele nil)
-              (.remove popup-ele*))))
+          #(when-let [popup-ele* @popup-ele]
+             (reset! popup-ele nil)
+             (.remove popup-ele*)))
         #js [popup-target-ele])
       (r/with-let [show-popup (fn [event] (set-popup-target-ele! (.-target event)))
                    hide-popup (fn [_event] (set-popup-target-ele! nil))]
-        [:div.popup.relative.w-12.h-12.min-w-12
-         [:img.bg-white.rounded-full.border-purple.border-opacity-30.border-2.w-full.h-full.min-w-full.object-cover
-          {:src           (util/localize-external-img src)
-           :on-mouse-over (when-not disable-popup? show-popup)
-           :on-mouse-out  (when-not disable-popup? hide-popup)}]]))))
+        [:img.bg-none
+         {:src           (util/localize-external-img src)
+          :on-mouse-over (when-not disable-popup? show-popup)
+          :on-mouse-out  (when-not disable-popup? hide-popup)}]))))
 
 
 (defn placeholder-icon []
@@ -47,15 +45,14 @@
   [{:keys          [popup-on-hover?
                     custom-name
                     custom-amount
-                    container-props
-                    stacked-labels?]
+                    container-props]
     {:keys [amount
             png-url
             name
             xp
             tier]} :item-map}]
   (r/with-let [labels-key (str "labels_" (util/short-uuid-str))]
-    [:div.flex.items-center.mx-3.gap-4.relative
+    [:div.flex.items-center.gap-4.relative
      container-props
      (if png-url
        [:f> image-with-popup
@@ -63,10 +60,10 @@
          :disable-popup? (not popup-on-hover?)}]
        [placeholder-icon])
      ^{:key labels-key}
-     [:div.labels.w-full.flex.items-end.gap-2.md:gap-4
+     [:div.labels.w-full.flex.items-start.gap-4
       (or custom-amount amount)
       " "
-      [(if stacked-labels? :div.flex.flex-col :<>)
+      [:div.w-full.flex.flex-col.gap-2
        (or custom-name name)
        [:span.basic-info.text-sm.align-text-bottom.whitespace-nowrap
         (let [tier-label (when tier (str "T" tier))

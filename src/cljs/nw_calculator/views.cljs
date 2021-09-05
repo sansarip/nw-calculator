@@ -47,15 +47,15 @@
          {:type          :number
           :default-value amount-multiplier
           :placeholder   min-amount-multiplier
-          :on-input      set-amount-multiplier}]
+          :on-input      set-amount-multiplier!}]
         [:span.self-center amount]))))
 
 (defn custom-item-name [{:keys [searchable? name item-index external-url]}]
   (if searchable?
-    [:<>
+    [:div.w-full.flex.gap-2
      [search item-index]
      (when external-url
-       [:a {:href external-url :target "_blank"}
+       [:a.self-center {:href external-url :target "_blank"}
         [:i.text-sm.md:text-base.fas.fa-external-link-alt]])]
     (if external-url
       [:a.whitespace-nowrap {:href external-url :target "_blank"} name]
@@ -69,7 +69,6 @@
    {:popup-on-hover? true
     :container-props {:class "m-0-imp"}
     :item-map        item-map
-    :stacked-labels? (not root-node?)
     :custom-amount   [custom-item-amount
                       {:editable?  root-node?
                        :amount     amount

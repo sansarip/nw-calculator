@@ -18,7 +18,7 @@
   [:dt.mb-0.mr-0.mt-6.ml-7
    list-item-props
    [:div.relative.flex-auto.ml-7
-    (r/merge-props {:class "pl-3.5"} child-container-props)
+    child-container-props
     item]
    (into [:<>] children)])
 
