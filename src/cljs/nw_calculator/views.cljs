@@ -92,7 +92,7 @@
                item* (fn [node] [item node item-index])
                button :button.button.button-outline.w-52.md:w-60]
     (let [{:keys [ingredients] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
-      [:div.flex.flex-col.gap-6.items-center
+      [:div.flex.flex-col.gap-10.items-center
        [:> ctc/collapsible-list-provider
         {:value {:set-collapsed-updater   set-collapsed-updater!
                  :unset-collapsed-updater unset-collapsed-updater!}}
