@@ -3,7 +3,8 @@
             [spade.core :as spade]))
 
 (def config
-  {:colors {:purple {:hex "#9b4dca" :rgb "155,77,202"}}
+  {:colors {:purple    {:hex "#9b4dca" :rgb "155,77,202"}
+            :off-white {:hex "#f8f8ff"}}
    :sizes  {:screen   {:md "768px"}
             :relative {:0   "0rem"
                        :1   "0.25rem"
@@ -31,12 +32,17 @@
   (-> config :sizes :relative :136))
 (def relative-152
   (-> config :sizes :relative :152))
+(def off-white
+  (-> config :colors :off-white :hex))
 
 (spade/defglobal global-styles
   (at-media {:min-width (-> config :sizes :screen :md)}
             [".md\\:w-152-imp" {:width (with-cfg "{{sizes.relative.152}} !important")}]
             [".md\\:pr-12-imp" {:padding-right (with-cfg "{{sizes.relative.12}} !important")}])
-  [:body {:font-family "'Roboto', sans-serif"}]
+  [:body {:font-family      "'Roboto', sans-serif"
+          :background-color off-white}]
+  [:#app {:background "inherit"}]
+  [:.bg-inherit {:background "inherit"}]
   [:button.button {:padding (with-cfg "0px {{sizes.relative.4}} 0px {{sizes.relative.4}}")}]
   [:.border-purple {:border-color (with-cfg "rgba({{colors.purple.rgb}}, var(--tw-border-opacity))")}]
   [:.bg-purple {:background-color (with-cfg "rgba({{colors.purple.rgb}}, var(--tw-bg-opacity))")}]

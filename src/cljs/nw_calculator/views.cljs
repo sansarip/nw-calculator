@@ -130,7 +130,7 @@
 
 (defn page-loader []
   (when @(rf/subscribe [::subs/loading?])
-    [:div.absolute.bg-white.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
+    [:div.absolute.bg-inherit.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
      [nwc/loader-component {:class "fa-6x"}]
      [:h3 "Steering ship"]]))
 
@@ -141,7 +141,7 @@
      "Add item"]))
 
 (defn main-panel []
-  [:div.h-screen.pt-52.text-2xl
+  [:div.bg-inherit.h-screen.pt-52.text-2x
    [page-loader]
    [:div.flex.gap-14.flex-col.items-center.flex-col
     [item-cards]
