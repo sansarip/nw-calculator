@@ -62,10 +62,10 @@
          :disable-popup? (not popup-on-hover?)}]
        [placeholder-icon])
      ^{:key labels-key}
-     [:div.labels.w-full.flex.items-start.gap-4
+     [:div.bg-inherit.labels.w-full.flex.items-start.gap-4
       (or custom-amount amount)
       " "
-      [:div.w-full.flex.flex-col.gap-2
+      [:div.bg-inherit.w-full.flex.flex-col.gap-2
        (or custom-name name)
        [:span.basic-info.text-sm.align-text-bottom.whitespace-nowrap
         (let [tier-label (when tier (str "T" tier))

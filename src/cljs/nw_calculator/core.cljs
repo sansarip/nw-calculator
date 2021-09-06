@@ -4,7 +4,8 @@
     [reagent.dom :as rd]
     [re-frame.core :as rf]
     [nw-calculator.events :as events]
-    [nw-calculator.views :as views]))
+    [nw-calculator.views :as views]
+    [nw-calculator.utilities :as util]))
 
 (defn dev-setup []
   (when js/goog.DEBUG
@@ -18,6 +19,8 @@
 
 (defn ^:export main []
   (dev-setup)
-  (rf/dispatch-sync [::events/initialize-db])
+  (rf/dispatch-sync [::events/initialize-db
+                     {:dark-theme?
+                      (util/get-local-storage ::events/dark-theme?)}])
   (rf/dispatch [::events/fetch-items])
   (initialize-app!))

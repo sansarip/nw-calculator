@@ -3,6 +3,9 @@
     [re-frame.core :as rf]
     [nw-calculator.utilities :as util]))
 
+(rf/reg-sub ::dark-theme?
+  :dark-theme?)
+
 (rf/reg-sub ::search-results
   (fn [{:keys [search-results]} [_ item-index]]
     (get search-results item-index)))

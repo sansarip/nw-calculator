@@ -14,7 +14,7 @@
   (letfn [(select-result [& _] (on-select result))
           (hover-result [& _] (on-hover result-index))]
     (fn [{:keys [result-index]} & children]
-      [:dt.transition-colors.bg-opacity-10.m-0.p-4.cursor-pointer
+      [:dt.bg-inherit.transition-colors.bg-opacity-20.m-0.p-4.cursor-pointer
        {:data-result-index result-index
         :on-mouse-over     hover-result
         :on-click          select-result}
@@ -106,7 +106,7 @@
         (fn []
           (highlight-result! active-result-index num-results))
         #js [active-result-index])
-      [:div.relative.w-full (r/merge-props {:class (styles/search-class)} props)
+      [:div.bg-inherit.relative.w-full (r/merge-props {:class (styles/search-class)} props)
        [:input.basic-input.search.w-full.flex-grow.md:pr-12-imp
         (r/merge-props
           {:spell-check false
@@ -123,7 +123,7 @@
          [lc/loader
           {:class "absolute text-lg md:text-2xl right-2 md:right-3 top-3 md:top-2 flex-none"}])
        (when (> num-results 0)
-         [:dl.w-full.max-w-full.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
+         [:dl.bg-inherit.w-full.max-w-full.absolute.m-0.z-50.bg-inherit.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
           {:multiple true
            :size     (count results)}
           (map-indexed

@@ -52,7 +52,7 @@
 
 (defn custom-item-name [{:keys [searchable? name item-index external-url]}]
   (if searchable?
-    [:div.w-full.flex.gap-2
+    [:div.bg-inherit.w-full.flex.gap-2
      [search item-index]
      (when external-url
        [:a.self-center {:href external-url :target "_blank"}
@@ -67,7 +67,7 @@
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
-    :container-props {:class "m-0-imp"}
+    :container-props {:class (str "m-0-imp" (when root-node? " bg-inherit"))}
     :item-map        item-map
     :custom-amount   [custom-item-amount
                       {:editable?  root-node?
@@ -89,10 +89,9 @@
                               (set-collapsed-item false))
                collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
                                 (set-collapsed-item true))
-               item* (fn [node] [item node item-index])
-               button :button.button.button-outline.w-52.md:w-60]
+               item* (fn [node] [item node item-index])]
     (let [{:keys [ingredients] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
-      [:div.flex.flex-col.gap-10.items-center
+      [:div.bg-inherit.flex.flex-col.gap-10.items-center
        [:> ctc/collapsible-list-provider
         {:value {:set-collapsed-updater   set-collapsed-updater!
                  :unset-collapsed-updater unset-collapsed-updater!}}
@@ -102,10 +101,10 @@
           :make-node item*}]]
        (when (not-empty ingredients)
          [:div.flex.gap-6
-          [button
+          [:button.button.button-outline.w-52.md:w-60
            {:on-click expand-all!}
            "expand all"]
-          [button
+          [:button.button.button-outline.w-52.md:w-60
            {:on-click collapse-all!}
            "collapse all"]])])))
 
@@ -117,14 +116,18 @@
        {:class    "absolute text-xl top-2 right-0 border-0 flex-none"
         :disabled disable-delete-button?
         :on-click delete-item!}
-       [:i.fas.fa-trash-alt]])))
+       [:i.fas.fa-trash]])))
+
+(defn card [& children]
+  [nwc/card-component
+   (into [:<>] children)])
 
 (defn item-cards []
   (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
     [:<>
      (for [item-index (range num-selected-items)]
        ^{:key item-index}
-       [nwc/card-component
+       [card
         [delete-item-button item-index]
         [searchable-item-tree item-index]])]))
 
@@ -150,19 +153,31 @@
    [add-item-card-button]])
 
 (defn footer []
-  [:div.py-4.flex.flex.gap-4.justify-center.text-3xl
+  [:div.py-4.flex.flex.gap-5.justify-center.text-4xl
    [:a.cursor-pointer
-    {:href    "https://github.com/sansarip/nw-calculator"
+    {:href   "https://github.com/sansarip/nw-calculator"
      :target "_blank"}
     [:i.fab.fa-github]]
    [:a.cursor-pointer
-    {:href    "https://discord.gg/FCqzwycR23"
+    {:href   "https://discord.gg/FCqzwycR23"
      :target "_blank"}
     [:i.fab.fa-discord]]])
 
+(defn theme-toggle []
+  (r/with-let [set-theme! (fn [event]
+                            (rf/dispatch [::events/set-dark-theme (.. event -target -checked)]))]
+    [:div.absolute.top-10.right-10
+     [nwc/toggle-component
+      {:checkbox-props {:on-change set-theme!
+                        :checked   @(rf/subscribe [::subs/dark-theme?])}
+       :on             [:i.fas.fa-sun.w-full.h-full.text-yellow-500]
+       :off            [:i.fas.fa-moon.w-full.h-full.text-gray-600]}]]))
+
 (defn main-panel []
-  [:div.flex.flex-col.gap-24.bg-inherit.h-screen.pt-48
+  [:div.bg-inherit.relative.overflow-y-auto.flex.flex-col.gap-20.h-screen.pt-40
+   {:class (when @(rf/subscribe [::subs/dark-theme?]) "dark")}
    [page-loader]
+   [theme-toggle]
    [header]
    [body]
    [footer]])

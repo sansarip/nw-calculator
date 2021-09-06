@@ -16,9 +16,9 @@
 (def collapsible-list-consumer (.-Consumer collapsible-list-context))
 
 (defn list-item [{:keys [list-item-props child-container-props]} item & children]
-  [:dt.mb-0.mr-0.mt-6.ml-7
+  [:dt.bg-inherit.mb-0.mr-0.mt-6.ml-7
    list-item-props
-   [:div.relative.flex-auto.ml-7
+   [:div.bg-inherit.relative.flex-auto.ml-7
     child-container-props
     item]
    (into [:<>] children)])
@@ -47,11 +47,11 @@
       (when-not root-node?
         [cb/circular-button
          {:on-click toggle-collapsed!
-          :class    "absolute -left-14 bg-white-imp"}
+          :class    "toggle bg-inherit absolute -left-14"}
          [:i.fas.fa-chevron-up.text-base.transition-transform
           {:class (when collapsed? "flip-y")}]])
       content]
-     [:dl.mt-0.mb-0.overflow-x-auto
+     [:dl.bg-inherit.mt-0.mb-0.overflow-x-auto
       {:class (when (and (not root-node?) collapsed?) "hidden")}
       (into [:<>] children)]]))
 
@@ -65,10 +65,14 @@
   [{:keys [children
            make-node
            tree-map
+           container-props
            id]
     :or   {make-node identity
            id        :id}}]
-  [:dl.w-full {:class (styles/tree-class)}
+  [:dl.bg-inherit.w-full
+   (r/merge-props
+     {:class (styles/tree-class)}
+     container-props)
    (w/postwalk
      (fn [node]
        (if (map? node)

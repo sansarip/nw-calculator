@@ -9,11 +9,12 @@
 
 (def empty-item {:ingredients []})
 
-(def empty-selected-item {:item                empty-item
+(def empty-selected-item {:item              empty-item
                           :amount-multiplier 1})
 
 (def default-db
-  {:state              :loading
-   :items              default-items
-   :selected-items     [empty-selected-item]
-   :search-results     []})
+  {:state          :loading
+   :dark-theme?    false
+   :items          default-items
+   :selected-items [empty-selected-item]
+   :search-results []})
