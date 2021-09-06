@@ -20,6 +20,8 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 
 ### Scraper
 
+The scraper may not work as expected anymore as it was based on an older version of https://newworldfans.com/.
+
 `lein scrape`
 
 ## License
