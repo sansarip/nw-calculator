@@ -1,6 +1,6 @@
 (defproject nw-calculator "2021.09.05.1"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "New World game crafting calculator web application"
+  :url "https://github.com/sansarip/nw-calculator"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
