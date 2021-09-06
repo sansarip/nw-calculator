@@ -19,3 +19,9 @@ return nw_calculator.utilities.fuzzy_search(new cljs.core.PersistentVector(null,
 }),cljs.core.cst$kw$name,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([nw_calculator.utilities.craftable_item], 0)),cljs.core.vals(items_by_id))));
 return re_frame.core.dispatch(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(on_success,search_results));
 }));
+re_frame.core.reg_fx(cljs.core.cst$kw$nw_DASH_calculator$effects_SLASH_set_DASH_local_DASH_storage,(function (p__19686){
+var vec__19687 = p__19686;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__19687,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__19687,(1),null);
+return nw_calculator.utilities.set_local_storage_BANG_(k,v);
+}));

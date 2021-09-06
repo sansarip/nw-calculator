@@ -7,13 +7,14 @@ goog.require('reagent.dom');
 goog.require('re_frame.core');
 goog.require('nw_calculator.events');
 goog.require('nw_calculator.views');
+goog.require('nw_calculator.utilities');
 nw_calculator.core.dev_setup = (function nw_calculator$core$dev_setup(){
 if(cljs.core.truth_(goog.DEBUG)){
 cljs.core.enable_console_print_BANG_();
 
-return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init11901607105498160418.clj",12,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
+return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init2845129937373066459.clj",13,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["\uD83D\uDC77 Dev mode!"], null);
-}),null)),null,-763006943,null);
+}),null)),null,-1618258384,null);
 } else {
 return null;
 }
@@ -26,7 +27,7 @@ return reagent.dom.render.cljs$core$IFn$_invoke$arity$2(new cljs.core.Persistent
 nw_calculator.core.main = (function nw_calculator$core$main(){
 nw_calculator.core.dev_setup();
 
-re_frame.core.dispatch_sync(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$nw_DASH_calculator$events_SLASH_initialize_DASH_db], null));
+re_frame.core.dispatch_sync(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$nw_DASH_calculator$events_SLASH_initialize_DASH_db,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$dark_DASH_theme_QMARK_,nw_calculator.utilities.get_local_storage(cljs.core.cst$kw$nw_DASH_calculator$events_SLASH_dark_DASH_theme_QMARK_)], null)], null));
 
 re_frame.core.dispatch(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$nw_DASH_calculator$events_SLASH_fetch_DASH_items], null));
 
