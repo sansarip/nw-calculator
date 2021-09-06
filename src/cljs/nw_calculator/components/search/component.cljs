@@ -123,7 +123,7 @@
          [lc/loader
           {:class "absolute text-lg md:text-2xl right-2 md:right-3 top-3 md:top-2 flex-none"}])
        (when (> num-results 0)
-         [:dl.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
+         [:dl.w-full.max-w-full.absolute.m-0.z-50.bg-white.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
           {:multiple true
            :size     (count results)}
           (map-indexed
