@@ -24,7 +24,7 @@
           searching? @(rf/subscribe [::subs/searching?])]
       [:f> nwc/search-component
        {:results     results
-        :input-props {:placeholder   "Search for an item \uD83D\uDD0D"
+        :input-props {:placeholder   "\uD83D\uDD0D Search for an item"
                       :default-value item-name}
         :get-value   :name
         :make-result item-component
@@ -136,13 +136,33 @@
 
 (defn add-item-card-button []
   (r/with-let [add-empty-item! #(rf/dispatch [::events/add-empty-item])]
-    [:button.button.w-52.md:w-60
+    [:button.button.w-64
      {:on-click add-empty-item!}
-     "Add item"]))
+     "Add another item"]))
+
+(defn header []
+  [:div.flex.flex-col.items-center
+   [:h3.text-center "New World Crafting Calculator"]])
+
+(defn body []
+  [:div.flex-grow.flex.gap-14.flex-col.items-center.flex-col
+   [item-cards]
+   [add-item-card-button]])
+
+(defn footer []
+  [:div.py-4.flex.flex.gap-4.justify-center.text-3xl
+   [:a.cursor-pointer
+    {:href    "https://github.com/sansarip/nw-calculator"
+     :target "_blank"}
+    [:i.fab.fa-github]]
+   [:a.cursor-pointer
+    {:href    "https://discord.gg/FCqzwycR23"
+     :target "_blank"}
+    [:i.fab.fa-discord]]])
 
 (defn main-panel []
-  [:div.bg-inherit.h-screen.pt-52.text-2x
+  [:div.flex.flex-col.gap-24.bg-inherit.h-screen.pt-48
    [page-loader]
-   [:div.flex.gap-14.flex-col.items-center.flex-col
-    [item-cards]
-    [add-item-card-button]]])
+   [header]
+   [body]
+   [footer]])
