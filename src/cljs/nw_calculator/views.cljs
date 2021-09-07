@@ -155,7 +155,7 @@
 
 (defn footer []
   [:div.relative.py-4.flex.flex.gap-5.justify-center.text-4xl
-   [:span.version.text-sm.absolute.left-4.bottom-4 cfg/version]
+   [:span.version.text-base.absolute.left-4.bottom-4 cfg/version]
    [:a.cursor-pointer
     {:href   "https://github.com/sansarip/nw-calculator"
      :target "_blank"}
