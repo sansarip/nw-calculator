@@ -47,14 +47,15 @@
   (memoize
     (fn
       ([item] (multiply-amounts item 1))
-      ([{:keys [amount ingredients] :or {amount 1} :as item} multiplier]
+      ([{:keys [amount xp ingredients] :or {amount 1} :as item} multiplier]
        (let [product (* multiplier amount)]
          (-> item
              (cond-> (not-empty ingredients) (assoc :ingredients
                                                     (into #{}
                                                           (map #(multiply-amounts % product))
                                                           ingredients)))
-             (assoc :amount product)))))))
+             (assoc :amount product)
+             (cond-> (number? xp) (assoc :xp (* product xp)))))))))
 
 (defn craftable-item [{:keys [ingredients] :as item}]
   (when (not-empty ingredients)
