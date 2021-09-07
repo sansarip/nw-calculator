@@ -9,18 +9,18 @@ goog.require('re_frame.loggers');
  *   will not be present in the new structure.
  *   The key thing is that 'm' remains identical? to itself if the path was never present
  */
-re_frame.utils.dissoc_in = (function re_frame$utils$dissoc_in(m,p__19151){
-var vec__19152 = p__19151;
-var seq__19153 = cljs.core.seq(vec__19152);
-var first__19154 = cljs.core.first(seq__19153);
-var seq__19153__$1 = cljs.core.next(seq__19153);
-var k = first__19154;
-var ks = seq__19153__$1;
-var keys = vec__19152;
+re_frame.utils.dissoc_in = (function re_frame$utils$dissoc_in(m,p__19154){
+var vec__19155 = p__19154;
+var seq__19156 = cljs.core.seq(vec__19155);
+var first__19157 = cljs.core.first(seq__19156);
+var seq__19156__$1 = cljs.core.next(seq__19156);
+var k = first__19157;
+var ks = seq__19156__$1;
+var keys = vec__19155;
 if(ks){
-var temp__5733__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(m,k);
-if(cljs.core.truth_(temp__5733__auto__)){
-var nextmap = temp__5733__auto__;
+var temp__5751__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(m,k);
+if(cljs.core.truth_(temp__5751__auto__)){
+var nextmap = temp__5751__auto__;
 var newmap = (re_frame.utils.dissoc_in.cljs$core$IFn$_invoke$arity$2 ? re_frame.utils.dissoc_in.cljs$core$IFn$_invoke$arity$2(nextmap,ks) : re_frame.utils.dissoc_in.call(null,nextmap,ks));
 if(cljs.core.seq(newmap)){
 return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(m,k,newmap);
@@ -47,14 +47,14 @@ return re_frame.loggers.console.cljs$core$IFn$_invoke$arity$variadic(cljs.core.c
  */
 re_frame.utils.apply_kw = (function re_frame$utils$apply_kw(var_args){
 var args__4824__auto__ = [];
-var len__4818__auto___19157 = arguments.length;
-var i__4819__auto___19158 = (0);
+var len__4818__auto___19160 = arguments.length;
+var i__4819__auto___19161 = (0);
 while(true){
-if((i__4819__auto___19158 < len__4818__auto___19157)){
-args__4824__auto__.push((arguments[i__4819__auto___19158]));
+if((i__4819__auto___19161 < len__4818__auto___19160)){
+args__4824__auto__.push((arguments[i__4819__auto___19161]));
 
-var G__19159 = (i__4819__auto___19158 + (1));
-i__4819__auto___19158 = G__19159;
+var G__19162 = (i__4819__auto___19161 + (1));
+i__4819__auto___19161 = G__19162;
 continue;
 } else {
 }
@@ -77,10 +77,10 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(f,cljs.core.apply.cljs$core
 (re_frame.utils.apply_kw.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(re_frame.utils.apply_kw.cljs$lang$applyTo = (function (seq19155){
-var G__19156 = cljs.core.first(seq19155);
-var seq19155__$1 = cljs.core.next(seq19155);
+(re_frame.utils.apply_kw.cljs$lang$applyTo = (function (seq19158){
+var G__19159 = cljs.core.first(seq19158);
+var seq19158__$1 = cljs.core.next(seq19158);
 var self__4805__auto__ = this;
-return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__19156,seq19155__$1);
+return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__19159,seq19158__$1);
 }));
 

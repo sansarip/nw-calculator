@@ -22,7 +22,7 @@ return clojure.string.replace(cljs.core.str.cljs$core$IFn$_invoke$arity$1(s),/[^
 });
 spade.util.params__GT_key = (function spade$util$params__GT_key(p){
 try{return cljs.core.hash(p);
-}catch (e27764){var _ = e27764;
+}catch (e27767){var _ = e27767;
 return null;
 }});
 spade.util.build_style_name = (function spade$util$build_style_name(base,style_key,params){
@@ -30,9 +30,9 @@ if(cljs.core.truth_(style_key)){
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(base),"_",spade.util.sanitize(style_key)].join('');
 } else {
 if(cljs.core.seq(params)){
-var temp__5733__auto__ = spade.util.params__GT_key(params);
-if(cljs.core.truth_(temp__5733__auto__)){
-var pkey = temp__5733__auto__;
+var temp__5751__auto__ = spade.util.params__GT_key(params);
+if(cljs.core.truth_(temp__5751__auto__)){
+var pkey = temp__5751__auto__;
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(base),"_",cljs.core.str.cljs$core$IFn$_invoke$arity$1(pkey)].join('');
 } else {
 var msg = ["WARNING: no key provided for ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(base)].join('');

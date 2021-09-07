@@ -135,9 +135,9 @@ return console.log;
 }
 });
 return (function (data){
-var temp__5735__auto__ = level__GT_logger(cljs.core.cst$kw$level.cljs$core$IFn$_invoke$arity$1(data));
-if(cljs.core.truth_(temp__5735__auto__)){
-var logger = temp__5735__auto__;
+var temp__5753__auto__ = level__GT_logger(cljs.core.cst$kw$level.cljs$core$IFn$_invoke$arity$1(data));
+if(cljs.core.truth_(temp__5753__auto__)){
+var logger = temp__5753__auto__;
 if(cljs.core.truth_((function (){var or__4212__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(data,cljs.core.cst$kw$raw_DASH_console_QMARK_);
 if(cljs.core.truth_(or__4212__auto__)){
 return or__4212__auto__;
@@ -150,9 +150,9 @@ var fexpr__16759 = cljs.core.cst$kw$output_DASH_fn.cljs$core$IFn$_invoke$arity$1
 return (fexpr__16759.cljs$core$IFn$_invoke$arity$1 ? fexpr__16759.cljs$core$IFn$_invoke$arity$1(G__16760) : fexpr__16759.call(null,G__16760));
 })();
 var args = (function (){var vargs = cljs.core.cst$kw$vargs.cljs$core$IFn$_invoke$arity$1(data);
-var temp__5733__auto__ = cljs.core.cst$kw$_QMARK_err.cljs$core$IFn$_invoke$arity$1(data);
-if(cljs.core.truth_(temp__5733__auto__)){
-var err = temp__5733__auto__;
+var temp__5751__auto__ = cljs.core.cst$kw$_QMARK_err.cljs$core$IFn$_invoke$arity$1(data);
+if(cljs.core.truth_(temp__5751__auto__)){
+var err = temp__5751__auto__;
 return cljs.core.cons(output,cljs.core.cons(err,vargs));
 } else {
 return cljs.core.cons(output,vargs);

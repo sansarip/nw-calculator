@@ -24,9 +24,9 @@ var with_credentials = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__13160__$
 var response_format = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13160__$1,cljs.core.cst$kw$response_DASH_format);
 var progress_handler = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13160__$1,cljs.core.cst$kw$progress_DASH_handler);
 var this$__$1 = this;
-var temp__5735__auto___13164 = cljs.core.cst$kw$type.cljs$core$IFn$_invoke$arity$1(response_format);
-if(cljs.core.truth_(temp__5735__auto___13164)){
-var response_type_13165 = temp__5735__auto___13164;
+var temp__5753__auto___13164 = cljs.core.cst$kw$type.cljs$core$IFn$_invoke$arity$1(response_format);
+if(cljs.core.truth_(temp__5753__auto___13164)){
+var response_type_13165 = temp__5753__auto___13164;
 this$__$1.setResponseType(cljs.core.name(response_type_13165));
 } else {
 }

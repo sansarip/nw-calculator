@@ -5,9 +5,9 @@ goog.require('cljs.core.constants');
 goog.require('clojure.set');
 taoensso.truss.impl.rsome = (function taoensso$truss$impl$rsome(pred,coll){
 return cljs.core.reduce.cljs$core$IFn$_invoke$arity$3((function (acc,in$){
-var temp__5735__auto__ = (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(in$) : pred.call(null,in$));
-if(cljs.core.truth_(temp__5735__auto__)){
-var p = temp__5735__auto__;
+var temp__5753__auto__ = (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(in$) : pred.call(null,in$));
+if(cljs.core.truth_(temp__5753__auto__)){
+var p = temp__5753__auto__;
 return cljs.core.reduced(p);
 } else {
 return null;
@@ -288,9 +288,9 @@ return (new Error(msg));
 });
 taoensso.truss.impl._dummy_error = ({});
 taoensso.truss.impl._invar_violation_BANG_ = (function taoensso$truss$impl$_invar_violation_BANG_(elidable_QMARK_,ns_str,_QMARK_line,form,val,_QMARK_err,_QMARK_data_fn){
-var temp__5735__auto__ = taoensso.truss.impl._STAR_error_fn_STAR_;
-if(cljs.core.truth_(temp__5735__auto__)){
-var error_fn = temp__5735__auto__;
+var temp__5753__auto__ = taoensso.truss.impl._STAR_error_fn_STAR_;
+if(cljs.core.truth_(temp__5753__auto__)){
+var error_fn = temp__5753__auto__;
 var G__13441 = (new cljs.core.Delay((function (){
 var instant = (new Date());
 var line_str = (function (){var or__4212__auto__ = _QMARK_line;
@@ -307,9 +307,9 @@ var val_str = ((undefn_val_QMARK_)?"<truss/undefined-val>":(((val == null))?"<tr
 var _QMARK_err__$1 = (((taoensso.truss.impl._dummy_error === _QMARK_err))?null:(((_QMARK_err instanceof taoensso.truss.impl.WrappedError))?_QMARK_err.val:_QMARK_err
 ));
 var msg_ = (new cljs.core.Delay((function (){
-var _QMARK_err_str = (function (){var temp__5735__auto____$1 = _QMARK_err__$1;
-if(cljs.core.truth_(temp__5735__auto____$1)){
-var e = temp__5735__auto____$1;
+var _QMARK_err_str = (function (){var temp__5753__auto____$1 = _QMARK_err__$1;
+if(cljs.core.truth_(temp__5753__auto____$1)){
+var e = temp__5753__auto____$1;
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(_QMARK_err__$1);
 } else {
 return null;
@@ -327,9 +327,9 @@ return [msg," An error was thrown while evaluating test form: [",_QMARK_err_str,
 }
 }
 }),null));
-var _QMARK_data = (function (){var temp__5735__auto____$1 = _QMARK_data_fn;
-if(cljs.core.truth_(temp__5735__auto____$1)){
-var data_fn = temp__5735__auto____$1;
+var _QMARK_data = (function (){var temp__5753__auto____$1 = _QMARK_data_fn;
+if(cljs.core.truth_(temp__5753__auto____$1)){
+var data_fn = temp__5753__auto____$1;
 try{return (data_fn.cljs$core$IFn$_invoke$arity$0 ? data_fn.cljs$core$IFn$_invoke$arity$0() : data_fn.call(null));
 }catch (e13442){if((e13442 instanceof Error)){
 var e = e13442;
