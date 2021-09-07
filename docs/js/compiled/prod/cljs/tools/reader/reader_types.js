@@ -395,9 +395,9 @@ this.file_name = file_name;
 (cljs.tools.reader.reader_types.IndexingPushbackReader.prototype.cljs$tools$reader$reader_types$Reader$read_char$arity$1 = (function (reader){
 var self__ = this;
 var reader__$1 = this;
-var temp__5735__auto__ = self__.rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-if(cljs.core.truth_(temp__5735__auto__)){
-var ch = temp__5735__auto__;
+var temp__5753__auto__ = self__.rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+if(cljs.core.truth_(temp__5753__auto__)){
+var ch = temp__5753__auto__;
 var ch__$1 = cljs.tools.reader.reader_types.normalize_newline(self__.rdr,ch);
 (self__.prev = self__.line_start_QMARK_);
 
@@ -502,9 +502,9 @@ return cljs.core.subs.cljs$core$IFn$_invoke$arity$2(cljs.core.str.cljs$core$IFn$
  * Logs `char` to all currently active source logging frames.
  */
 cljs.tools.reader.reader_types.log_source_char = (function cljs$tools$reader$reader_types$log_source_char(frames,char$){
-var temp__5735__auto__ = cljs.core.cst$kw$buffer.cljs$core$IFn$_invoke$arity$1(frames);
-if(cljs.core.truth_(temp__5735__auto__)){
-var buffer = temp__5735__auto__;
+var temp__5753__auto__ = cljs.core.cst$kw$buffer.cljs$core$IFn$_invoke$arity$1(frames);
+if(cljs.core.truth_(temp__5753__auto__)){
+var buffer = temp__5753__auto__;
 return buffer.append(char$);
 } else {
 return null;
@@ -515,9 +515,9 @@ return null;
  * logging frames. Called when pushing a character back.
  */
 cljs.tools.reader.reader_types.drop_last_logged_char = (function cljs$tools$reader$reader_types$drop_last_logged_char(frames){
-var temp__5735__auto__ = cljs.core.cst$kw$buffer.cljs$core$IFn$_invoke$arity$1(frames);
-if(cljs.core.truth_(temp__5735__auto__)){
-var buffer = temp__5735__auto__;
+var temp__5753__auto__ = cljs.core.cst$kw$buffer.cljs$core$IFn$_invoke$arity$1(frames);
+if(cljs.core.truth_(temp__5753__auto__)){
+var buffer = temp__5753__auto__;
 return buffer.set(cljs.core.subs.cljs$core$IFn$_invoke$arity$3(cljs.core.str.cljs$core$IFn$_invoke$arity$1(buffer),(0),(buffer.getLength() - (1))));
 } else {
 return null;
@@ -545,9 +545,9 @@ this.frames = frames;
 (cljs.tools.reader.reader_types.SourceLoggingPushbackReader.prototype.cljs$tools$reader$reader_types$Reader$read_char$arity$1 = (function (reader){
 var self__ = this;
 var reader__$1 = this;
-var temp__5735__auto__ = self__.rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-if(cljs.core.truth_(temp__5735__auto__)){
-var ch = temp__5735__auto__;
+var temp__5753__auto__ = self__.rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+if(cljs.core.truth_(temp__5753__auto__)){
+var ch = temp__5753__auto__;
 var ch__$1 = cljs.tools.reader.reader_types.normalize_newline(self__.rdr,ch);
 (self__.prev = self__.line_start_QMARK_);
 
