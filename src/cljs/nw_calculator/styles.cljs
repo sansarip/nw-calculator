@@ -44,7 +44,7 @@
           :background  off-white}]
   [:#app {:background :inherit}]
   [:.dark {:background (with-cfg "{{colors.raisin-black.hex}} !important")}]
-  [".dark h3" {:color off-white}]
+  [".dark h3, .dark span.version" {:color off-white}]
   [:.bg-inherit {:background "inherit"}]
   [:.bg-raisin-black {:background (-> config :colors :raisin-black :hex)}]
   [:button.button {:padding (with-cfg "0px {{sizes.relative.4}} 0px {{sizes.relative.4}}")}]

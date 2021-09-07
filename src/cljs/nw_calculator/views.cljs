@@ -7,7 +7,8 @@
     [nw-calculator.components :as nwc]
     [reagent.core :as r]
     [nw-calculator.utilities :as util]
-    [nw-calculator.styles :as styles]))
+    [nw-calculator.styles :as styles]
+    [nw-calculator.config :as cfg]))
 
 (defn search [item-index]
   (r/with-let [search! (util/debounce
@@ -153,7 +154,8 @@
    [add-item-card-button]])
 
 (defn footer []
-  [:div.py-4.flex.flex.gap-5.justify-center.text-4xl
+  [:div.relative.py-4.flex.flex.gap-5.justify-center.text-4xl
+   [:span.version.text-sm.absolute.left-4.bottom-4 cfg/version]
    [:a.cursor-pointer
     {:href   "https://github.com/sansarip/nw-calculator"
      :target "_blank"}
