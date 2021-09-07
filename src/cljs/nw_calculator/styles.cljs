@@ -14,8 +14,9 @@
                        :11  "2.75rem"
                        :12  "3rem"
                        :96  "24rem"
-                       :152 "40rem"
-                       :136 "32rem"}}})
+                       :128 "32rem"
+                       :160 "40rem"
+                       :176 "44rem"}}})
 
 (defn with-cfg [s] (fmt/render s config))
 
@@ -29,16 +30,16 @@
   (-> config :sizes :relative :12))
 (def relative-96
   (-> config :sizes :relative :96))
-(def relative-136
-  (-> config :sizes :relative :136))
-(def relative-152
-  (-> config :sizes :relative :152))
+(def relative-128
+  (-> config :size :relative :128))
+(def relative-176
+  (-> config :sizes :relative :176))
 (def off-white
   (-> config :colors :off-white :hex))
 
 (spade/defglobal global-styles
   (at-media {:min-width (-> config :sizes :screen :md)}
-            [".md\\:w-152-imp" {:width (with-cfg "{{sizes.relative.152}} !important")}]
+            [".md\\:w-176-imp" {:width (with-cfg "{{sizes.relative.176}} !important")}]
             [".md\\:pr-12-imp" {:padding-right (with-cfg "{{sizes.relative.12}} !important")}])
   [:body {:font-family "'Roboto', sans-serif"
           :background  off-white}]
@@ -55,8 +56,8 @@
   [:.w-11-imp {:width (with-cfg "{{sizes.relative.11}} !important")}]
   [:.min-w-12 {:min-width relative-12}]
   [:.min-w-96 {:min-width relative-96}]
-  [:.w-136 {:width relative-136}]
-  [:.w-152 {:width relative-152}]
+  [:.w-128 {:width relative-128}]
+  [:.w-176 {:width relative-176}]
   [:input.basic-input {:padding-bottom relative-0
                        :padding-top    relative-0
                        :padding-left   relative-1
