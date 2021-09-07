@@ -8,17 +8,17 @@ goog.require('clojure.string');
 goog.require('cljstache.core');
 goog.require('nw_calculator.components.item.styles');
 nw_calculator.components.item.component.global$module$react = goog.global["React"];
-nw_calculator.components.item.component.image_with_popup = (function nw_calculator$components$item$component$image_with_popup(p__28956){
-var map__28957 = p__28956;
-var map__28957__$1 = cljs.core.__destructure_map(map__28957);
-var src = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28957__$1,cljs.core.cst$kw$src);
-var disable_popup_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28957__$1,cljs.core.cst$kw$disable_DASH_popup_QMARK_);
-var with_let28958 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28958);
-var temp__5757__auto___28973 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5757__auto___28973 == null)){
+nw_calculator.components.item.component.image_with_popup = (function nw_calculator$components$item$component$image_with_popup(p__28958){
+var map__28959 = p__28958;
+var map__28959__$1 = cljs.core.__destructure_map(map__28959);
+var src = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28959__$1,cljs.core.cst$kw$src);
+var disable_popup_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28959__$1,cljs.core.cst$kw$disable_DASH_popup_QMARK_);
+var with_let28960 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28960);
+var temp__5757__auto___28975 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5757__auto___28975 == null)){
 } else {
-var c__18156__auto___28974 = temp__5757__auto___28973;
-if((with_let28958.generation === c__18156__auto___28974.ratomGeneration)){
+var c__18156__auto___28976 = temp__5757__auto___28975;
+if((with_let28960.generation === c__18156__auto___28976.ratomGeneration)){
 if(cljs.core.truth_(reagent.debug.has_console)){
 (cljs.core.truth_(reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -26,15 +26,15 @@ if(cljs.core.truth_(reagent.debug.has_console)){
 } else {
 }
 
-(with_let28958.generation = c__18156__auto___28974.ratomGeneration);
+(with_let28960.generation = c__18156__auto___28976.ratomGeneration);
 }
 
-var init28959 = (with_let28958.length === (0));
-var popup_ele = ((((init28959) || (cljs.core.not(with_let28958.hasOwnProperty((0))))))?(with_let28958[(0)] = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null)):(with_let28958[(0)]));
-var res28960 = (function (){var vec__28961 = nw_calculator.components.item.component.global$module$react.useState(null);
-var popup_target_ele = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28961,(0),null);
-var set_popup_target_ele_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28961,(1),null);
-var G__28964_28975 = (function (){
+var init28961 = (with_let28960.length === (0));
+var popup_ele = ((((init28961) || (cljs.core.not(with_let28960.hasOwnProperty((0))))))?(with_let28960[(0)] = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(null)):(with_let28960[(0)]));
+var res28962 = (function (){var vec__28963 = nw_calculator.components.item.component.global$module$react.useState(null);
+var popup_target_ele = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28963,(0),null);
+var set_popup_target_ele_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28963,(1),null);
+var G__28966_28977 = (function (){
 if(cljs.core.truth_((function (){var and__4210__auto__ = cljs.core.not(cljs.core.deref(popup_ele));
 if(and__4210__auto__){
 return popup_target_ele;
@@ -42,24 +42,24 @@ return popup_target_ele;
 return and__4210__auto__;
 }
 })())){
-var new_popup_ele_28977 = nw_calculator.utilities.html__GT_ele(cljstache.core.render.cljs$core$IFn$_invoke$arity$2("<img class=\"hidden max-w-3xl w-48 h-48 object-cover absolute z-10 bg-light-blue rounded-full rounded-tl-none border-purple border-opacity-30 border-2 bg-white\" src=\"{{src}}\" style=\"top: {{top}}px; left: {{left}}px\" />",(function (){var vec__28966 = nw_calculator.utilities.get_ele_offsets(popup_target_ele);
-var left = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28966,(0),null);
-var top = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28966,(1),null);
+var new_popup_ele_28979 = nw_calculator.utilities.html__GT_ele(cljstache.core.render.cljs$core$IFn$_invoke$arity$2("<img class=\"hidden max-w-3xl w-48 h-48 object-cover absolute z-10 bg-light-blue rounded-full rounded-tl-none border-purple border-opacity-30 border-2 bg-white\" src=\"{{src}}\" style=\"top: {{top}}px; left: {{left}}px\" />",(function (){var vec__28968 = nw_calculator.utilities.get_ele_offsets(popup_target_ele);
+var left = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28968,(0),null);
+var top = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28968,(1),null);
 return new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$src,src,cljs.core.cst$kw$left,(left + (25)),cljs.core.cst$kw$top,(top + (25))], null);
 })()));
-cljs.core.reset_BANG_(popup_ele,new_popup_ele_28977);
+cljs.core.reset_BANG_(popup_ele,new_popup_ele_28979);
 
-document.body.appendChild(new_popup_ele_28977);
+document.body.appendChild(new_popup_ele_28979);
 } else {
 }
 
-var temp__5753__auto___28978 = cljs.core.deref(popup_ele);
-if(cljs.core.truth_(temp__5753__auto___28978)){
-var popup_ele_STAR__28979 = temp__5753__auto___28978;
+var temp__5753__auto___28980 = cljs.core.deref(popup_ele);
+if(cljs.core.truth_(temp__5753__auto___28980)){
+var popup_ele_STAR__28981 = temp__5753__auto___28980;
 if(cljs.core.truth_(popup_target_ele)){
-popup_ele_STAR__28979.classList.remove("hidden");
+popup_ele_STAR__28981.classList.remove("hidden");
 } else {
-popup_ele_STAR__28979.classList.add("hidden");
+popup_ele_STAR__28981.classList.add("hidden");
 }
 } else {
 }
@@ -76,15 +76,15 @@ return null;
 }
 });
 });
-var G__28965_28976 = [popup_target_ele];
-nw_calculator.components.item.component.global$module$react.useEffect(G__28964_28975,G__28965_28976);
+var G__28967_28978 = [popup_target_ele];
+nw_calculator.components.item.component.global$module$react.useEffect(G__28966_28977,G__28967_28978);
 
-var with_let28969 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28969);
-var temp__5757__auto___28980 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5757__auto___28980 == null)){
+var with_let28971 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28971);
+var temp__5757__auto___28982 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5757__auto___28982 == null)){
 } else {
-var c__18156__auto___28981 = temp__5757__auto___28980;
-if((with_let28969.generation === c__18156__auto___28981.ratomGeneration)){
+var c__18156__auto___28983 = temp__5757__auto___28982;
+if((with_let28971.generation === c__18156__auto___28983.ratomGeneration)){
 if(cljs.core.truth_(reagent.debug.has_console)){
 (cljs.core.truth_(reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -92,45 +92,45 @@ if(cljs.core.truth_(reagent.debug.has_console)){
 } else {
 }
 
-(with_let28969.generation = c__18156__auto___28981.ratomGeneration);
+(with_let28971.generation = c__18156__auto___28983.ratomGeneration);
 }
 
-var init28970 = (with_let28969.length === (0));
-var show_popup = ((((init28970) || (cljs.core.not(with_let28969.hasOwnProperty((0))))))?(with_let28969[(0)] = (function (event){
-var G__28972 = event.target;
-return (set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1(G__28972) : set_popup_target_ele_BANG_.call(null,G__28972));
-})):(with_let28969[(0)]));
-var hide_popup = ((((init28970) || (cljs.core.not(with_let28969.hasOwnProperty((1))))))?(with_let28969[(1)] = (function (_event){
+var init28972 = (with_let28971.length === (0));
+var show_popup = ((((init28972) || (cljs.core.not(with_let28971.hasOwnProperty((0))))))?(with_let28971[(0)] = (function (event){
+var G__28974 = event.target;
+return (set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1(G__28974) : set_popup_target_ele_BANG_.call(null,G__28974));
+})):(with_let28971[(0)]));
+var hide_popup = ((((init28972) || (cljs.core.not(with_let28971.hasOwnProperty((1))))))?(with_let28971[(1)] = (function (_event){
 return (set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_popup_target_ele_BANG_.cljs$core$IFn$_invoke$arity$1(null) : set_popup_target_ele_BANG_.call(null,null));
-})):(with_let28969[(1)]));
-var res28971 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$img$bg_DASH_none,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$src,nw_calculator.utilities.localize_external_img(src),cljs.core.cst$kw$on_DASH_mouse_DASH_over,(cljs.core.truth_(disable_popup_QMARK_)?null:show_popup),cljs.core.cst$kw$on_DASH_mouse_DASH_out,(cljs.core.truth_(disable_popup_QMARK_)?null:hide_popup)], null)], null);
-return res28971;
+})):(with_let28971[(1)]));
+var res28973 = new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$img$bg_DASH_none,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$src,nw_calculator.utilities.localize_external_img(src),cljs.core.cst$kw$on_DASH_mouse_DASH_over,(cljs.core.truth_(disable_popup_QMARK_)?null:show_popup),cljs.core.cst$kw$on_DASH_mouse_DASH_out,(cljs.core.truth_(disable_popup_QMARK_)?null:hide_popup)], null)], null);
+return res28973;
 })();
-return res28960;
+return res28962;
 });
 nw_calculator.components.item.component.placeholder_icon = (function nw_calculator$components$item$component$placeholder_icon(){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$flex$items_DASH_center$justify_DASH_center,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,nw_calculator.components.item.styles.placeholder_icon_class()], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$i$text_DASH_purple$text_DASH_opacity_DASH_50$fa_DASH_1x$text_DASH_2xl$fas$fa_DASH_question], null)], null);
 });
-nw_calculator.components.item.component.item = (function nw_calculator$components$item$component$item(p__28982){
-var map__28983 = p__28982;
-var map__28983__$1 = cljs.core.__destructure_map(map__28983);
-var map__28984 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28983__$1,cljs.core.cst$kw$item_DASH_map);
-var map__28984__$1 = cljs.core.__destructure_map(map__28984);
-var amount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28984__$1,cljs.core.cst$kw$amount);
-var png_url = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28984__$1,cljs.core.cst$kw$png_DASH_url);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28984__$1,cljs.core.cst$kw$name);
-var xp = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28984__$1,cljs.core.cst$kw$xp);
-var tier = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28984__$1,cljs.core.cst$kw$tier);
-var popup_on_hover_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28983__$1,cljs.core.cst$kw$popup_DASH_on_DASH_hover_QMARK_);
-var custom_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28983__$1,cljs.core.cst$kw$custom_DASH_name);
-var custom_amount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28983__$1,cljs.core.cst$kw$custom_DASH_amount);
-var container_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28983__$1,cljs.core.cst$kw$container_DASH_props);
-var with_let28985 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28985);
-var temp__5757__auto___28988 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5757__auto___28988 == null)){
+nw_calculator.components.item.component.item = (function nw_calculator$components$item$component$item(p__28984){
+var map__28985 = p__28984;
+var map__28985__$1 = cljs.core.__destructure_map(map__28985);
+var map__28986 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28985__$1,cljs.core.cst$kw$item_DASH_map);
+var map__28986__$1 = cljs.core.__destructure_map(map__28986);
+var amount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28986__$1,cljs.core.cst$kw$amount);
+var png_url = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28986__$1,cljs.core.cst$kw$png_DASH_url);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28986__$1,cljs.core.cst$kw$name);
+var xp = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28986__$1,cljs.core.cst$kw$xp);
+var tier = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28986__$1,cljs.core.cst$kw$tier);
+var popup_on_hover_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28985__$1,cljs.core.cst$kw$popup_DASH_on_DASH_hover_QMARK_);
+var custom_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28985__$1,cljs.core.cst$kw$custom_DASH_name);
+var custom_amount = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28985__$1,cljs.core.cst$kw$custom_DASH_amount);
+var container_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28985__$1,cljs.core.cst$kw$container_DASH_props);
+var with_let28987 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let28987);
+var temp__5757__auto___28990 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5757__auto___28990 == null)){
 } else {
-var c__18156__auto___28989 = temp__5757__auto___28988;
-if((with_let28985.generation === c__18156__auto___28989.ratomGeneration)){
+var c__18156__auto___28991 = temp__5757__auto___28990;
+if((with_let28987.generation === c__18156__auto___28991.ratomGeneration)){
 if(cljs.core.truth_(reagent.debug.has_console)){
 (cljs.core.truth_(reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -138,12 +138,12 @@ if(cljs.core.truth_(reagent.debug.has_console)){
 } else {
 }
 
-(with_let28985.generation = c__18156__auto___28989.ratomGeneration);
+(with_let28987.generation = c__18156__auto___28991.ratomGeneration);
 }
 
-var init28986 = (with_let28985.length === (0));
-var labels_key = ((((init28986) || (cljs.core.not(with_let28985.hasOwnProperty((0))))))?(with_let28985[(0)] = ["labels_",nw_calculator.utilities.short_uuid_str()].join('')):(with_let28985[(0)]));
-var res28987 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$flex$items_DASH_center$gap_DASH_4$relative,container_props,(cljs.core.truth_(png_url)?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$f_GT_,nw_calculator.components.item.component.image_with_popup,new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$src,png_url,cljs.core.cst$kw$disable_DASH_popup_QMARK_,cljs.core.not(popup_on_hover_QMARK_)], null)], null):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [nw_calculator.components.item.component.placeholder_icon], null)),cljs.core.with_meta(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$bg_DASH_inherit$labels$w_DASH_full$flex$items_DASH_start$gap_DASH_4,(function (){var or__4212__auto__ = custom_amount;
+var init28988 = (with_let28987.length === (0));
+var labels_key = ((((init28988) || (cljs.core.not(with_let28987.hasOwnProperty((0))))))?(with_let28987[(0)] = ["labels_",nw_calculator.utilities.short_uuid_str()].join('')):(with_let28987[(0)]));
+var res28989 = new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$flex$items_DASH_center$gap_DASH_4$relative,container_props,(cljs.core.truth_(png_url)?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$f_GT_,nw_calculator.components.item.component.image_with_popup,new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$src,png_url,cljs.core.cst$kw$disable_DASH_popup_QMARK_,cljs.core.not(popup_on_hover_QMARK_)], null)], null):new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [nw_calculator.components.item.component.placeholder_icon], null)),cljs.core.with_meta(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$bg_DASH_inherit$labels$w_DASH_full$flex$items_DASH_start$gap_DASH_4,(function (){var or__4212__auto__ = custom_amount;
 if(cljs.core.truth_(or__4212__auto__)){
 return or__4212__auto__;
 } else {
@@ -164,5 +164,5 @@ return [" (",cljs.core.str.cljs$core$IFn$_invoke$arity$1(basic_info),")"].join('
 return null;
 }
 })()], null)], null)], null),new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$key,labels_key], null))], null);
-return res28987;
+return res28989;
 });
