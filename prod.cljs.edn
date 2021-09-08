@@ -1,3 +1,7 @@
+^{:extra-main-files {:web-workers {:main       nw_calculator.web_workers
+                                   :target     :webworker
+                                   :preloads   []
+                                   :asset-path "/js/compiled/dev"}}}
 {:main            nw-calculator.core
  :optimizations   :advanced
  :asset-path      "js/compiled/prod"

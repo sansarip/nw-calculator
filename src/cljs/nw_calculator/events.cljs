@@ -29,19 +29,18 @@
   (tr/fn-traced [db [_ state]]
     (assoc db :state state)))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::fetch-items-success
   (tr/fn-traced
-    [db [_ items-edn]]
-    (-> db
-        (update
-          :items
-          c/add-items
-          (edn/read-string (str items-edn)))
-        (handlers/next-state
-          []
-          fsm/fsm
-          :success))))
+    [{db :db} [_ items-edn]]
+    (if (string? items-edn)
+      {::effects/read-string [items-edn [::fetch-items-success]]}
+      {:db (-> db
+               (update :items c/add-items items-edn)
+               (handlers/next-state
+                 []
+                 fsm/fsm
+                 :success))})))
 
 (rf/reg-event-db
   ::fetch-items-failure
