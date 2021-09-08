@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.10.879 {:static-fns true, :optimize-constants true, :optimizations :advanced}
+// Compiled by ClojureScript 1.10.879 {:static-fns true, :optimize-constants true, :target :webworker, :optimizations :advanced}
 goog.provide('cljs.tools.reader.impl.inspect');
 goog.require('cljs.core');
 goog.require('cljs.core.constants');
@@ -67,8 +67,8 @@ cljs.tools.reader.impl.inspect.inspect_STAR_ = (function (){var method_table__47
 var prefer_table__4702__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var method_cache__4703__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 var cached_hierarchy__4704__auto__ = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
-var hierarchy__4705__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,cljs.core.cst$kw$hierarchy,(function (){var fexpr__12186 = cljs.core.get_global_hierarchy;
-return (fexpr__12186.cljs$core$IFn$_invoke$arity$0 ? fexpr__12186.cljs$core$IFn$_invoke$arity$0() : fexpr__12186.call(null));
+var hierarchy__4705__auto__ = cljs.core.get.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentArrayMap.EMPTY,cljs.core.cst$kw$hierarchy,(function (){var fexpr__9553 = cljs.core.get_global_hierarchy;
+return (fexpr__9553.cljs$core$IFn$_invoke$arity$0 ? fexpr__9553.cljs$core$IFn$_invoke$arity$0() : fexpr__9553.call(null));
 })());
 return (new cljs.core.MultiFn(cljs.core.symbol.cljs$core$IFn$_invoke$arity$2("cljs.tools.reader.impl.inspect","inspect*"),cljs.tools.reader.impl.inspect.dispatch_inspect,cljs.core.cst$kw$default,hierarchy__4705__auto__,method_table__4701__auto__,prefer_table__4702__auto__,method_cache__4703__auto__,cached_hierarchy__4704__auto__));
 })();
@@ -129,8 +129,8 @@ return cljs.core.pr_str.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.
  * the inspection.
  */
 cljs.tools.reader.impl.inspect.inspect = (function cljs$tools$reader$impl$inspect$inspect(var_args){
-var G__12188 = arguments.length;
-switch (G__12188) {
+var G__9555 = arguments.length;
+switch (G__9555) {
 case 1:
 return cljs.tools.reader.impl.inspect.inspect.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

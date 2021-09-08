@@ -1,6 +1,6 @@
 (defproject
  nw-calculator
- "2021.09.08.1"
+ "2021.09.08.2"
  :description
  "New World game crafting calculator web application"
  :url
@@ -43,8 +43,18 @@
    "-b"
    "dev"
    "-r"],
-  "fig:prod" ["do" "run" "-m" "figwheel.main" "-bo" "prod,"
-              "run" "-m" "figwheel.main" "-bo" "webworker"],
+  "fig:prod"
+  ["do"
+   "run"
+   "-m"
+   "figwheel.main"
+   "-bo"
+   "prod,"
+   "run"
+   "-m"
+   "figwheel.main"
+   "-bo"
+   "webworker"],
   "scrape" ["with-profiles" "scraper" "run"],
   "bump-version" ["with-profiles" "versioner" "run"],
   "template" ["with-profiles" "templater" "run"]}

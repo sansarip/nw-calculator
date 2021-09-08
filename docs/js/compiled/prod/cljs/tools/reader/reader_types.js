@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.10.879 {:static-fns true, :optimize-constants true, :optimizations :advanced}
+// Compiled by ClojureScript 1.10.879 {:static-fns true, :optimize-constants true, :target :webworker, :optimizations :advanced}
 goog.provide('cljs.tools.reader.reader_types');
 goog.require('cljs.core');
 goog.require('cljs.core.constants');
@@ -11,7 +11,7 @@ goog.require('goog.string.StringBuffer');
  */
 cljs.tools.reader.reader_types.Reader = function(){};
 
-var cljs$tools$reader$reader_types$Reader$read_char$dyn_12165 = (function (reader){
+var cljs$tools$reader$reader_types$Reader$read_char$dyn_9532 = (function (reader){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.read_char[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -32,11 +32,11 @@ cljs.tools.reader.reader_types.read_char = (function cljs$tools$reader$reader_ty
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1 == null)))))){
 return reader.cljs$tools$reader$reader_types$Reader$read_char$arity$1(reader);
 } else {
-return cljs$tools$reader$reader_types$Reader$read_char$dyn_12165(reader);
+return cljs$tools$reader$reader_types$Reader$read_char$dyn_9532(reader);
 }
 });
 
-var cljs$tools$reader$reader_types$Reader$peek_char$dyn_12166 = (function (reader){
+var cljs$tools$reader$reader_types$Reader$peek_char$dyn_9533 = (function (reader){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.peek_char[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -57,7 +57,7 @@ cljs.tools.reader.reader_types.peek_char = (function cljs$tools$reader$reader_ty
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$Reader$peek_char$arity$1 == null)))))){
 return reader.cljs$tools$reader$reader_types$Reader$peek_char$arity$1(reader);
 } else {
-return cljs$tools$reader$reader_types$Reader$peek_char$dyn_12166(reader);
+return cljs$tools$reader$reader_types$Reader$peek_char$dyn_9533(reader);
 }
 });
 
@@ -67,7 +67,7 @@ return cljs$tools$reader$reader_types$Reader$peek_char$dyn_12166(reader);
  */
 cljs.tools.reader.reader_types.IPushbackReader = function(){};
 
-var cljs$tools$reader$reader_types$IPushbackReader$unread$dyn_12167 = (function (reader,ch){
+var cljs$tools$reader$reader_types$IPushbackReader$unread$dyn_9534 = (function (reader,ch){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.unread[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -88,7 +88,7 @@ cljs.tools.reader.reader_types.unread = (function cljs$tools$reader$reader_types
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$IPushbackReader$unread$arity$2 == null)))))){
 return reader.cljs$tools$reader$reader_types$IPushbackReader$unread$arity$2(reader,ch);
 } else {
-return cljs$tools$reader$reader_types$IPushbackReader$unread$dyn_12167(reader,ch);
+return cljs$tools$reader$reader_types$IPushbackReader$unread$dyn_9534(reader,ch);
 }
 });
 
@@ -98,7 +98,7 @@ return cljs$tools$reader$reader_types$IPushbackReader$unread$dyn_12167(reader,ch
  */
 cljs.tools.reader.reader_types.IndexingReader = function(){};
 
-var cljs$tools$reader$reader_types$IndexingReader$get_line_number$dyn_12168 = (function (reader){
+var cljs$tools$reader$reader_types$IndexingReader$get_line_number$dyn_9535 = (function (reader){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.get_line_number[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -119,11 +119,11 @@ cljs.tools.reader.reader_types.get_line_number = (function cljs$tools$reader$rea
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$IndexingReader$get_line_number$arity$1 == null)))))){
 return reader.cljs$tools$reader$reader_types$IndexingReader$get_line_number$arity$1(reader);
 } else {
-return cljs$tools$reader$reader_types$IndexingReader$get_line_number$dyn_12168(reader);
+return cljs$tools$reader$reader_types$IndexingReader$get_line_number$dyn_9535(reader);
 }
 });
 
-var cljs$tools$reader$reader_types$IndexingReader$get_column_number$dyn_12169 = (function (reader){
+var cljs$tools$reader$reader_types$IndexingReader$get_column_number$dyn_9536 = (function (reader){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.get_column_number[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -144,11 +144,11 @@ cljs.tools.reader.reader_types.get_column_number = (function cljs$tools$reader$r
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$IndexingReader$get_column_number$arity$1 == null)))))){
 return reader.cljs$tools$reader$reader_types$IndexingReader$get_column_number$arity$1(reader);
 } else {
-return cljs$tools$reader$reader_types$IndexingReader$get_column_number$dyn_12169(reader);
+return cljs$tools$reader$reader_types$IndexingReader$get_column_number$dyn_9536(reader);
 }
 });
 
-var cljs$tools$reader$reader_types$IndexingReader$get_file_name$dyn_12170 = (function (reader){
+var cljs$tools$reader$reader_types$IndexingReader$get_file_name$dyn_9537 = (function (reader){
 var x__4509__auto__ = (((reader == null))?null:reader);
 var m__4510__auto__ = (cljs.tools.reader.reader_types.get_file_name[goog.typeOf(x__4509__auto__)]);
 if((!((m__4510__auto__ == null)))){
@@ -169,7 +169,7 @@ cljs.tools.reader.reader_types.get_file_name = (function cljs$tools$reader$reade
 if((((!((reader == null)))) && ((!((reader.cljs$tools$reader$reader_types$IndexingReader$get_file_name$arity$1 == null)))))){
 return reader.cljs$tools$reader$reader_types$IndexingReader$get_file_name$arity$1(reader);
 } else {
-return cljs$tools$reader$reader_types$IndexingReader$get_file_name$dyn_12170(reader);
+return cljs$tools$reader$reader_types$IndexingReader$get_file_name$dyn_9537(reader);
 }
 });
 
@@ -664,8 +664,8 @@ return (new cljs.tools.reader.reader_types.StringReader(s,cljs.core.count(s),(0)
  * Creates a PushbackReader from a given string
  */
 cljs.tools.reader.reader_types.string_push_back_reader = (function cljs$tools$reader$reader_types$string_push_back_reader(var_args){
-var G__12173 = arguments.length;
-switch (G__12173) {
+var G__9540 = arguments.length;
+switch (G__9540) {
 case 1:
 return cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -697,8 +697,8 @@ return (new cljs.tools.reader.reader_types.PushbackReader((new cljs.tools.reader
  * Creates an IndexingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.indexing_push_back_reader = (function cljs$tools$reader$reader_types$indexing_push_back_reader(var_args){
-var G__12176 = arguments.length;
-switch (G__12176) {
+var G__9543 = arguments.length;
+switch (G__9543) {
 case 1:
 return cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -735,8 +735,8 @@ return (new cljs.tools.reader.reader_types.IndexingPushbackReader(((typeof s_or_
  * Creates a SourceLoggingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.source_logging_push_back_reader = (function cljs$tools$reader$reader_types$source_logging_push_back_reader(var_args){
-var G__12179 = arguments.length;
-switch (G__12179) {
+var G__9546 = arguments.length;
+switch (G__9546) {
 case 1:
 return cljs.tools.reader.reader_types.source_logging_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -779,10 +779,10 @@ while(true){
 if(cljs.tools.reader.impl.utils.newline_QMARK_(c)){
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
 } else {
-var G__12181 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
-var G__12182 = s.append(c);
-c = G__12181;
-s = G__12182;
+var G__9548 = rdr.cljs$tools$reader$reader_types$Reader$read_char$arity$1(null);
+var G__9549 = s.append(c);
+c = G__9548;
+s = G__9549;
 continue;
 }
 break;
