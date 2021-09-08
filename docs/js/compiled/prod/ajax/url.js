@@ -12,25 +12,25 @@ return key;
 }
 });
 ajax.url.value_encode = encodeURIComponent;
-ajax.url.key_value_pair_to_str = (function ajax$url$key_value_pair_to_str(p__12706){
-var vec__12707 = p__12706;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12707,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12707,(1),null);
+ajax.url.key_value_pair_to_str = (function ajax$url$key_value_pair_to_str(p__12707){
+var vec__12708 = p__12707;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12708,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12708,(1),null);
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(ajax.url.key_encode(k)),"=",cljs.core.str.cljs$core$IFn$_invoke$arity$1((ajax.url.value_encode.cljs$core$IFn$_invoke$arity$1 ? ajax.url.value_encode.cljs$core$IFn$_invoke$arity$1(v) : ajax.url.value_encode.call(null,v)))].join('');
 });
 ajax.url.vec_key_transform_fn = (function ajax$url$vec_key_transform_fn(vec_key_encode,k,v){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [(vec_key_encode.cljs$core$IFn$_invoke$arity$1 ? vec_key_encode.cljs$core$IFn$_invoke$arity$1(k) : vec_key_encode.call(null,k)),v], null);
 });
 ajax.url.to_vec_key_transform = (function ajax$url$to_vec_key_transform(vec_strategy){
-var vec_key_encode = (function (){var G__12710 = (function (){var or__4212__auto__ = vec_strategy;
+var vec_key_encode = (function (){var G__12711 = (function (){var or__4212__auto__ = vec_strategy;
 if(cljs.core.truth_(or__4212__auto__)){
 return or__4212__auto__;
 } else {
 return cljs.core.cst$kw$java;
 }
 })();
-var G__12710__$1 = (((G__12710 instanceof cljs.core.Keyword))?G__12710.fqn:null);
-switch (G__12710__$1) {
+var G__12711__$1 = (((G__12711 instanceof cljs.core.Keyword))?G__12711.fqn:null);
+switch (G__12711__$1) {
 case "java":
 return (function (k){
 return null;
@@ -48,7 +48,7 @@ return cljs.core.identity;
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__12710__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__12711__$1)].join('')));
 
 }
 })();
@@ -61,10 +61,10 @@ return cljs.core.partial.cljs$core$IFn$_invoke$arity$2(ajax.url.vec_key_transfor
  *   prefix as well as the key and value to be analysed. Ultimately, this 
  *   function walks the structure and flattens it.
  */
-ajax.url.param_to_key_value_pairs = (function ajax$url$param_to_key_value_pairs(vec_key_transform,prefix,p__12712){
-var vec__12713 = p__12712;
-var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12713,(0),null);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12713,(1),null);
+ajax.url.param_to_key_value_pairs = (function ajax$url$param_to_key_value_pairs(vec_key_transform,prefix,p__12713){
+var vec__12714 = p__12713;
+var key = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12714,(0),null);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__12714,(1),null);
 var k1 = ajax.url.key_encode(key);
 var new_key = (cljs.core.truth_(prefix)?(cljs.core.truth_(key)?[cljs.core.str.cljs$core$IFn$_invoke$arity$1(prefix),"[",cljs.core.str.cljs$core$IFn$_invoke$arity$1(k1),"]"].join(''):prefix):k1);
 var recurse = cljs.core.partial.cljs$core$IFn$_invoke$arity$3(ajax.url.param_to_key_value_pairs,vec_key_transform,new_key);
@@ -100,8 +100,8 @@ return clojure.string.join.cljs$core$IFn$_invoke$arity$2("&",cljs.core.map.cljs$
  * The request format for simple POST and GET.
  */
 ajax.url.url_request_format = (function ajax$url$url_request_format(var_args){
-var G__12717 = arguments.length;
-switch (G__12717) {
+var G__12718 = arguments.length;
+switch (G__12718) {
 case 0:
 return ajax.url.url_request_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -120,10 +120,10 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return ajax.url.url_request_format.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 }));
 
-(ajax.url.url_request_format.cljs$core$IFn$_invoke$arity$1 = (function (p__12718){
-var map__12719 = p__12718;
-var map__12719__$1 = cljs.core.__destructure_map(map__12719);
-var vec_strategy = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12719__$1,cljs.core.cst$kw$vec_DASH_strategy);
+(ajax.url.url_request_format.cljs$core$IFn$_invoke$arity$1 = (function (p__12719){
+var map__12720 = p__12719;
+var map__12720__$1 = cljs.core.__destructure_map(map__12720);
+var vec_strategy = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12720__$1,cljs.core.cst$kw$vec_DASH_strategy);
 return new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$write,ajax.util.to_utf8_writer(cljs.core.partial.cljs$core$IFn$_invoke$arity$2(ajax.url.params_to_str,vec_strategy)),cljs.core.cst$kw$content_DASH_type,"application/x-www-form-urlencoded; charset=utf-8"], null);
 }));
 

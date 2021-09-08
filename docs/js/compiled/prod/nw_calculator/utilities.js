@@ -113,46 +113,52 @@ return node;
 }),nw_calculator.utilities.remove_self_from_ingredients(item));
 }));
 nw_calculator.utilities.multiply_amounts = cljs.core.memoize((function() {
-var G__12659 = null;
-var G__12659__1 = (function (item){
+var G__12660 = null;
+var G__12660__1 = (function (item){
 return (nw_calculator.utilities.multiply_amounts.cljs$core$IFn$_invoke$arity$2 ? nw_calculator.utilities.multiply_amounts.cljs$core$IFn$_invoke$arity$2(item,(1)) : nw_calculator.utilities.multiply_amounts.call(null,item,(1)));
 });
-var G__12659__2 = (function (p__12656,multiplier){
+var G__12660__2 = (function (p__12656,multiplier){
 var map__12657 = p__12656;
 var map__12657__$1 = cljs.core.__destructure_map(map__12657);
 var item = map__12657__$1;
 var amount = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__12657__$1,cljs.core.cst$kw$amount,(1));
+var xp = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12657__$1,cljs.core.cst$kw$xp);
 var ingredients = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12657__$1,cljs.core.cst$kw$ingredients);
 var product = (multiplier * amount);
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3((function (){var G__12658 = item;
+var G__12658 = cljs.core.assoc.cljs$core$IFn$_invoke$arity$3((function (){var G__12659 = item;
 if(cljs.core.truth_(cljs.core.not_empty(ingredients))){
-return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__12658,cljs.core.cst$kw$ingredients,cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentHashSet.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__12655_SHARP_){
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__12659,cljs.core.cst$kw$ingredients,cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentHashSet.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__12655_SHARP_){
 return (nw_calculator.utilities.multiply_amounts.cljs$core$IFn$_invoke$arity$2 ? nw_calculator.utilities.multiply_amounts.cljs$core$IFn$_invoke$arity$2(p1__12655_SHARP_,product) : nw_calculator.utilities.multiply_amounts.call(null,p1__12655_SHARP_,product));
 })),ingredients));
 } else {
-return G__12658;
+return G__12659;
 }
 })(),cljs.core.cst$kw$amount,product);
+if(typeof xp === 'number'){
+return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(G__12658,cljs.core.cst$kw$xp,(product * xp));
+} else {
+return G__12658;
+}
 });
-G__12659 = function(p__12656,multiplier){
+G__12660 = function(p__12656,multiplier){
 switch(arguments.length){
 case 1:
-return G__12659__1.call(this,p__12656);
+return G__12660__1.call(this,p__12656);
 case 2:
-return G__12659__2.call(this,p__12656,multiplier);
+return G__12660__2.call(this,p__12656,multiplier);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };
-G__12659.cljs$core$IFn$_invoke$arity$1 = G__12659__1;
-G__12659.cljs$core$IFn$_invoke$arity$2 = G__12659__2;
-return G__12659;
+G__12660.cljs$core$IFn$_invoke$arity$1 = G__12660__1;
+G__12660.cljs$core$IFn$_invoke$arity$2 = G__12660__2;
+return G__12660;
 })()
 );
-nw_calculator.utilities.craftable_item = (function nw_calculator$utilities$craftable_item(p__12660){
-var map__12661 = p__12660;
-var map__12661__$1 = cljs.core.__destructure_map(map__12661);
-var item = map__12661__$1;
-var ingredients = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12661__$1,cljs.core.cst$kw$ingredients);
+nw_calculator.utilities.craftable_item = (function nw_calculator$utilities$craftable_item(p__12661){
+var map__12662 = p__12661;
+var map__12662__$1 = cljs.core.__destructure_map(map__12662);
+var item = map__12662__$1;
+var ingredients = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__12662__$1,cljs.core.cst$kw$ingredients);
 if(cljs.core.truth_(cljs.core.not_empty(ingredients))){
 return item;
 } else {

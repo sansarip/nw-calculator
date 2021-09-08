@@ -34,10 +34,10 @@ return cljs.core.assoc.cljs$core$IFn$_invoke$arity$3(obj,cljs.core.cst$kw$source
 });
 spade.runtime.inject_BANG_ = (function spade$runtime$inject_BANG_(id,css){
 var head = document.head;
-var element = (function (){var G__28754 = document.createElement("style");
-G__28754.setAttribute("spade-id",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id));
+var element = (function (){var G__28765 = document.createElement("style");
+G__28765.setAttribute("spade-id",cljs.core.str.cljs$core$IFn$_invoke$arity$1(id));
 
-return G__28754;
+return G__28765;
 })();
 var obj = new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$element,element,cljs.core.cst$kw$source,css,cljs.core.cst$kw$id,id], null);
 if((!((head == null)))){
@@ -51,11 +51,11 @@ cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(spade.runtime._STAR_injected_
 
 return spade.runtime.perform_update_BANG_(obj,css);
 });
-spade.runtime.compose_names = (function spade$runtime$compose_names(p__28755){
-var map__28756 = p__28755;
-var map__28756__$1 = cljs.core.__destructure_map(map__28756);
-var style_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28756__$1,cljs.core.cst$kw$name);
-var composed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28756__$1,cljs.core.cst$kw$composes);
+spade.runtime.compose_names = (function spade$runtime$compose_names(p__28766){
+var map__28767 = p__28766;
+var map__28767__$1 = cljs.core.__destructure_map(map__28767);
+var style_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28767__$1,cljs.core.cst$kw$name);
+var composed = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28767__$1,cljs.core.cst$kw$composes);
 if(cljs.core.not(composed)){
 return style_name;
 } else {
@@ -74,11 +74,11 @@ throw (new Error(["Invalid argument to :composes key:",cljs.core.str.cljs$core$I
 }
 });
 spade.runtime.ensure_style_BANG_ = (function spade$runtime$ensure_style_BANG_(mode,base_style_name,factory,params){
-var map__28757 = cljs.core.apply.cljs$core$IFn$_invoke$arity$4(factory,base_style_name,params,params);
-var map__28757__$1 = cljs.core.__destructure_map(map__28757);
-var info = map__28757__$1;
-var css = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28757__$1,cljs.core.cst$kw$css);
-var style_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28757__$1,cljs.core.cst$kw$name);
+var map__28768 = cljs.core.apply.cljs$core$IFn$_invoke$arity$4(factory,base_style_name,params,params);
+var map__28768__$1 = cljs.core.__destructure_map(map__28768);
+var info = map__28768__$1;
+var css = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28768__$1,cljs.core.cst$kw$css);
+var style_name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__28768__$1,cljs.core.cst$kw$name);
 var existing = cljs.core.get.cljs$core$IFn$_invoke$arity$2(cljs.core.deref(spade.runtime._STAR_injected_STAR_),style_name);
 if(cljs.core.truth_(existing)){
 spade.runtime.update_BANG_(style_name,css);
@@ -86,9 +86,9 @@ spade.runtime.update_BANG_(style_name,css);
 spade.runtime.inject_BANG_(style_name,css);
 }
 
-var G__28758 = mode;
-var G__28758__$1 = (((G__28758 instanceof cljs.core.Keyword))?G__28758.fqn:null);
-switch (G__28758__$1) {
+var G__28769 = mode;
+var G__28769__$1 = (((G__28769 instanceof cljs.core.Keyword))?G__28769.fqn:null);
+switch (G__28769__$1) {
 case "attrs":
 return new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,spade.runtime.compose_names(info)], null);
 
@@ -103,7 +103,7 @@ return css;
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28758__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28769__$1)].join('')));
 
 }
 });

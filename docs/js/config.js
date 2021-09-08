@@ -1,1 +1,1 @@
-var config = {version: "2021.09.07.2"}
+var config = {version: "2021.09.08.1"}

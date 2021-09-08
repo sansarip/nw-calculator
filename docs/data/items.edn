@@ -28,6 +28,13 @@
      {:name "Ice Crystal Core", :id "-2115975661", :amount 1}},
    :id "-2014896587"}
   {:external-url
+   "https://newworldfans.com/db/item/life-mote-d0320e",
+   :png-url
+   "https://cdn.newworldfans.com/db_images/db/items_hires/alchemylifet1.png",
+   :name "Life Mote",
+   :tier 2,
+   :id "1763469896"}
+  {:external-url
    "https://newworldfans.com/crafting/Armoring/5491-set-of-rugged-iron-armor",
    :png-url
    "https://cdn.newworldfans.com/db_images/db/items_hires/faction_armorset.png",
