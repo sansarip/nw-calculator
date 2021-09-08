@@ -1,7 +1,8 @@
-{:main            nw-calculator.core
+{:main            nw-calculator.web-workers
+ :target          :webworker
  :optimizations   :advanced
  :asset-path      "js/compiled/prod"
- :output-to       "resources/public/js/compiled/app.js"
+ :output-to       "resources/public/js/compiled/app-web-workers.js"
  :output-dir      "resources/public/js/compiled/prod"
  :closure-defines {"re_frame.trace.trace_enabled_QMARK_"        false
                    "day8.re_frame.tracing.trace_enabled_QMARK_" false

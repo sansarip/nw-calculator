@@ -43,7 +43,8 @@
    "-b"
    "dev"
    "-r"],
-  "fig:prod" ["run" "-m" "figwheel.main" "-bo" "prod"],
+  "fig:prod" ["do" "run" "-m" "figwheel.main" "-bo" "prod,"
+              "run" "-m" "figwheel.main" "-bo" "webworker"],
   "scrape" ["with-profiles" "scraper" "run"],
   "bump-version" ["with-profiles" "versioner" "run"],
   "template" ["with-profiles" "templater" "run"]}

@@ -2,11 +2,11 @@
   :watch-dirs       ["src/cljs"]
   :log-file         "log/figwheel-main.log"
   :log-level        :info
-  :extra-main-files {:devcards    {:main nw_calculator.devcards}
-                     :web-workers {:main          nw_calculator.web_workers
-                                   :target        :webworker
-                                   :preloads      []
-                                   :asset-path    "/js/compiled/dev"}}}
+  :extra-main-files {:devcards    {:main nw-calculator.devcards}
+                     :web-workers {:main       nw-calculator.web-workers
+                                   :target     :webworker
+                                   :preloads   []
+                                   :asset-path "dev"}}}
 {:main            nw-calculator.core
  :devcards        true
  :preloads        [devtools.preload

@@ -3,7 +3,7 @@
 
 (def in-worker? (not (exists? js/window)))
 
-(defonce worker (when-not in-worker? (js/Worker. "js/compiled/app-web-workers.js")))
+(defonce worker (when-not in-worker? (js/Worker. "./js/compiled/app-web-workers.js")))
 
 (when in-worker?
   (set! js/self.onmessage
