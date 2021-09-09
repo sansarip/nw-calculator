@@ -8,7 +8,6 @@
     [nw-calculator.event-handlers :as handlers]
     [ajax.core :as ajax]
     [day8.re-frame.http-fx]
-    [cljs.reader :as edn]
     [compound2.core :as c]
     [nw-calculator.utilities :as util]))
 
@@ -39,7 +38,7 @@
                (update :items c/add-items items-edn)
                (handlers/next-state
                  []
-                 fsm/fsm
+                 fsm/app-fsm
                  :success))})))
 
 (rf/reg-event-db
@@ -61,29 +60,20 @@
                            :on-success      [::fetch-items-success]
                            :on-failure      [::fetch-items-failure]}}
       [:db]
-      fsm/fsm
+      fsm/app-fsm
       :fetch-item-data)))
 
 (rf/reg-event-db
   ::search-success
   (tr/fn-traced
     [db [_ item-index search-results]]
-    (-> db
-        (assoc-in [:search-results item-index] search-results)
-        (handlers/next-state
-          []
-          fsm/fsm
-          :success))))
+    (assoc-in db [:search-results item-index] search-results)))
 
 (rf/reg-event-fx
   ::search
   (tr/fn-traced
     [{{{items-by-id :by-id} :items :as db} :db} [_ item-index query]]
-    {:db              (handlers/next-state
-                        db
-                        []
-                        fsm/fsm
-                        :search)
+    {:db              db
      ::effects/search {:query       query
                        :items-by-id items-by-id
                        :on-success  [::search-success item-index]}}))

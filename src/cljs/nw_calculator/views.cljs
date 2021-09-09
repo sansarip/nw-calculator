@@ -8,7 +8,8 @@
     [reagent.core :as r]
     [nw-calculator.utilities :as util]
     [nw-calculator.styles :as styles]
-    [nw-calculator.config :as cfg]))
+    [nw-calculator.config :as cfg]
+    [react]))
 
 (defn search [item-index]
   (r/with-let [search! (util/debounce
@@ -132,12 +133,6 @@
         [delete-item-button item-index]
         [searchable-item-tree item-index]])]))
 
-(defn page-loader []
-  (when @(rf/subscribe [::subs/loading?])
-    [:div.absolute.bg-inherit.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
-     [nwc/loader-component {:class "fa-6x"}]
-     [:h3 "Steering ship"]]))
-
 (defn add-item-card-button []
   (r/with-let [add-empty-item! #(rf/dispatch [::events/add-empty-item])]
     [:button.button.w-64
@@ -145,8 +140,9 @@
      "Add another item"]))
 
 (defn header []
-  [:div.flex.flex-col.items-center
-   [:h3.text-center "New World Crafting Calculator"]])
+  [:div.flex.flex-col.items-center.gap-5
+   [:h1.text-14.md:text-7xl-imp.text-center "New World"]
+   [:h3.text-8.md:text-5xl-imp.text-center "Crafting Calculator"]])
 
 (defn body []
   [:div.flex-grow.flex.gap-14.flex-col.items-center.flex-col
@@ -175,11 +171,31 @@
        :on             [:i.fas.fa-sun.w-full.h-full.text-yellow-500]
        :off            [:i.fas.fa-moon.w-full.h-full.text-gray-600]}]]))
 
+(defn loader []
+  (when @(rf/subscribe [::subs/loading?])
+    [:div.absolute.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
+     [nwc/loader-component {:class "fa-6x pt-72"}]
+     [:h3 "Steering ship"]]))
+
+(defn background []
+  [:div.absolute.z-10.bg-inherit.w-full.h-full])
+
+(defn background-image []
+  (let [start-animation? @(rf/subscribe [::subs/ready?])]
+    [:img.absolute.z-0.w-full.h-full.object-cover
+     {:src   "https://i.gyazo.com/599d57716f081f1e4e6a8b61f4155981.jpg"
+      :class (styles/background-image-class start-animation?)}]))
+
 (defn main-panel []
-  [:div.bg-inherit.relative.overflow-y-auto.flex.flex-col.gap-20.h-screen.pt-40
-   {:class (when @(rf/subscribe [::subs/dark-theme?]) "dark")}
-   [page-loader]
-   [theme-toggle]
-   [header]
-   [body]
-   [footer]])
+  (let [dark-theme? @(rf/subscribe [::subs/dark-theme?])
+        show-content? @(rf/subscribe [::subs/ready?])]
+    [:div.z-10.absolute.bg-opacity-75.relative.h-screen
+     {:class (if dark-theme? "dark bg-raisin-black" "bg-off-white")}
+     [loader]
+     [background]
+     [background-image]
+     (when show-content?
+       [:div.relative.h-full.z-30.flex.flex-col.gap-20.pt-40.overflow-y-auto
+        [header]
+        [body]
+        [footer]])]))

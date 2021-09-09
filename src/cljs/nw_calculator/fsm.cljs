@@ -1,9 +1,11 @@
 (ns nw-calculator.fsm)
 
-(def fsm
-  {:start     {:fetch-item-data :loading
-               :search          :searching}
-   :searching {:success :start}
+(def app-fsm
+  {:start     {:fetch-item-data :loading}
    :loading   {:success         :start
                :fetch-item-data :loading}})
+
+(def tree-fsm
+  {:start {:search :searching}
+   :searching {:success :start}})
 

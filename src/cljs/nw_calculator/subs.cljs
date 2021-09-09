@@ -39,6 +39,10 @@
   (fn [{:keys [state]}]
     (= state :loading)))
 
+(rf/reg-sub ::ready?
+  (fn [{:keys [state]}]
+    (= state :start)))
+
 (rf/reg-sub ::searching?
   (fn [{:keys [state]}]
     (= state :searching)))
