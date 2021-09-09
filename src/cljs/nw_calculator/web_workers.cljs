@@ -1,9 +1,14 @@
 (ns nw-calculator.web-workers
-  (:require [cljs.reader :as edn]))
+  (:require
+    [cljs.reader :as edn]
+    [oops.core :as oops]))
 
-(def in-worker? (not (exists? js/window)))
+(def in-worker? (exists? js/WorkerGlobalScope))
+(def in-app? (not in-worker?))
 
-(defonce worker (when-not in-worker? (js/Worker. "./js/compiled/app-web-workers.js")))
+(defonce worker
+  (when in-app?
+    (js/Worker. (oops/oget js/config "web-worker-js"))))
 
 (when in-worker?
   (set! js/self.onmessage
