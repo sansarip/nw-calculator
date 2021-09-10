@@ -28,18 +28,16 @@
   (tr/fn-traced [db [_ state]]
     (assoc db :state state)))
 
-(rf/reg-event-fx
+(rf/reg-event-db
   ::fetch-items-success
   (tr/fn-traced
-    [{db :db} [_ items-edn]]
-    (if (string? items-edn)
-      {::effects/read-string [items-edn [::fetch-items-success]]}
-      {:db (-> db
-               (update :items c/add-items items-edn)
-               (handlers/next-state
-                 []
-                 fsm/app-fsm
-                 :success))})))
+    [db [_ items-edn]]
+    (-> db
+        (update :items c/add-items items-edn)
+        (handlers/next-state
+          []
+          fsm/app-fsm
+          :success))))
 
 (rf/reg-event-db
   ::fetch-items-failure
@@ -55,8 +53,8 @@
       {:db                db
        ::effects/log-info ["⬇️ Fetching item data!"]
        :http-xhrio        {:method          :get
-                           :response-format (ajax/raw-response-format)
-                           :uri             "/data/items.edn"
+                           :response-format (ajax/json-response-format {:keywords? true})
+                           :uri             "/data/items.json"
                            :on-success      [::fetch-items-success]
                            :on-failure      [::fetch-items-failure]}}
       [:db]

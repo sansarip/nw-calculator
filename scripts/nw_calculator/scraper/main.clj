@@ -8,7 +8,8 @@
             [nw-calculator.scraper.html :as html]
             [nw-calculator.scraper.crafting :as crafting]
             [nw-calculator.scraper.raw-resources :as rawr]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [cheshire.core :as json]))
 
 (defn crawl-category
   ([url] (crawl-category url []))
@@ -35,14 +36,10 @@
     []
     rawr/extract-raw-resource-data))
 
-(defn write-items-edn! [extracted-item-data]
-  (let [output-file-path (util/prepend-data-path "items.edn")]
-    (timbre/info "✍️Writing item data to" output-file-path)
-    (spit output-file-path
-          (-> extracted-item-data
-              pprint
-              with-out-str
-              string/trim)))
+(defn write-items-json! [extracted-item-data]
+  (let [output-file-path (util/prepend-data-path "items.json")]
+    (timbre/info "✍️ Writing item data to" output-file-path)
+    (spit output-file-path (json/generate-string extracted-item-data {:pretty true})))
   extracted-item-data)
 
 (defn crawl-crafting-categories []
@@ -58,7 +55,7 @@
   (timbre/info "\uD83D\uDD77️ Crawling...")
   (-> (crawl-crafting-categories)
       (into (crawl-raw-resource-category))
-      write-items-edn!
+      write-items-json!
       (cond-> download-pngs? (http/download-pngs! config/image-path)))
   (timbre/info "✨ Done!"))
 

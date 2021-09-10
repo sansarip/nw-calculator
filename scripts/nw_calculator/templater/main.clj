@@ -4,13 +4,7 @@
     [clostache.parser :refer [render]]))
 
 (defn -main []
-  (let [project-version (:nw-calculator-version env)
-        web-worker-js (->> (slurp "webworker.cljs.edn")
-                           read-string
-                           :output-to
-                           (re-find #"/js/.*$")
-                           (str "."))]
+  (let [project-version (:nw-calculator-version env)]
     (-> (slurp "templates/config.js")
-        (render {:version        project-version
-                 :web-worker-js web-worker-js})
+        (render {:version        project-version})
         (->> (spit "resources/public/js/config.js")))))
