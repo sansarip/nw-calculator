@@ -21,6 +21,6 @@ release:
 	make template
 	echo "Copying to docs/"
 	mkdir docs/ || true
-	cp -rf resources/public/* docs/
+	cp -rf resources/public/* docs/ && rm docs/devcards.html
 	echo "Committing changes and tagging release"
 	./scripts/commit_version.clj
