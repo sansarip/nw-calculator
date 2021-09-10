@@ -26,7 +26,7 @@ The scraper may not work as expected anymore as it was based on an older version
 
 ## License
 
-Copyright © 2021 FIXME
+Copyright © 2021 sansarip
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
