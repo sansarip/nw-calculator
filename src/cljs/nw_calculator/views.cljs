@@ -186,16 +186,17 @@
      {:src   "https://i.gyazo.com/599d57716f081f1e4e6a8b61f4155981.jpg"
       :class (styles/background-image-class start-animation?)}]))
 
+(defn content []
+  (let [show-content? @(rf/subscribe [::subs/ready?])]
+    (when show-content?
+      [:div.relative.h-full.z-30.flex.flex-col.gap-20.pt-40.overflow-y-auto
+       [header]
+       [body]
+       [footer]])))
+
 (defn main-panel []
-  (let [dark-theme? @(rf/subscribe [::subs/dark-theme?])
-        show-content? @(rf/subscribe [::subs/ready?])]
-    [:div.z-10.absolute.bg-opacity-75.relative.h-screen
-     {:class (if dark-theme? "dark bg-raisin-black" "bg-off-white")}
-     [loader]
-     [background]
-     [background-image]
-     (when show-content?
-       [:div.relative.h-full.z-30.flex.flex-col.gap-20.pt-40.overflow-y-auto
-        [header]
-        [body]
-        [footer]])]))
+  [:div.z-10.absolute.bg-opacity-75.relative.h-screen.dark.bg-raisin-black
+   [loader]
+   [background]
+   [background-image]
+   [content]])

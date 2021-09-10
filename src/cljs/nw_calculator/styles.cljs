@@ -52,9 +52,10 @@
   [:body {:font-family "'Roboto', sans-serif"}]
   [:#app {:background :inherit}]
   [:h3 :h2 :h1 {:letter-spacing :0.4rem
+                :color          off-white
                 :text-transform :uppercase
                 :font-family    "'IM Fell English SC', serif"}]
-  [".dark h3, .dark h2, .dark h1, .dark span.version" {:color off-white}]
+  [:.color-off-white {:color off-white}]
   [:.text-8 {:font-size relative-8}]
   [:.text-14 {:font-size relative-14}]
   [:.bg-inherit {:background "inherit"}]
