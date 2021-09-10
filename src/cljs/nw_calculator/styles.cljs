@@ -99,4 +99,4 @@
   (spade/defclass background-image-class [start-animation?]
     {:filter    initial-blur
      :animation (when start-animation?
-                  [[(anim-frames) "3s" :linear "0s" :normal :forwards]])}))
+                  [[(anim-frames) "2.5s" :linear "0s" :normal :forwards]])}))
