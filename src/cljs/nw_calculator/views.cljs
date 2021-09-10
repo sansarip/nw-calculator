@@ -140,18 +140,20 @@
      "Add another item"]))
 
 (defn header []
-  [:div.flex.flex-col.items-center.gap-5
-   [:h1.text-14.md:text-7xl-imp.text-center "New World"]
-   [:h3.text-8.md:text-5xl-imp.text-center "Crafting Calculator"]])
+  [:div.flex.flex-col.items-center
+   [:h1.text-14.md:text-7xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower
+    "New World"]
+   [:h3.text-8.md:text-5xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower.animate__delay-1s
+    "Crafting Calculator"]])
 
 (defn body []
-  [:div.flex-grow.flex.gap-14.flex-col.items-center.flex-col
+  [:div.relative.z-30.flex-grow.flex.gap-14.flex-col.items-center.flex-col.animate__animated.animate__fadeIn.animate__slower.animate__delay-1s
    [item-cards]
    [add-item-card-button]])
 
 (defn footer []
-  [:div.relative.py-4.flex.flex.gap-5.justify-center.text-4xl
-   [:span.version.text-base.absolute.left-4.bottom-4 cfg/version]
+  [:div.relative.z-10.py-4.flex.flex.gap-5.justify-center.text-4xl
+   [:span.color-off-white.text-base.absolute.left-4.bottom-4 cfg/version]
    [:a.cursor-pointer
     {:href   "https://github.com/sansarip/nw-calculator"
      :target "_blank"}
