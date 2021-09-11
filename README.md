@@ -17,9 +17,9 @@ If your changes include adding/editing an image url of an item, then you must al
 * Right now, builds and releases involve manually running `make release`. I'd like to implement CI/CD pipeline to build and auto-update the site on push/merge to main.
 * Until Amazon provides a public API for the New World game, item data management will have to be a community-driven effort. Updating the [items.json file](https://github.com/sansarip/nw-calculator/blob/main/resources/public/data/items.json) is not a particularily community friendly way of handling things. I'd like to leverage the community efforts involved with the [Tradesman's Bible](https://docs.google.com/spreadsheets/d/1l_S7Ykl6QDmv-a7ntqZn8LUXq2Uo0mkLXb_ymAkxBi0/edit#gid=431530116) spreadsheet and point the site to use the data available in that spreadsheet.
 
-## Local Dev
+## Dev
 
-### Prerequisites
+### Prerequisites <a name="prereqs"></a>
 
 * [Clojure](https://clojure.org/guides/getting_started)
 * [Leiningen](https://leiningen.org/)
@@ -38,6 +38,20 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 The scraper may not work as expected anymore as it was based on an older version of https://newworldfans.com/.
 
 `lein scrape`
+
+## Prod
+
+If you wish to create a release, you'll need the same [prerequites as Dev](#prereqs) installed. You'll want to also make sure you have the following tools installed:
+
+* [Babashka](https://github.com/babashka/babashka)
+* [Make](https://www.gnu.org/software/make/)
+
+To compile the Prod JS, run `lein fig:prod`.
+
+Or, you can just run `make release` which will compile Prod JS, 
+overwrite `docs/` (this is where the site is served from), 
+bump the version, and commit the release.
+
 
 ## License
 
