@@ -92,7 +92,8 @@
                collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
                                 (set-collapsed-item true))
                item* (fn [node] [item node item-index])]
-    (let [{:keys [ingredients] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
+    (let [{:keys [ingredients id] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
+      ^{:key id}
       [:div.bg-inherit.flex.flex-col.gap-10.items-center
        [:> ctc/collapsible-list-provider
         {:value {:set-collapsed-updater   set-collapsed-updater!
