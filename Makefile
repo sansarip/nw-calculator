@@ -19,8 +19,8 @@ release:
 	make bump-version
 	echo "Apply templates"
 	make template
-	echo "Copying to docs/"
-	mkdir docs/ || true
-	cp -rf resources/public/* docs/ && rm docs/devcards.html
+	echo "Copying to build/"
+	mkdir build/ || true
+	cp -rf resources/public/* build/ && rm build/devcards.html
 	echo "Committing changes and tagging release"
 	./scripts/commit_version.clj
