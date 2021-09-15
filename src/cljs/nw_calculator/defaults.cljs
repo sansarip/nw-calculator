@@ -10,7 +10,7 @@
 (def empty-item {:ingredients []})
 
 (def empty-selected-item {:item              empty-item
-                          :amount-multiplier 1})
+                          :quantity-multiplier 1})
 
 (def default-db
   {:state          :loading

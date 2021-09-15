@@ -10,14 +10,14 @@
   item
   (fn []
     [nwc/item-component
-     {:item-map {:amount       2
+     {:item-map {:quantity       2
                  :tier         2
                  :name         "Iron Ingot"
                  :png-url      "https://cdn.newworldfans.com/db_images/db/items_hires/ingott2.png"
                  :skill-level  0
                  :ingredients  [{:name         "Iron Ore"
                                  :id           "-1581714941"
-                                 :amount       4
+                                 :quantity       4
                                  :external-url "https://newworldfans.com/db/item/iron-ore-cb358b"
                                  :png-url      "https://cdn.newworldfans.com/db_images/db/items_hires/oret1.png"
                                  :tier         1}]
@@ -29,14 +29,14 @@
   item
   "Linkable item"
   (fn []
-    (r/with-let [item-map {:amount       2
+    (r/with-let [item-map {:quantity       2
                            :tier         2
                            :name         "Iron Ingot"
                            :png-url      "https://cdn.newworldfans.com/db_images/db/items_hires/ingott2.png"
                            :skill-level  0
                            :ingredients  [{:name         "Iron Ore"
                                            :id           "-1581714941"
-                                           :amount       4
+                                           :quantity       4
                                            :external-url "https://newworldfans.com/db/item/iron-ore-cb358b"
                                            :png-url      "https://cdn.newworldfans.com/db_images/db/items_hires/oret1.png"
                                            :tier         1}]

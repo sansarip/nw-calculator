@@ -67,6 +67,7 @@
   [:.text-purple {:color (with-cfg "rgba({{colors.purple.rgb}}, var(--tw-text-opacity))")}]
   [:.m-0-imp {:margin (with-cfg "{{sizes.relative.0}} !important")}]
   [:.w-11-imp {:width (with-cfg "{{sizes.relative.11}} !important")}]
+  [:.w-12-imp {:width (with-cfg "{{sizes.relative.12}} !important")}]
   [:.min-w-12 {:min-width relative-12}]
   [:.min-w-96 {:min-width relative-96}]
   [:.w-128 {:width relative-128}]
