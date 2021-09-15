@@ -10,7 +10,7 @@
 (dc/defcard-rg
   search
   (fn [state]
-    (r/with-let [set-loading!  #(swap! state assoc :loading? %)
+    (r/with-let [set-loading! #(swap! state assoc :loading? %)
                  on-search (util/debounce
                              (fn [search-term]
                                (set-loading! true)
@@ -22,7 +22,7 @@
                                      :results
                                      (->> sd/items
                                           (filter
-                                            (comp #(util/fuzzy-search % search-term) :name))
+                                            (comp #(util/fuzzy-search % search-term) vector :name))
                                           (take 10)
                                           vec))
                                    (set-loading! false))
@@ -31,7 +31,9 @@
                  clear-results #(swap! state assoc :results [])
                  on-clear clear-results
                  on-select (fn [_item] (clear-results))
-                 make-result (fn [item-map] [nwc/item-component {:item-map item-map}])]
+                 make-result (fn [item-map] [nwc/item-component
+                                             {:container-props {:class "bg-white"}
+                                              :item-map        item-map}])]
       [:f> nwc/search-component
        {:make-result make-result
         :input-props {:placeholder "Search for an item \uD83D\uDD0D"}

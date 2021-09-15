@@ -61,7 +61,7 @@
                                  :results
                                  (->> sd/items
                                       (filter
-                                        (comp #(util/fuzzy-search % search-term) :name))
+                                        (comp #(util/fuzzy-search % search-term) vector :name))
                                       (take 10)
                                       vec)))
                              100)
@@ -76,8 +76,9 @@
                              [nwc/item-component
                               {:popup-on-hover? true
                                :item-map        item-map
-                               :custom-amount   (when root-node?
-                                                  [:input.basic-input.w-16-imp
+                               :container-props {:class "bg-white"}
+                               :custom-quantity (when root-node?
+                                                  [:input.basic-input.w-12-imp
                                                    {:default-value "1"}])
                                :custom-name     (if root-node?
                                                   [:<>
@@ -94,15 +95,16 @@
                                                      [:a {:href external-url :target "_blank"}
                                                       [:i.text-base.fas.fa-external-link-alt]])]
                                                   [:a {:href external-url :target "_blank"} name])}])]
-      [:<>
+      [nwc/card-component
        [:> ctc/collapsible-list-provider
         {:value {:set-collapsed-updater   set-collapsed-updater
                  :unset-collapsed-updater unset-collapsed-updater}}
         [nwc/collapsible-tree-component
-         {:tree-map  (:selected-item @state)
-          :children  :ingredients
-          :make-node make-node}]]
-       [:button.button.m-4.w-72 {:on-click collapse-all} "collapse all"]
-       [:button.button.m-4.w-72 {:on-click expand-all} "expand all"]]))
+         {:tree-map        (:selected-item @state)
+          :container-props {:class :bg-white}
+          :children        :ingredients
+          :make-node       make-node}]]
+       [:button.button.m-4.w-56 {:on-click collapse-all} "collapse all"]
+       [:button.button.m-4.w-56 {:on-click expand-all} "expand all"]]))
   (r/atom {:selected-item (first sd/items)
            :results       []}))

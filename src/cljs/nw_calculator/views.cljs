@@ -35,22 +35,22 @@
         :on-clear    clear-search!
         :on-select   select-item!}])))
 
-(defn custom-item-amount [{:keys [editable? amount item-index]}]
-  (r/with-let [set-amount-multiplier! (fn [event]
-                                        (let [multiplier (js/parseInt (.. event -target -value))]
-                                          (rf/dispatch [::events/set-amount-multiplier item-index multiplier])))
-               min-amount-multiplier 1]
-    (let [amount-multiplier* @(rf/subscribe [::subs/amount-multiplier item-index])
-          amount-multiplier (if (js/isNaN amount-multiplier*)
-                              min-amount-multiplier
-                              amount-multiplier*)]
+(defn custom-item-quantity [{:keys [editable? quantity item-index]}]
+  (r/with-let [set-quantity-multiplier! (fn [event]
+                                          (let [multiplier (js/parseInt (.. event -target -value))]
+                                            (rf/dispatch [::events/set-quantity-multiplier item-index multiplier])))
+               min-quantity-multiplier 1]
+    (let [quantity-multiplier* @(rf/subscribe [::subs/quantity-multiplier item-index])
+          quantity-multiplier (if (js/isNaN quantity-multiplier*)
+                                min-quantity-multiplier
+                                quantity-multiplier*)]
       (if editable?
-        [:input.basic-input.w-11-imp
+        [:input.basic-input.w-12-imp
          {:type          :number
-          :default-value amount-multiplier
-          :placeholder   min-amount-multiplier
-          :on-input      set-amount-multiplier!}]
-        [:span.self-center amount]))))
+          :default-value quantity-multiplier
+          :placeholder   min-quantity-multiplier
+          :on-input      set-quantity-multiplier!}]
+        [:span.self-center quantity]))))
 
 (defn custom-item-name [{:keys [searchable? name item-index external-url]}]
   (if searchable?
@@ -64,17 +64,17 @@
       [:span.whitespace-nowrap name])))
 
 (defn item
-  [{{:keys [external-url name amount] :as item-map} :node
+  [{{:keys [external-url name quantity] :as item-map} :node
     :keys                                           [root-node?]}
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
     :container-props {:class (str "m-0-imp" (when root-node? " bg-inherit"))}
     :item-map        item-map
-    :custom-amount   [custom-item-amount
-                      {:editable?  root-node?
-                       :amount     amount
-                       :item-index item-index}]
+    :custom-quantity   [custom-item-quantity
+                        {:editable?  root-node?
+                         :quantity     quantity
+                         :item-index item-index}]
     :custom-name     [custom-item-name
                       {:searchable?  root-node?
                        :external-url external-url

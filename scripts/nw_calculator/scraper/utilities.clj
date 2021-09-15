@@ -6,8 +6,10 @@
   (cond->> s
            (not (string/starts-with? s "/")) (str "/")))
 
-(defn prepend-origin [path]
-  (str config/origin (with-separator path)))
+(defn prepend-origin [& path]
+  (->> (string/join path)
+       with-separator
+       (str config/origin)))
 
 (defn prepend-data-path [filename]
   (str config/item-data-path (with-separator filename)))

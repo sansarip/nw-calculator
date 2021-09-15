@@ -2,5 +2,6 @@
   (:require [spade.core :as spade]))
 
 (spade/defclass placeholder-icon-class []
-  [:& {:width     :50px
-       :min-width :50px}])
+  [:& {:width     :32px
+       :height    :32px
+       :min-width :32px}])

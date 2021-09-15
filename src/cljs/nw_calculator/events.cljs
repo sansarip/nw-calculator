@@ -90,15 +90,15 @@
     [db [_ item-index item]]
     (-> db
         (assoc-in [:selected-items item-index :item] item)
-        (update-in [:selected-items item-index :amount-multiplier] #(or % 1))
+        (update-in [:selected-items item-index :quantity-multiplier] #(or % 1))
         (assoc-in [:search-results item-index] []))))
 
 (rf/reg-event-db
-  ::set-amount-multiplier
+  ::set-quantity-multiplier
   (tr/fn-traced
     [db [_ item-index multiplier]]
     (assoc-in db
-              [:selected-items item-index :amount-multiplier]
+              [:selected-items item-index :quantity-multiplier]
               (if (or (js/isNaN multiplier) (<= multiplier 0))
                 1
                 multiplier))))

@@ -3,38 +3,18 @@
             [clojure.pprint :refer [pprint]]
             [slingshot.slingshot :refer [try+ throw+]]
             [nw-calculator.scraper.utilities :as util]
-            [nw-calculator.scraper.config :as config]
             [nw-calculator.scraper.http :as http]
-            [nw-calculator.scraper.html :as html]
-            [nw-calculator.scraper.crafting :as crafting]
-            [nw-calculator.scraper.raw-resources :as rawr]
-            [clojure.string :as string]
             [cheshire.core :as json]))
 
-(defn crawl-category
-  ([url] (crawl-category url []))
-  ([url accumulated-extracted-data]
-   (crawl-category url accumulated-extracted-data crafting/extract-crafting-data))
-  ([url aggregated-extracted-data extracting-fn]
-   (timbre/info "\uD83D\uDD78️ Crawling to" url)
-   (let [enlive-html-map (http/throttled-fetch-html url)
-         accumulated-extracted-data* (into aggregated-extracted-data
-                                           (-> enlive-html-map
-                                               html/select-table-rows
-                                               extracting-fn))
-         next-page-url (html/get-next-page-url enlive-html-map)]
-     (if next-page-url
-       (crawl-category
-         next-page-url
-         accumulated-extracted-data*
-         extracting-fn)
-       accumulated-extracted-data*))))
-
-(defn crawl-raw-resource-category []
-  (crawl-category
-    (util/prepend-origin "/db/category/Resource/RawResources")
-    []
-    rawr/extract-raw-resource-data))
+(def unknown-item-lookup
+  {"azoth_currency" (let [name* "Azoth"]
+                      {:name    name*
+                       :id      (util/uppercase-hash name*)
+                       :png-url "images/icons/currency_azoth.png"})
+   "repair_t1"      (let [name* "Repair Parts"]
+                      {:name    name*
+                       :id      (util/uppercase-hash name*)
+                       :png-url "images/icons/currency_repairpartst1.png"})})
 
 (defn write-items-json! [extracted-item-data]
   (let [output-file-path (util/prepend-data-path "items.json")]
@@ -42,21 +22,141 @@
     (spit output-file-path (json/generate-string extracted-item-data {:pretty true})))
   extracted-item-data)
 
-(defn crawl-crafting-categories []
-  (let [crafting-category-urls (crafting/get-crafting-category-urls)
-        crawl-category-fn (fn [url] (crawl-category url [] crafting/extract-crafting-data))]
-    (set (mapcat crawl-category-fn crafting-category-urls))))
+(declare crawl-ingredients)
+
+(def get-recipe
+  (memoize
+    (fn [recipe-id]
+      (-> (util/prepend-origin "/db/recipe/" recipe-id ".json")
+          http/throttled-http-get
+          :data))))
+
+(defn default-quantity [quantity]
+  (or quantity 1))
+
+(def extract-recipe
+  "Extracts recipe relevant information if available"
+  (memoize
+    (fn [recipe-id]
+      (if-let [{:keys                                    [ingredients itemType icon]
+                {:keys [quantity]}                       :output
+                {progress :CategoricalProgressionReward} :event} (get-recipe recipe-id)]
+        (let [craftable? (not-empty ingredients)
+              has-xp? (and progress craftable?)
+              has-png? (and itemType icon)]
+          (cond-> {:external-url (util/prepend-origin "db/recipe/" recipe-id)
+                   :quantity     (default-quantity quantity)}
+                  has-png? (assoc :png-url (str "images/icons/items/" itemType "/" icon ".png"))
+                  has-xp? (assoc :xp (->> (map (comp default-quantity :quantity) ingredients)
+                                          (reduce +)
+                                          (* progress)))
+                  craftable? (assoc :ingredients ingredients)))))))
+
+(def get-item
+  (memoize
+    (fn [item-id]
+      (-> (util/prepend-origin "/db/item/" item-id ".json")
+          http/throttled-http-get
+          :data))))
+
+(def extract-item
+  "Extracts relevant item data, including recipe information if available"
+  (memoize
+    (fn [item-id]
+      (if-let [{[{recipe-id :id}] :craftingRecipesOutput
+                :keys             [tier itemType icon rarity]
+                name*             :name} (get-item item-id)]
+        (merge
+          {:id           (util/uppercase-hash name*)
+           :name         name*
+           :tier         tier
+           :rarity       rarity
+           :png-url      (str "images/icons/items/" itemType "/" icon ".png")
+           :external-url (util/prepend-origin "db/item/" item-id)}
+          (extract-recipe recipe-id))
+        (get unknown-item-lookup item-id)))))
+
+(defn make-item-ref [{name* :name :keys [quantity]}]
+  {:id       (util/uppercase-hash name*)
+   :ref?     true
+   :name     name*
+   :quantity (or quantity 1)})
+
+(defn make-item-refs [items]
+  (into #{} (map make-item-ref) items))
+
+(defn transform-ingredient
+  "Transforms an ingredient into a root level item"
+  [{item-type :type
+    item-id   :id
+    :keys     [subIngredients icon]
+    :as       ingredient}]
+  (if (#{"category"} item-type)
+    (assoc (make-item-ref ingredient)
+      :type item-type
+      :png-url (str "images/" icon ".png")
+      :options (:ingredient-refs (crawl-ingredients subIngredients)))
+    (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)]
+      (cond-> extracted-item
+              ingredients (update :ingredients make-item-refs)))))
+
+(defn crawl-ingredients [ingredients]
+  (loop [result {:ingredient-refs         #{}
+                 :transformed-ingredients #{}}
+         [{:keys [quantity] :as ingredient} & ingredients] ingredients]
+    (let [transformed-ingredient (transform-ingredient ingredient)
+          ingredient-ref (make-item-ref                     ; This assoc accounts for unknown entities like Azoth
+                           (assoc transformed-ingredient
+                             :quantity quantity))]
+      (if ingredient
+        (recur
+          (-> result
+              (update :ingredient-refs conj ingredient-ref)
+              (update :transformed-ingredients conj transformed-ingredient))
+          ingredients)
+        result))))
+
+(def get-items-on-page
+  (memoize
+    (fn [page-id]
+      (-> (util/prepend-origin "/db/items/page/" page-id ".json?source=crafting")
+          http/throttled-http-get
+          :data))))
+
+(def get-page-count
+  (memoize
+    (fn [page-id]
+      (-> (util/prepend-origin "/db/items/page/" page-id ".json?source=crafting")
+          http/throttled-http-get
+          :pageCount))))
+
+(defn crawl-item [item-id]
+  (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)
+        {:keys [ingredient-refs transformed-ingredients]} (crawl-ingredients ingredients)]
+    (into
+      [(cond-> extracted-item
+               (not-empty ingredient-refs) (assoc :ingredients ingredient-refs))]
+      transformed-ingredients)))
+
+(defn crawl-page [page-number]
+  (let [items (get-items-on-page page-number)]
+    (into #{} (mapcat (comp crawl-item :id)) items)))
+
+(defn crawl-pages [starting-page-number]
+  (let [page-count (get-page-count starting-page-number)]
+    (loop [result #{}
+           [page-number & page-numbers] (range starting-page-number (inc page-count))]
+      (if page-number
+        (do
+          (timbre/info "\uD83D\uDD77️ Crawling page" (str page-number "/" page-count))
+          (recur (into result (crawl-page page-number)) page-numbers))
+        result))))
 
 (defn download-item-data!
-  "Crawls all crafting category (paginated) pages _and_ the raw resources (paginated) pages,
-  and then writes the data to disk and (optionally) downloads a scaled-down version of the
-  pngs associated with items."
-  [& [{:keys [download-pngs?]}]]
+  "Crawls all crafting (paginated) pages, and then writes the data to disk as a single JSON document."
+  []
   (timbre/info "\uD83D\uDD77️ Crawling...")
-  (-> (crawl-crafting-categories)
-      (into (crawl-raw-resource-category))
-      write-items-json!
-      (cond-> download-pngs? (http/download-pngs! config/image-path)))
+  (write-items-json! (crawl-pages 1))
   (timbre/info "✨ Done!"))
 
 (defn -main []

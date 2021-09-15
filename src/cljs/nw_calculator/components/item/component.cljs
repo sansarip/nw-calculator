@@ -32,8 +32,8 @@
         #js [popup-target-ele])
       (r/with-let [show-popup (fn [event] (set-popup-target-ele! (.-target event)))
                    hide-popup (fn [_event] (set-popup-target-ele! nil))]
-        [:img.bg-none
-         {:src           (util/localize-external-img src)
+        [:img.bg-none.w-8.h-8
+         {:src           src
           :on-mouse-over (when-not disable-popup? show-popup)
           :on-mouse-out  (when-not disable-popup? hide-popup)}]))))
 
@@ -46,9 +46,9 @@
 (defn item
   [{:keys          [popup-on-hover?
                     custom-name
-                    custom-amount
+                    custom-quantity
                     container-props]
-    {:keys [amount
+    {:keys [quantity
             png-url
             name
             xp
@@ -63,7 +63,7 @@
        [placeholder-icon])
      ^{:key labels-key}
      [:div.bg-inherit.labels.w-full.flex.items-start.gap-4
-      (or custom-amount amount)
+      (or custom-quantity quantity)
       " "
       [:div.bg-inherit.w-full.flex.flex-col.gap-2
        (or custom-name name)

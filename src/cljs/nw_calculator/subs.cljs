@@ -27,13 +27,18 @@
   :<- [::items-by-id]
   (fn [[selected-items items-by-id]
        [_ item-index]]
-    (let [{:keys [amount-multiplier]
+    (let [{:keys [quantity-multiplier]
            {selected-item-id :id} :item} (get selected-items item-index)]
-      (or (some-> (get items-by-id selected-item-id)
-                  not-empty
-                  (util/get-ingredients items-by-id)
-                  (util/multiply-amounts amount-multiplier))
-          {:ingredients []}))))
+      (let [{:keys [quantity] :as item} (get items-by-id selected-item-id)]
+        (or (some-> item
+                    not-empty
+                    (util/resolve-refs items-by-id)
+                    ;; This is to prevent erroneous calculation with items
+                    ;; that output more than one quantity when crafted
+                    (assoc :quantity 1)
+                    (util/multiply-quantities quantity-multiplier)
+                    (assoc :quantity (* quantity quantity-multiplier)))
+            {:ingredients []})))))
 
 (rf/reg-sub ::loading?
   (fn [{:keys [state]}]
@@ -47,7 +52,7 @@
   (fn [{:keys [state]}]
     (= state :searching)))
 
-(rf/reg-sub ::amount-multiplier
+(rf/reg-sub ::quantity-multiplier
   :<- [::selected-items]
   (fn [selected-items [_ item-index]]
-    (get-in selected-items [item-index :amount-multiplier])))
+    (get-in selected-items [item-index :quantity-multiplier])))
