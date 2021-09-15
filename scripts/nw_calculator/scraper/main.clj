@@ -78,7 +78,6 @@
 
 (defn make-item-ref [{name* :name :keys [quantity]}]
   {:id       (util/uppercase-hash name*)
-   :ref?     true
    :name     name*
    :quantity (or quantity 1)})
 
