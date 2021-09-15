@@ -11,13 +11,6 @@
     [compound2.core :as c]
     [nw-calculator.utilities :as util]))
 
-(rf/reg-event-fx
-  ::set-dark-theme
-  (tr/fn-traced
-    [{db :db} [_ dark-theme?]]
-    {:db                         (assoc db :dark-theme? dark-theme?)
-     ::effects/set-local-storage [::dark-theme? dark-theme?]}))
-
 (rf/reg-event-db
   ::initialize-db
   (tr/fn-traced [_ [_ default-overrides]]
