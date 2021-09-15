@@ -14,7 +14,6 @@
 
 (def default-db
   {:state          :loading
-   :dark-theme?    false
    :items          default-items
    :selected-items [empty-selected-item]
    :search-results []})
