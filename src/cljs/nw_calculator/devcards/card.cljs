@@ -6,7 +6,7 @@
 (dc/defcard-rg
   card
   (fn []
-    [nwc/card-component
+    [nwc/card-component {}
      "I'm baby yuccie selvage skateboard viral franzen.
       Kogi hammock meggings cornhole, irony yuccie ennui synth tousled.
       Artisan lyft flannel man bun la croix.
