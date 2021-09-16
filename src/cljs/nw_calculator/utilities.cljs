@@ -84,9 +84,3 @@
   (let [left (subvec v 0 n)
         right (subvec v (inc n))]
     (vec (concat left right))))
-
-(defn get-local-storage [k]
-  (edn/read-string (js/window.localStorage.getItem k)))
-
-(defn set-local-storage! [k v]
-  (js/window.localStorage.setItem k v))
