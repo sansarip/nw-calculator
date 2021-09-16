@@ -19,8 +19,6 @@
 
 (defn ^:export main []
   (dev-setup)
-  (rf/dispatch-sync [::events/initialize-db
-                     {:dark-theme?
-                      (util/get-local-storage ::events/dark-theme?)}])
+  (rf/dispatch-sync [::events/initialize-db])
   (rf/dispatch [::events/fetch-items])
   (initialize-app!))
