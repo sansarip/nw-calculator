@@ -92,9 +92,7 @@
     [db [_ item-index multiplier]]
     (assoc-in db
               [:selected-items item-index :quantity-multiplier]
-              (if (or (js/isNaN multiplier) (<= multiplier 0))
-                1
-                multiplier))))
+              multiplier)))
 
 (rf/reg-event-db
   ::add-empty-item

@@ -6,6 +6,14 @@
 
 (defn no-op [& _])
 
+(defn parse-pos
+  ([s] (parse-pos s 1))
+  ([s default]
+   (let [n (js/parseInt s)]
+     (if (or (js/isNaN n) (<= n 0))
+       default
+       n))))
+
 (defn debounce [f interval]
   (let [dbnc (Debouncer. f interval)]
     (fn [& args] (.apply (.-fire dbnc) dbnc (to-array args)))))
