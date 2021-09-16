@@ -121,16 +121,12 @@
         :on-click delete-item!}
        [:i.fas.fa-trash]])))
 
-(defn card [& children]
-  [nwc/card-component
-   (into [:<>] children)])
-
 (defn item-cards []
   (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
     [:<>
      (for [item-index (range num-selected-items)]
        ^{:key item-index}
-       [card
+       [nwc/card-component
         [delete-item-button item-index]
         [searchable-item-tree item-index]])]))
 
