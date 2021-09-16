@@ -6,7 +6,8 @@
     [nw-calculator.devcards.loader]
     [nw-calculator.devcards.search]
     [nw-calculator.devcards.card]
-    [nw-calculator.devcards.toggle]))
+    [nw-calculator.devcards.toggle]
+    [nw-calculator.devcards.multiplication]))
 
 (enable-console-print!)
 

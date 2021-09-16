@@ -30,11 +30,10 @@
         (or (some-> item
                     not-empty
                     (util/resolve-refs items-by-id)
+                    (util/multiply-quantities quantity-multiplier)
                     ;; This is to prevent erroneous calculation with items
                     ;; that output more than one quantity when crafted
-                    (assoc :quantity 1)
-                    (util/multiply-quantities quantity-multiplier)
-                    (assoc :quantity (* quantity quantity-multiplier)))
+                    (assoc :quantity quantity))
             {:ingredients []})))))
 
 (rf/reg-sub ::loading?

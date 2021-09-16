@@ -18,8 +18,8 @@
                                                 "<img class=\"hidden max-w-3xl w-48 h-48 object-cover absolute z-10 bg-light-blue rounded-full rounded-tl-none border-purple border-opacity-30 border-2 bg-white\" src=\"{{src}}\" style=\"top: {{top}}px; left: {{left}}px\" />"
                                                 (let [[left top] (util/get-ele-offsets popup-target-ele)]
                                                   {:src  src
-                                                   :left (+ left 25)
-                                                   :top  (+ top 25)})))]
+                                                   :left (+ left 20)
+                                                   :top  (+ top 20)})))]
                  (reset! popup-ele new-popup-ele)
                  (js/document.body.appendChild new-popup-ele)))
           (when-let [popup-ele* @popup-ele]

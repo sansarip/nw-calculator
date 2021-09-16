@@ -22,6 +22,7 @@
           item-component (fn [item-map]
                            [nwc/item-component
                             {:item-map        item-map
+                             :custom-quantity [:<>]
                              :container-props {:class (styles/search-result-item-class)}}])
           searching? @(rf/subscribe [::subs/searching?])]
       [:f> nwc/search-component
@@ -37,20 +38,27 @@
 
 (defn custom-item-quantity [{:keys [editable? quantity item-index]}]
   (r/with-let [set-quantity-multiplier! (fn [event]
-                                          (let [multiplier (js/parseInt (.. event -target -value))]
+                                          (let [multiplier (util/parse-pos (.. event -target -value))]
                                             (rf/dispatch [::events/set-quantity-multiplier item-index multiplier])))
                min-quantity-multiplier 1]
     (let [quantity-multiplier* @(rf/subscribe [::subs/quantity-multiplier item-index])
           quantity-multiplier (if (js/isNaN quantity-multiplier*)
                                 min-quantity-multiplier
-                                quantity-multiplier*)]
-      (if editable?
-        [:input.basic-input.w-12-imp
-         {:type          :number
-          :default-value quantity-multiplier
-          :placeholder   min-quantity-multiplier
-          :on-input      set-quantity-multiplier!}]
-        [:span.self-center quantity]))))
+                                quantity-multiplier*)
+          editable-stack? (and editable? (> quantity 1))]
+      (cond
+        editable-stack? [:f> nwc/multiplication-component
+                         {:base        quantity
+                          :container-props {:class "mt-9"}
+                          :input-props {:default-value quantity-multiplier
+                                        :placeholder min-quantity-multiplier
+                                        :on-input    set-quantity-multiplier!}}]
+        editable? [:input.basic-input.w-12-imp
+                   {:type          :number
+                    :default-value quantity-multiplier
+                    :placeholder   min-quantity-multiplier
+                    :on-input      set-quantity-multiplier!}]
+        :else [:span.self-center quantity]))))
 
 (defn custom-item-name [{:keys [searchable? name item-index external-url]}]
   (if searchable?
@@ -65,16 +73,16 @@
 
 (defn item
   [{{:keys [external-url name quantity] :as item-map} :node
-    :keys                                           [root-node?]}
+    :keys                                             [root-node?]}
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
     :container-props {:class (str "m-0-imp" (when root-node? " bg-inherit"))}
     :item-map        item-map
-    :custom-quantity   [custom-item-quantity
-                        {:editable?  root-node?
-                         :quantity     quantity
-                         :item-index item-index}]
+    :custom-quantity [custom-item-quantity
+                      {:editable?  root-node?
+                       :quantity   quantity
+                       :item-index item-index}]
     :custom-name     [custom-item-name
                       {:searchable?  root-node?
                        :external-url external-url
