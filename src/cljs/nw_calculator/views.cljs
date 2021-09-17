@@ -53,12 +53,12 @@
                           :input-props {:default-value quantity-multiplier
                                         :placeholder min-quantity-multiplier
                                         :on-input    set-quantity-multiplier!}}]
-        editable? [:input.basic-input.w-12-imp
+        editable? [:input.basic-input.w-12-imp.text-right
                    {:type          :number
                     :default-value quantity-multiplier
                     :placeholder   min-quantity-multiplier
                     :on-input      set-quantity-multiplier!}]
-        :else [:span.self-center quantity]))))
+        :else [:span quantity]))))
 
 (defn custom-item-name [{:keys [searchable? name item-index external-url]}]
   (if searchable?

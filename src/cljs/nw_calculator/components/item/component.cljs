@@ -54,7 +54,7 @@
             xp
             tier]} :item-map}]
   (r/with-let [labels-key (str "labels_" (util/short-uuid-str))]
-    [:div.flex.items-center.gap-4.relative
+    [:div.flex.gap-4.relative
      container-props
      (if png-url
        [:f> image-with-popup
