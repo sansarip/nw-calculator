@@ -24,16 +24,18 @@
   :<- [::items-by-id]
   (fn [[selected-items items-by-id]
        [_ item-index]]
-    (let [{:keys [quantity-multiplier]
+    (let [{:keys                  [quantity-multiplier]
            {selected-item-id :id} :item} (get selected-items item-index)]
-      (let [{:keys [quantity] :as item} (get items-by-id selected-item-id)]
+      (let [{:keys [quantity xp] :as item} (get items-by-id selected-item-id)]
         (or (some-> item
                     not-empty
                     (util/resolve-refs items-by-id)
-                    (util/multiply-quantities quantity-multiplier)
                     ;; This is to prevent erroneous calculation with items
                     ;; that output more than one quantity when crafted
-                    (assoc :quantity quantity))
+                    (assoc :quantity 1)
+                    (util/multiply-quantities quantity-multiplier)
+                    (assoc :quantity quantity
+                           :xp (* xp quantity-multiplier)))
             {:ingredients []})))))
 
 (rf/reg-sub ::loading?
