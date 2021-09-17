@@ -19,6 +19,8 @@
                        :11  "2.75rem"
                        :12  "3rem"
                        :14  "3.5rem"
+                       :16  "4rem"
+                       :18  "4.5rem"
                        :96  "24rem"
                        :128 "32rem"
                        :160 "40rem"
@@ -40,6 +42,8 @@
   (-> config :sizes :relative :12))
 (def relative-14
   (-> config :sizes :relative :14))
+(def relative-18
+  (-> config :sizes :relative :18))
 (def relative-96
   (-> config :sizes :relative :96))
 (def relative-128
@@ -78,6 +82,7 @@
   [:.min-w-96 {:min-width relative-96}]
   [:.w-128 {:width relative-128}]
   [:.w-176 {:width relative-176}]
+  [:.mb-18 {:margin-bottom relative-18}]
   [:input.basic-input {:padding-bottom relative-0
                        :padding-top    relative-0
                        :padding-right  relative-0
