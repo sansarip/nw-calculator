@@ -49,7 +49,7 @@
       (cond
         editable-stack? [:f> nwc/multiplication-component
                          {:base        quantity
-                          :container-props {:class "mt-9"}
+                          :container-props {:class "mb-18"}
                           :input-props {:default-value quantity-multiplier
                                         :placeholder min-quantity-multiplier
                                         :on-input    set-quantity-multiplier!}}]

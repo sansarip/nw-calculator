@@ -7,7 +7,8 @@
 (dc/defcard-rg
   multiplication
   (fn []
-    [:f> nwc/multiplication-component {:base 50}]))
+    [:div.pt-12
+     [:f> nwc/multiplication-component {:base 50}]]))
 
 
 

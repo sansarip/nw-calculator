@@ -6,7 +6,6 @@
     [nw-calculator.utilities :as util]))
 
 (defn multiplication
-  "Box method representation"
   [{:keys                              [base container-props]
     {:keys [on-input] :as input-props} :input-props
     :or                                {on-input (util/no-op)}}]
@@ -20,17 +19,19 @@
        (r/merge-props
          {:class (styles/multiplication-class)}
          container-props)
-       [:div.absolute.w-full.flex.justify-between.bottom-10
-        [:i.flex.flex-col.justify-center.text-xl.fal.fa-times]
-        base]
-       [:input.absolute.basic-input.text-right.multiplier
-        (r/merge-props
-          {:placeholder   "1"
-           :type          :number
-           :on-input      on-input*
-           :default-value multiplier}
-          (dissoc input-props :on-input))]
-       [:input.basic-input.text-right.product.pt-4
-        {:read-only true
-         :value     (* multiplier base)}]])))
+       [:input.basic-input.text-right.multiplier
+               (r/merge-props
+                 {:placeholder   "1"
+                  :type          :number
+                  :on-input      on-input*
+                  :default-value multiplier}
+                 (dissoc input-props :on-input))]
+       [:div.w-full.flex.flex-col.absolute
+        {:class "-bottom-20"}
+        [:div.w-full.flex.justify-between.gap-2
+         [:i.flex.flex-col.justify-center.text-xl.fal.fa-times]
+         base]
+        [:div.w-full.flex.justify-between.gap-2
+         [:i.flex.flex-col.justify-center.text-xl.fal.fa-equals]
+         (* multiplier base)]]])))
 
