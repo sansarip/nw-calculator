@@ -5,20 +5,9 @@
     [nw-calculator.components.search.styles :as styles]
     [nw-calculator.components.circular-button.component :as cb]
     [nw-calculator.components.loader.component :as lc]
+    [nw-calculator.components.dropdown.component :as dd]
     [react]
-    [cljstache.core :as fmt]
     [nw-calculator.hooks :as hooks]))
-
-(defn result-list-item
-  [{:keys [on-select on-hover result-index result]} & _]
-  (letfn [(select-result [& _] (on-select result))
-          (hover-result [& _] (on-hover result-index))]
-    (fn [{:keys [result-index]} & children]
-      [:dt.bg-inherit.transition-colors.bg-opacity-20.m-0.p-4.cursor-pointer
-       {:data-result-index result-index
-        :on-mouse-over     hover-result
-        :on-click          select-result}
-       (into [:<>] children)])))
 
 (defn search
   [{:keys [results
@@ -36,12 +25,9 @@
            get-value   (constantly "")
            make-result identity}}]
   (let [[input-value set-input-value!] (react/useState "")
-        [active-result-index set-active-result-index!] (react/useState -1)
+        [input-focused? set-input-focused] (react/useState false)
         input-ref (react/useRef)
-        num-results (count results)
-        down-key-pressed? (hooks/use-key-press "ArrowDown")
-        up-key-pressed? (hooks/use-key-press "ArrowUp")
-        enter-key-pressed? (hooks/use-key-press "Enter")]
+        escape-key-pressed? (hooks/use-key-press "Escape")]
     (r/with-let [set-input-value*! (fn [input-value]
                                      (set-input-value! input-value)
                                      (set! (.. input-ref -current -value) input-value))
@@ -60,19 +46,12 @@
                                       (on-clear)
                                       (set-input-value*! "")
                                       (.. input-ref -current focus))
-                 input-focused? #(= js/document.activeElement (.-current input-ref))
-                 get-result-ele (fn [result-index]
-                                  (.querySelector
-                                    js/document
-                                    (fmt/render
-                                      "dt[data-result-index=\"{{ri}}\"]"
-                                      {:ri result-index})))
-                 highlight-result! (fn [target-result-index num-results]
-                                     (doseq [result-index (range num-results)]
-                                       (let [result-ele (get-result-ele result-index)]
-                                         (if (= result-index target-result-index)
-                                           (.. result-ele -classList (add "bg-purple"))
-                                           (.. result-ele -classList (remove "bg-purple"))))))]
+                 focus! (fn []
+                          (.. input-ref -current focus)
+                          (set-input-focused true))
+                 blur! (fn []
+                         (.. input-ref -current blur)
+                         (set-input-focused false))]
       (react/useEffect
         (fn []
           (set-input-value! (.. input-ref -current -value))
@@ -80,40 +59,19 @@
         #js [input-ref])
       (react/useEffect
         (fn []
-          (set-active-result-index! -1)
+          (blur!)
           util/no-op)
-        #js [results])
-      (react/useEffect
-        (fn []
-          (let [next-result-index (inc active-result-index)]
-            (when (and (input-focused?) down-key-pressed? (< next-result-index num-results))
-              (set-active-result-index! next-result-index)))
-          util/no-op)
-        #js [down-key-pressed?])
-      (react/useEffect
-        (fn []
-          (let [prev-result-index (dec active-result-index)]
-            (when (and (input-focused?) up-key-pressed? (> prev-result-index -1))
-              (set-active-result-index! prev-result-index)))
-          util/no-op)
-        #js [up-key-pressed?])
-      (react/useEffect
-        (fn []
-          (if-let [active-result (get results active-result-index)]
-            (select-result! active-result)))
-        #js [enter-key-pressed?])
-      (react/useEffect
-        (fn []
-          (highlight-result! active-result-index num-results))
-        #js [active-result-index])
+        #js [escape-key-pressed?])
       [:div.bg-inherit.relative.w-full (r/merge-props {:class (styles/search-class)} props)
        [:input.basic-input.search.w-full.flex-grow.md:pr-12-imp
         (r/merge-props
           {:spell-check false
            :ref         input-ref
            :placeholder "Search something \uD83D\uDD0D"
+           :on-focus    focus!
+           :on-blur     blur!
            :on-input    search!}
-          (dissoc input-props :on-input))]
+          (dissoc input-props :ref :on-input :on-focus-out :on-focus))]
        (when (and (not-empty input-value) (not loading?))
          [cb/circular-button
           {:on-click clear-input-value!
@@ -122,17 +80,9 @@
        (when loading?
          [lc/loader
           {:class "absolute text-lg md:text-2xl right-2 md:right-3 top-3 md:top-2 flex-none"}])
-       (when (> num-results 0)
-         [:dl.bg-inherit.w-full.max-w-full.absolute.m-0.z-50.bg-inherit.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
-          {:multiple true
-           :size     (count results)}
-          (map-indexed
-            (fn [result-index {:keys [id] :as result}]
-              ^{:key (str "result_" result-index "_" id)}
-              [result-list-item
-               {:on-select    select-result!
-                :on-hover     set-active-result-index!
-                :result-index result-index
-                :result       result}
-               [make-result result]])
-            results)])])))
+       (when (and input-focused? (not-empty results))
+         [:f> dd/options
+          {:on-select   select-result!
+           :options     results
+           :make-option make-result}])])))
+

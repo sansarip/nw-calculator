@@ -34,6 +34,10 @@
   (-> config :sizes :relative :1))
 (def relative-2
   (-> config :sizes :relative :2))
+(def relative-4
+  (-> config :sizes :relative :4))
+(def relative-6
+  (-> config :sizes :relative :6))
 (def relative-8
   (-> config :sizes :relative :8))
 (def relative-10
@@ -96,7 +100,11 @@
   ["input::-webkit-outer-spin-button, input::-webkit-inner-spin-button"
    {:-webkit-appearance :none
     :margin             relative-0}]
-  ["input[type=number]" {:-moz-appearance :textfield}])
+  ["input[type=number]" {:-moz-appearance :textfield}]
+  [:select {:padding (with-config "0px 0px 0px {{sizes.relative.1}}")
+            :height  relative-12}]
+  [:.bg-white-imp {:background-color "white !important"}]
+  [:.flip-y {:transform "scaleY(-1)"}])
 
 (spade/defclass search-result-item-class []
   [:.labels {:width          :100%

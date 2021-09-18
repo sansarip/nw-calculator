@@ -7,7 +7,8 @@
     [nw-calculator.components.loader.component :as loader-component]
     [nw-calculator.components.card.component :as card-component]
     [nw-calculator.components.toggle.component :as toggle-component]
-    [nw-calculator.components.multiplication.component :as multiplication-component]))
+    [nw-calculator.components.multiplication.component :as multiplication-component]
+    [nw-calculator.components.dropdown.component :as dropdown-component]))
 
 (def collapsible-tree-component collapsible-tree-component/collapsible-tree)
 (def item-component item-component/item)
@@ -17,3 +18,5 @@
 (def card-component card-component/card)
 (def toggle-component toggle-component/toggle)
 (def multiplication-component multiplication-component/multiplication)
+(def options-component dropdown-component/options)
+(def dropdown-component dropdown-component/dropdown)
