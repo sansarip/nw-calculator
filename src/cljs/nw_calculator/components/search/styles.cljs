@@ -1,8 +1,8 @@
 (ns nw-calculator.components.search.styles
   (:require
     [spade.core :as spade]
-    [nw-calculator.styles]))
+    [nw-calculator.styles :as styles]))
 
 (spade/defclass search-class []
   [:input.search.basic-input
-   {:padding-right :2rem}])
+   {:padding-right styles/relative-8}])
