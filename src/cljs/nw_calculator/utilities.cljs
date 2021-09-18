@@ -1,7 +1,5 @@
 (ns nw-calculator.utilities
-  (:require [clojure.string :as string]
-            [clojure.walk :as w]
-            [cljs.reader :as edn])
+  (:require [clojure.string :as string])
   (:import [goog.async Debouncer]))
 
 (defn no-op [& _])
@@ -24,14 +22,6 @@
 
 (defn short-uuid-str []
   (string/join (take 8 (str (random-uuid)))))
-
-(defn remove-by-ids [coll ids]
-  (set (remove (comp (set ids) :id) coll)))
-
-(defn remove-walked-ids-from-refs [walked-ids {:keys [ingredients options] :as item}]
-  (cond-> item
-          options (update :options remove-by-ids walked-ids)
-          ingredients (update :ingredients remove-by-ids walked-ids)))
 
 (def resolve-refs
   (memoize
