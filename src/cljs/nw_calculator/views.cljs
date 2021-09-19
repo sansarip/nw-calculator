@@ -168,16 +168,6 @@
      :target "_blank"}
     [:i.fab.fa-discord]]])
 
-(defn theme-toggle []
-  (r/with-let [set-theme! (fn [event]
-                            (rf/dispatch [::events/set-dark-theme (.. event -target -checked)]))]
-    [:div.absolute.top-10.right-10
-     [nwc/toggle-component
-      {:checkbox-props {:on-change set-theme!
-                        :checked   @(rf/subscribe [::subs/dark-theme?])}
-       :on             [:i.fas.fa-sun.w-full.h-full.text-yellow-500]
-       :off            [:i.fas.fa-moon.w-full.h-full.text-gray-600]}]]))
-
 (defn loader []
   (when @(rf/subscribe [::subs/loading?])
     [:div.absolute.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
