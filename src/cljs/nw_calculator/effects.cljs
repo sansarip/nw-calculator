@@ -25,9 +25,3 @@
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))
-
-(rf/reg-fx
-  ::set-local-storage
-  (fn [[k v]]
-    (util/set-local-storage! k v)))
-
