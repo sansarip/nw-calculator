@@ -51,7 +51,6 @@
   (memoize
     (fn
       ([item items-by-id] (multiply-quantities item items-by-id 1))
-      ;; TODO: To see what the item's base multiplier is, get the quantity from items-by-id, then divide the quantity below by the base-multiplier to get the next multiplier rounded up
       ([{:keys [quantity xp ingredients id] :or {quantity 1} :as item} items-by-id prev-multiplier]
        (let [{base-multiplier :quantity
               :or             {base-multiplier 1}} (items-by-id id)
