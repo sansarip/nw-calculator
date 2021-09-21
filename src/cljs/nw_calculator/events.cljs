@@ -110,10 +110,14 @@
   ::remove-item
   (tr/fn-traced
     [db [_ item-index]]
-    (update db :selected-items util/vec-remove-nth item-index)))
+    (-> db
+        (update :selected-items util/vec-remove-nth item-index)
+        (update :search-results util/vec-remove-nth item-index))))
 
 (rf/reg-event-db
   ::remove-all-items
   (tr/fn-traced
     [db _]
-    (assoc db :selected-items [df/empty-selected-item])))
+    (assoc db
+      :selected-items [df/empty-selected-item]
+      :search-results [])))
