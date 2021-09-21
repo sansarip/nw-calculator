@@ -98,8 +98,8 @@
 
 (defn item
   [{{:keys [quantity path] :as item-map} :node
-    :keys                           [root-node?]
-    :as                             node-data}
+    :keys                                [root-node?]
+    :as                                  node-data}
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
@@ -142,10 +142,12 @@
          [:div.flex.gap-6
           [:button.button.button-outline.w-52.md:w-60
            {:on-click expand-all!}
-           "expand all"]
+           [:i.fas.fa-expand-arrows]
+           " Expand all"]
           [:button.button.button-outline.w-52.md:w-60
            {:on-click collapse-all!}
-           "collapse all"]])])))
+           [:i.fas.fa-compress-arrows-alt]
+           " Collapse all"]])])))
 
 (defn delete-item-button [item-index]
   (r/with-let [delete-item! #(rf/dispatch [::events/delete-item item-index])]
@@ -166,11 +168,19 @@
         [delete-item-button item-index]
         [searchable-item-tree item-index]])]))
 
-(defn add-item-card-button []
-  (r/with-let [add-empty-item! #(rf/dispatch [::events/add-empty-item])]
-    [:button.button.w-64
-     {:on-click add-empty-item!}
-     "Add another item"]))
+(defn actions []
+  (r/with-let
+    [add-empty-item! #(rf/dispatch [::events/add-empty-item])
+     remove-items! #(rf/dispatch [::events/remove-all-items])]
+    [:div.flex.gap-6.md:gap-8.flex-wrap.justify-center
+     [:button.button.w-64
+      {:on-click add-empty-item!}
+      [:i.fas.fa-plus-circle]
+      " Add another item"]
+     [:button.button.w-64
+      {:on-click remove-items!}
+      [:i.fas.fa-trash]
+      " Remove all items"]]))
 
 (defn header []
   [:div.flex.flex-col.items-center
@@ -182,7 +192,7 @@
 (defn body []
   [:div.relative.z-30.flex-grow.flex.gap-14.flex-col.items-center.flex-col.animate__animated.animate__fadeIn.animate__slower.animate__delay-1s
    [item-cards]
-   [add-item-card-button]])
+   [actions]])
 
 (defn footer []
   [:div.relative.z-10.py-4.flex.flex.gap-5.justify-center.text-4xl
