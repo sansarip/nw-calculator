@@ -12,7 +12,7 @@ PRs are welcome! You can find me for collaboration [here on Discord](https://dis
 
 For simplicity's sake, all item data is in the [items.json file](https://github.com/sansarip/nw-calculator/blob/main/resources/public/data/items.json). 
 If you notice an issue, you can make a PR to add/edit the data in the aforementioned JSON file. 
-If your changes include adding/editing an image url of an item, then you must also put a corresponding 50x25 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images).
+If your changes include adding/editing an image url of an item, then you must also put a corresponding 128x128 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images).
 
 ## Future Goals
 
