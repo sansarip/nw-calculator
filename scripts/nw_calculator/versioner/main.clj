@@ -2,7 +2,8 @@
   (:require
     [clojure.string :as string]
     [environ.core :refer [env]]
-    [clojure.pprint :refer [pprint]])
+    [clojure.pprint :refer [pprint]]
+    [clostache.parser :as fmt])
   (:import (java.time LocalDate ZoneId)))
 
 (set! *print-meta* true)
@@ -11,7 +12,7 @@
   (cond->> s
            (< (count s) 2) (str "0")))
 
-(defn -main []
+(defn -main [content output]
   (let [project-date-version (-> (:nw-calculator-version env)
                                  (string/split #"\.")
                                  (->> (mapv #(Integer/parseInt %)))
@@ -29,6 +30,7 @@
                     (->> (mapv (comp pad-zero str)))
                     (conj build)
                     (->> (string/join ".")))]
+    (spit output (fmt/render content {:version version}))
     (-> (slurp "project.clj")
         read-string
         vec

@@ -64,7 +64,7 @@
    :repl-options {:init-ns nw-calculator.templater.main}},
   :versioner
   {:source-paths ["scripts"],
-   :dependencies [[environ "1.2.0"]],
+   :dependencies [[environ "1.2.0"] [de.ubercode.clostache/clostache "1.4.0"]],
    :main nw-calculator.versioner.main,
    :repl-options {:init-ns nw-calculator.versioner.main}},
   :scraper
