@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.09.21.5]
+### Added
+
+### Changed
+- Lowercase image URLs
+
+### Removed
+
 ## [2021.09.21.4]
 ### Added
 - Add vercel configuration
