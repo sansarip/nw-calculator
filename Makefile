@@ -1,4 +1,4 @@
-build:
+build-prod:
 	lein clean
 	lein fig:prod
 
@@ -14,7 +14,7 @@ template:
 
 release:
 	echo "Building app"
-	make build
+	make build-prod
 	echo "Edit changelog and bumping version"
 	make bump-version
 	echo "Apply templates"
