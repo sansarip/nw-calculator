@@ -172,15 +172,17 @@
   (r/with-let
     [add-empty-item! #(rf/dispatch [::events/add-empty-item])
      remove-items! #(rf/dispatch [::events/remove-all-items])]
-    [:div.flex.gap-6.md:gap-8.flex-wrap.justify-center
-     [:button.button.w-64
-      {:on-click add-empty-item!}
-      [:i.fas.fa-plus-circle]
-      " Add another item"]
-     [:button.button.w-64
-      {:on-click remove-items!}
-      [:i.fas.fa-trash]
-      " Remove all items"]]))
+    (let [num-items @(rf/subscribe [::subs/num-selected-items])]
+      [:div.flex.gap-6.md:gap-8.flex-wrap.justify-center
+       [:button.button.w-64
+        {:on-click add-empty-item!}
+        [:i.fas.fa-plus-circle]
+        " Add another item"]
+       (when (> num-items 1)
+         [:button.button.w-64
+          {:on-click remove-items!}
+          [:i.fas.fa-trash]
+          " Remove all items"])])))
 
 (defn header []
   [:div.flex.flex-col.items-center
