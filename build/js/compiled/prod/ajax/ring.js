@@ -19,8 +19,8 @@ return new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$status,ajax.p
  * populate the :body key in the response map.
  */
 ajax.ring.ring_response_format = (function ajax$ring$ring_response_format(var_args){
-var G__14440 = arguments.length;
-switch (G__14440) {
+var G__13974 = arguments.length;
+switch (G__13974) {
 case 0:
 return ajax.ring.ring_response_format.cljs$core$IFn$_invoke$arity$0();
 
@@ -39,14 +39,14 @@ throw (new Error(["Invalid arity: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(
 return ajax.ring.ring_response_format.cljs$core$IFn$_invoke$arity$1(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$format,ajax.formats.raw_response_format.cljs$core$IFn$_invoke$arity$0()], null));
 }));
 
-(ajax.ring.ring_response_format.cljs$core$IFn$_invoke$arity$1 = (function (p__14441){
-var map__14442 = p__14441;
-var map__14442__$1 = cljs.core.__destructure_map(map__14442);
-var map__14443 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__14442__$1,cljs.core.cst$kw$format);
-var map__14443__$1 = cljs.core.__destructure_map(map__14443);
-var read = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__14443__$1,cljs.core.cst$kw$read);
-var description = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__14443__$1,cljs.core.cst$kw$description);
-var content_type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__14443__$1,cljs.core.cst$kw$content_DASH_type);
+(ajax.ring.ring_response_format.cljs$core$IFn$_invoke$arity$1 = (function (p__13975){
+var map__13976 = p__13975;
+var map__13976__$1 = cljs.core.__destructure_map(map__13976);
+var map__13977 = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13976__$1,cljs.core.cst$kw$format);
+var map__13977__$1 = cljs.core.__destructure_map(map__13977);
+var read = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13977__$1,cljs.core.cst$kw$read);
+var description = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13977__$1,cljs.core.cst$kw$description);
+var content_type = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13977__$1,cljs.core.cst$kw$content_DASH_type);
 return ajax.interceptors.map__GT_ResponseFormat(new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$read,ajax.ring.make_ring_read(read),cljs.core.cst$kw$description,["ring/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(description)].join(''),cljs.core.cst$kw$content_DASH_type,content_type], null));
 }));
 
