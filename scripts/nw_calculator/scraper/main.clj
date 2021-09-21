@@ -4,7 +4,8 @@
             [slingshot.slingshot :refer [try+ throw+]]
             [nw-calculator.scraper.utilities :as util]
             [nw-calculator.scraper.http :as http]
-            [cheshire.core :as json]))
+            [cheshire.core :as json]
+            [clojure.string :as string]))
 
 (def unknown-item-lookup
   {"azoth_currency" (let [name* "Azoth"]
@@ -46,7 +47,8 @@
               has-png? (and itemType icon)]
           (cond-> {:external-url (util/prepend-origin "db/recipe/" recipe-id)
                    :quantity     (default-quantity quantity)}
-                  has-png? (assoc :png-url (str "images/icons/items/" itemType "/" icon ".png"))
+                  has-png? (assoc :png-url (string/lower-case
+                                             (str "images/icons/items/" itemType "/" icon ".png")))
                   has-xp? (assoc :xp (->> (map (comp default-quantity :quantity) ingredients)
                                           (reduce +)
                                           (* progress)))
@@ -71,7 +73,8 @@
            :name         name*
            :tier         tier
            :rarity       rarity
-           :png-url      (str "images/icons/items/" itemType "/" icon ".png")
+           :png-url      (string/lower-case
+                           (str "images/icons/items/" itemType "/" icon ".png"))
            :external-url (util/prepend-origin "db/item/" item-id)}
           (extract-recipe recipe-id))
         (get unknown-item-lookup item-id)))))
@@ -94,7 +97,7 @@
     (assoc (make-item-ref ingredient)
       :type item-type
       :quantity 1
-      :png-url (str "images/" icon ".png")
+      :png-url (string/lower-case (str "images/" icon ".png"))
       :options (map #(assoc % :quantity 1) (:ingredient-refs (crawl-ingredients subIngredients))))
     (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)]
       (cond-> extracted-item
