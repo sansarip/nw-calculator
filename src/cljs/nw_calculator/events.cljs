@@ -87,6 +87,12 @@
         (assoc-in [:search-results item-index] []))))
 
 (rf/reg-event-db
+  ::select-option
+  (tr/fn-traced
+    [db [_ [item-index :as category-path] option]]
+    (assoc-in db [:selected-items item-index :selected-options category-path] option)))
+
+(rf/reg-event-db
   ::set-quantity-multiplier
   (tr/fn-traced
     [db [_ item-index multiplier]]

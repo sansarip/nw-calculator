@@ -65,8 +65,10 @@
            make-node
            tree-map
            container-props
+           ignore?
            id]
     :or   {make-node identity
+           ignore?    util/no-op
            id        :id}}]
   [:dl.bg-inherit.w-full
    (r/merge-props
@@ -74,9 +76,8 @@
      container-props)
    (w/postwalk
      (fn [node]
-       (if (map? node)
-         (let [node-id (id node)
-               root-node? (= node-id (id tree-map))]
+       (if (and (not (ignore? node)) (map? node))
+         (let [root-node? (= (id node) (id tree-map))]
            (if-let [node-children (not-empty (children node))]
              [:> collapsible-list-consumer {}
               (fn [context]

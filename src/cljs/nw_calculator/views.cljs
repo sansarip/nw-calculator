@@ -11,6 +11,11 @@
     [nw-calculator.config :as cfg]
     [react]))
 
+(defn basic-item [item-map]
+  [nwc/item-component
+   {:item-map        item-map
+    :custom-quantity [:<>]}])
+
 (defn search [item-index]
   (r/with-let [search! (util/debounce
                          (fn [query] (rf/dispatch [::events/search item-index query]))
@@ -18,23 +23,34 @@
                select-item! (fn [item] (rf/dispatch [::events/select-item item-index item]))
                clear-search! #(rf/dispatch [::events/clear-search item-index])]
     (let [results @(rf/subscribe [::subs/search-results item-index])
-          {item-name :name} @(rf/subscribe [::subs/selected-item item-index])
-          item-component (fn [item-map]
-                           [nwc/item-component
-                            {:item-map        item-map
-                             :custom-quantity [:<>]
-                             :container-props {:class (styles/search-result-item-class)}}])
+          {item-name :name} @(rf/subscribe [::subs/resolved-selected-item item-index])
           searching? @(rf/subscribe [::subs/searching?])]
       [:f> nwc/search-component
        {:results     results
         :input-props {:placeholder   "\uD83D\uDD0D Search for an item"
                       :default-value item-name}
         :get-value   :name
-        :make-result item-component
+        :make-result basic-item
         :on-search   search!
         :loading?    searching?
         :on-clear    clear-search!
         :on-select   select-item!}])))
+
+(defn dropdown
+  [{selected-option-name :name
+    category-path        :path
+    :keys                [options category-name]}]
+  (r/with-let [select-option! (fn [{option-path :path}]
+                                (let [selected-option @(rf/subscribe [::subs/item-in-resolved-selected-item option-path])]
+                                  (rf/dispatch [::events/select-option category-path selected-option])))]
+    [:f> nwc/dropdown-component
+     {:input-props     {:placeholder   category-name
+                        :default-value selected-option-name}
+      :on-select       select-option!
+      :container-props {:class "bg-white"}
+      :make-option     basic-item
+      :get-value       :name
+      :options         options}]))
 
 (defn custom-item-quantity [{:keys [editable? quantity item-index]}]
   (r/with-let [set-quantity-multiplier! (fn [event]
@@ -48,11 +64,11 @@
           editable-stack? (and editable? (> quantity 1))]
       (cond
         editable-stack? [:f> nwc/multiplication-component
-                         {:base        quantity
+                         {:base            quantity
                           :container-props {:class "mb-18"}
-                          :input-props {:default-value quantity-multiplier
-                                        :placeholder min-quantity-multiplier
-                                        :on-input    set-quantity-multiplier!}}]
+                          :input-props     {:default-value quantity-multiplier
+                                            :placeholder   min-quantity-multiplier
+                                            :on-input      set-quantity-multiplier!}}]
         editable? [:input.basic-input.w-12-imp.text-right
                    {:type          :number
                     :default-value quantity-multiplier
@@ -60,34 +76,44 @@
                     :on-input      set-quantity-multiplier!}]
         :else [:span quantity]))))
 
-(defn custom-item-name [{:keys [searchable? name item-index external-url]}]
-  (if searchable?
-    [:div.bg-inherit.w-full.flex.gap-2
-     [search item-index]
-     (when external-url
-       [:a.self-center {:href external-url :target "_blank"}
-        [:i.text-sm.md:text-base.fas.fa-external-link-alt]])]
-    (if external-url
-      [:a.whitespace-nowrap {:href external-url :target "_blank"} name]
-      [:span.whitespace-nowrap name])))
+(defn custom-item-name
+  [{{{:keys [external-url options]
+      name* :name :as item-map} :node
+     :keys                      [root-node?]} :node-data
+    :keys                                     [item-index]}]
+  (cond
+    root-node? [:div.bg-inherit.w-full.flex.gap-2
+                [search item-index]
+                (when external-url
+                  [:a.self-center {:href external-url :target "_blank"}
+                   [:i.text-sm.md:text-base.fas.fa-external-link-alt]])]
+    options [:div.bg-inherit.w-full.flex.gap-2
+             [dropdown item-map]
+             (when external-url
+               [:a.self-center {:href external-url :target "_blank"}
+                [:i.text-sm.md:text-base.fas.fa-external-link-alt]])]
+    :else (if external-url
+            [:a.whitespace-nowrap {:href external-url :target "_blank"} name*]
+            [:span.whitespace-nowrap name*])))
 
 (defn item
-  [{{:keys [external-url name quantity] :as item-map} :node
-    :keys                                             [root-node?]}
+  [{{:keys [quantity path] :as item-map} :node
+    :keys                           [root-node?]
+    :as                             node-data}
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
     :container-props {:class (str "m-0-imp" (when root-node? " bg-inherit"))}
     :item-map        item-map
-    :custom-quantity [custom-item-quantity
+    :custom-quantity ^{:key (conj path "quantity")}
+                     [custom-item-quantity
                       {:editable?  root-node?
                        :quantity   quantity
                        :item-index item-index}]
-    :custom-name     [custom-item-name
-                      {:searchable?  root-node?
-                       :external-url external-url
-                       :name         name
-                       :item-index   item-index}]}])
+    :custom-name     ^{:key path}
+                     [custom-item-name
+                      {:node-data  node-data
+                       :item-index item-index}]}])
 
 (defn searchable-item-tree [item-index]
   (r/with-let [collapsed-item-updaters (atom {})
@@ -99,8 +125,9 @@
                               (set-collapsed-item false))
                collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
                                 (set-collapsed-item true))
-               item* (fn [node] [item node item-index])]
-    (let [{:keys [ingredients id] :as selected-item} @(rf/subscribe [::subs/selected-item item-index])]
+               item* (fn [node] [item node item-index])
+               unrenderable? #(:as-is? (meta %))]
+    (let [{:keys [ingredients id] :as selected-item} @(rf/subscribe [::subs/resolved-selected-item item-index])]
       ^{:key id}
       [:div.bg-inherit.flex.flex-col.gap-10.items-center
        [:> ctc/collapsible-list-provider
@@ -109,7 +136,8 @@
         [nwc/collapsible-tree-component
          {:tree-map  selected-item
           :children  :ingredients
-          :make-node item*}]]
+          :make-node item*
+          :ignore?   unrenderable?}]]
        (when (not-empty ingredients)
          [:div.flex.gap-6
           [:button.button.button-outline.w-52.md:w-60
