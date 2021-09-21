@@ -5,44 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [2021.09.21.6]
-### Changed
-- Hide "remove all items" button when only one item
-
-### Fixed
-- Fix not being able to select item with enter key
-
-## [2021.09.21.5]
-### Changed
-- Lowercase image URLs
-
-## [2021.09.21.4]
 ### Added
-- Add vercel configuration
-
-### Removed
-- Remove unused css and data
-
-## [2021.09.21.3]
-### Removed
-- Remove old, unused images in build
-
-## [2021.09.21.2]
-### Changed
-- Replace accidentally deployed dev build with prod build
-
-### Removed
-- Remove dead webworker JS
-
-## [2021.09.21.1]
-### Added
-- Inline background color into index.html so that it loads more quickly
 - Add support for multiplying items that output a stack of more than one item e.g. `Iron Arrows`
 - Add support for selecting from item categories e.g. `Tier 3 Metals`
 - Add button to remove all items
 - Add clarifying icons to buttons
+- Inline background color into index.html so that it loads more quickly
+- Add vercel configuration
 
 ### Changed
 - Scrape data from [nwdb.info](nwdb.info) instead of [newworldfans.com](newworldfans.com)
 
 ### Removed
 - Remove dead code around theming and local-storage
+- Remove dead webworker JS
+- Remove unused images in build
+- Remove unused CSS and item data
