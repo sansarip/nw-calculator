@@ -107,7 +107,7 @@
        select-result! (fn [result]
                         (on-select result)
                         (set-input-value! (get-value result))
-                        (.. input-ref -current focus))
+                        (blur!))
        toggle-dropdown! #(if @dropdown-focused? (blur!) (focus!))
        prevent-key-scrolling (fn [event]
                                (when (#{"ArrowUp" "ArrowDown"} (.-key event))

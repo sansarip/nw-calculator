@@ -60,7 +60,7 @@
                                         (dissoc selected-option :path :quantity))))
                recur-options (fn [options]
                                ;; Keeps options from being transformed into hiccup
-                               (sort-by (comp #(or % 99) :tier) (recur* options {:as-is? true})))]
+                               (vec (sort-by (comp #(or % 99) :tier) (recur* options {:as-is? true}))))]
            (cond-> (assoc item :path path)
                    ingredients (update :ingredients recur*)
                    options (-> (update :options recur-options)
