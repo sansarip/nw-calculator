@@ -104,7 +104,9 @@
   ::add-empty-item
   (tr/fn-traced
     [db _]
-    (update db :selected-items conj df/empty-selected-item)))
+    (-> db
+        (update :selected-items conj df/empty-selected-item)
+        (update :search-results conj []))))
 
 (rf/reg-event-db
   ::remove-item
