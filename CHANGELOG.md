@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
 ## [2021.09.21.6]
+
 ### Added
 - Add support for multiplying items that output a stack of more than one item e.g. `Iron Arrows`
 - Add support for selecting from item categories e.g. `Tier 3 Metals`
