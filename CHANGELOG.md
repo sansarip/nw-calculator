@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [{{version]
+## [2021.09.21.3]
+### Added
+
+### Changed
+
+### Removed
+- Remove old, unused images in build
+
+## [2021.09.21.2]
 ### Added
 
 ### Changed

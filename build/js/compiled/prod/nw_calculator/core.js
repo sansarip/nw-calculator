@@ -12,9 +12,9 @@ nw_calculator.core.dev_setup = (function nw_calculator$core$dev_setup(){
 if(cljs.core.truth_(goog.DEBUG)){
 cljs.core.enable_console_print_BANG_();
 
-return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init4446433338940190691.clj",13,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
+return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init12529068628098911906.clj",13,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["\uD83D\uDC77 Dev mode!"], null);
-}),null)),null,-763814003,null);
+}),null)),null,-559913865,null);
 } else {
 return null;
 }
