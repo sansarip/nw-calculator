@@ -9,6 +9,6 @@
                  string/trim))
 
 (sh "git reset .")
-(sh "git add project.clj docs resources/public/js/config.js")
+(sh "git add project.clj CHANGELOG.md build resources/public/js/config.js")
 (sh (render "git commit -m \":bookmark: Release {{version}}\"" {:version version}))
 (sh (render "git tag v{{version}}" {:version version}))

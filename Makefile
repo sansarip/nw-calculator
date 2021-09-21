@@ -7,7 +7,7 @@ get-version:
 	./scripts/get_version.clj
 
 bump-version:
-	lein bump-version
+	lein bump-version "$(cat CHANGELOG.md | vipe | cat)" CHANGELOG.md
 
 template:
 	lein template
@@ -15,7 +15,7 @@ template:
 release:
 	echo "Building app"
 	make build
-	echo "Bumping version"
+	echo "Edit changelog and bumping version"
 	make bump-version
 	echo "Apply templates"
 	make template
