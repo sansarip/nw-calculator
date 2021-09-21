@@ -1,6 +1,6 @@
 (defproject
  nw-calculator
- "2021.09.11.1"
+ "2021.09.21.1"
  :description
  "New World game crafting calculator web application"
  :url
@@ -64,7 +64,8 @@
    :repl-options {:init-ns nw-calculator.templater.main}},
   :versioner
   {:source-paths ["scripts"],
-   :dependencies [[environ "1.2.0"] [de.ubercode.clostache/clostache "1.4.0"]],
+   :dependencies
+   [[environ "1.2.0"] [de.ubercode.clostache/clostache "1.4.0"]],
    :main nw-calculator.versioner.main,
    :repl-options {:init-ns nw-calculator.versioner.main}},
   :scraper
