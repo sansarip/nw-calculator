@@ -150,7 +150,7 @@
            " Collapse all"]])])))
 
 (defn delete-item-button [item-index]
-  (r/with-let [delete-item! #(rf/dispatch [::events/delete-item item-index])]
+  (r/with-let [delete-item! #(rf/dispatch [::events/remove-item item-index])]
     (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
           disable-delete-button? (= 1 num-selected-items)]
       [nwc/circular-button-component

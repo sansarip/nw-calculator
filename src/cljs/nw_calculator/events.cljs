@@ -107,7 +107,7 @@
     (update db :selected-items conj df/empty-selected-item)))
 
 (rf/reg-event-db
-  ::delete-item
+  ::remove-item
   (tr/fn-traced
     [db [_ item-index]]
     (update db :selected-items util/vec-remove-nth item-index)))
