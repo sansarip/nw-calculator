@@ -28,7 +28,7 @@
        (r/merge-props
          {:class (styles/multiplication-class)}
          container-props)
-       [:input.basic-input.text-right.multiplier
+       [:input.basic-input.multiplier
         (r/merge-props
           {:placeholder   "1"
            :ref           input-ref
@@ -37,7 +37,7 @@
            :default-value multiplier}
           (dissoc input-props :on-input :ref))]
        [:div.w-full.flex.flex-col.absolute
-        {:class "-bottom-20"}
+        {:class "-bottom-20 -left-6"}
         [:div.w-full.flex.justify-between.gap-2
          [:i.flex.flex-col.justify-center.text-xl.fal.fa-times]
          base]

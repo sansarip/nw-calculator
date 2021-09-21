@@ -69,7 +69,7 @@
                           :input-props     {:default-value quantity-multiplier
                                             :placeholder   min-quantity-multiplier
                                             :on-input      set-quantity-multiplier!}}]
-        editable? [:input.basic-input.w-12-imp.text-right
+        editable? [:input.basic-input.w-12-imp
                    {:type          :number
                     :default-value quantity-multiplier
                     :placeholder   min-quantity-multiplier
