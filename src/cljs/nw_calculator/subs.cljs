@@ -1,9 +1,7 @@
 (ns nw-calculator.subs
   (:require
     [re-frame.core :as rf]
-    [nw-calculator.utilities :as util]
-    [nw-calculator.defaults :as df]
-    [compound2.core :as c]))
+    [nw-calculator.business-logic :as bsns]))
 
 (rf/reg-sub ::search-results
   (fn [{:keys [search-results]} [_ item-index]]
@@ -36,8 +34,8 @@
           {:keys [quantity xp] :as item} (get items-by-id selected-item-id)]
       (or (some-> item
                   not-empty
-                  (util/resolve-refs items-by-id [item-index] selected-options)
-                  (util/multiply-quantities items-by-id quantity-multiplier)
+                  (bsns/resolve-refs items-by-id [item-index] selected-options)
+                  (bsns/multiply-quantities items-by-id quantity-multiplier)
                   ;; This is to prevent erroneous calculation with items
                   ;; that output more than one quantity when crafted
                   (assoc :quantity quantity
@@ -47,7 +45,7 @@
 (rf/reg-sub ::item-in-resolved-selected-item
   (fn [_db [_ [item-index :as item-path]]]
     (->> @(rf/subscribe [::resolved-selected-item item-index])
-         (tree-seq util/options-or-ingredients util/options-or-ingredients)
+         (tree-seq bsns/options-or-ingredients bsns/options-or-ingredients)
          (some #(when (#{item-path} (:path %)) %)))))
 
 (rf/reg-sub ::loading?

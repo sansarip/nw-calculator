@@ -2,7 +2,8 @@
   (:require
     [re-frame.core :as rf]
     [taoensso.timbre :as timbre]
-    [nw-calculator.utilities :as util]))
+    [nw-calculator.utilities :as util]
+    [nw-calculator.business-logic :as bsns]))
 
 (rf/reg-fx
   ::log-info
@@ -21,7 +22,7 @@
                                   first
                                   #(util/fuzzy-search [%] query)
                                   :name
-                                  util/craftable-item))
+                                  bsns/craftable-item))
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))
