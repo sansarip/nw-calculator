@@ -7,7 +7,7 @@ get-version:
 	./scripts/get_version.clj
 
 bump-version:
-	lein bump-version "$(cat CHANGELOG.md | vipe | cat)" CHANGELOG.md
+	lein bump-version "$$(cat CHANGELOG.md | vipe | cat)" CHANGELOG.md
 
 template:
 	lein template
