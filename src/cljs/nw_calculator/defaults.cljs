@@ -1,7 +1,7 @@
 (ns nw-calculator.defaults
   (:require [compound2.core :as c]))
 
-(def default-items
+(def items-index
   (c/compound [{:id          :by-id
                 :index-type  :one-to-one
                 :kfn         :id
@@ -9,11 +9,12 @@
 
 (def empty-item {:ingredients []})
 
-(def empty-selected-item {:item              empty-item
+(def empty-selected-item {:item                empty-item
+                          :selected-options    {}
                           :quantity-multiplier 1})
 
 (def default-db
   {:state          :loading
-   :items          default-items
+   :items          items-index
    :selected-items [empty-selected-item]
    :search-results []})
