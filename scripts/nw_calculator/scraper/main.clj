@@ -93,8 +93,9 @@
   (if (#{"category"} item-type)
     (assoc (make-item-ref ingredient)
       :type item-type
+      :quantity 1
       :png-url (str "images/" icon ".png")
-      :options (:ingredient-refs (crawl-ingredients subIngredients)))
+      :options (map #(assoc % :quantity 1) (:ingredient-refs (crawl-ingredients subIngredients))))
     (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)]
       (cond-> extracted-item
               ingredients (update :ingredients make-item-refs)))))
