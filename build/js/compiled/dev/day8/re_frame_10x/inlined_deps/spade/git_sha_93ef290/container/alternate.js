@@ -1,0 +1,54 @@
+// Compiled by ClojureScript 1.10.879 {:optimizations :none}
+goog.provide('day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate');
+goog.require('cljs.core');
+goog.require('day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container');
+
+/**
+* @constructor
+ * @implements {day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.IStyleContainer}
+*/
+day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer = (function (get_preferred,fallback){
+this.get_preferred = get_preferred;
+this.fallback = fallback;
+});
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.prototype.day8$re_frame_10x$inlined_deps$spade$git_sha_93ef290$container$IStyleContainer$ = cljs.core.PROTOCOL_SENTINEL);
+
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.prototype.day8$re_frame_10x$inlined_deps$spade$git_sha_93ef290$container$IStyleContainer$mount_style_BANG_$arity$3 = (function (_,style_name,css){
+var self__ = this;
+var ___$1 = this;
+var or__4212__auto__ = (function (){var temp__5753__auto__ = self__.get_preferred.call(null);
+if(cljs.core.truth_(temp__5753__auto__)){
+var preferred = temp__5753__auto__;
+return day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.mount_style_BANG_.call(null,preferred,style_name,css);
+} else {
+return null;
+}
+})();
+if(cljs.core.truth_(or__4212__auto__)){
+return or__4212__auto__;
+} else {
+return day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.mount_style_BANG_.call(null,self__.fallback,style_name,css);
+}
+}));
+
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.getBasis = (function (){
+return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"get-preferred","get-preferred",-940205889,null),new cljs.core.Symbol(null,"fallback","fallback",-1892797840,null)], null);
+}));
+
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.cljs$lang$type = true);
+
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.cljs$lang$ctorStr = "day8.re-frame-10x.inlined-deps.spade.git-sha-93ef290.container.alternate/AlternateStyleContainer");
+
+(day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer.cljs$lang$ctorPrWriter = (function (this__4450__auto__,writer__4451__auto__,opt__4452__auto__){
+return cljs.core._write.call(null,writer__4451__auto__,"day8.re-frame-10x.inlined-deps.spade.git-sha-93ef290.container.alternate/AlternateStyleContainer");
+}));
+
+/**
+ * Positional factory function for day8.re-frame-10x.inlined-deps.spade.git-sha-93ef290.container.alternate/AlternateStyleContainer.
+ */
+day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.__GT_AlternateStyleContainer = (function day8$re_frame_10x$inlined_deps$spade$git_sha_93ef290$container$alternate$__GT_AlternateStyleContainer(get_preferred,fallback){
+return (new day8.re_frame_10x.inlined_deps.spade.git_sha_93ef290.container.alternate.AlternateStyleContainer(get_preferred,fallback));
+});
+
+
+//# sourceMappingURL=alternate.js.map
