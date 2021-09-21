@@ -4,4 +4,5 @@
     [nw-calculator.styles :as styles]))
 
 (spade/defclass dropdown-class []
-  [:input.dropdown.basic-input {:padding-right styles/relative-6}])
+  [:input.dropdown.basic-input {:padding-right styles/relative-6
+                                :height        :2rem}])

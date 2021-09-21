@@ -92,22 +92,23 @@
                  :or      {on-select util/no-op
                            get-value (constantly "")}
                  options* :options}]
-  (let [[dropdown-focused? set-dropdown-focused!] (react/useState)
-        input-ref (react/useRef)
+  (let [input-ref (react/useRef)
         escape-key-pressed? (hooks/use-key-press "Escape")]
     (r/with-let
-      [focus! (fn []
+      [dropdown-focused? (r/atom false)
+       focus! (fn []
                 (.. input-ref -current focus)
-                (set-dropdown-focused! true))
+                (reset! dropdown-focused? true))
        blur! (fn []
                (.. input-ref -current blur)
-               (set-dropdown-focused! false))
+               (reset! dropdown-focused? false))
        set-input-value! (fn [input-value]
                           (set! (.. input-ref -current -value) input-value))
        select-result! (fn [result]
                         (on-select result)
                         (set-input-value! (get-value result))
                         (.. input-ref -current focus))
+       toggle-dropdown! #(if @dropdown-focused? (blur!) (focus!))
        prevent-key-scrolling (fn [event]
                                (when (#{"ArrowUp" "ArrowDown"} (.-key event))
                                  (.. event -view -event preventDefault)))]
@@ -116,18 +117,21 @@
           (blur!)
           util/no-op)
         #js [escape-key-pressed?])
-      [:div.relative (r/merge-props {:class (styles/dropdown-class)} container-props)
+      [:div.flex-grow.relative.cursor-pointer
+       (r/merge-props
+         {:class (styles/dropdown-class)
+          :on-click    toggle-dropdown!}
+         container-props)
        [:input.dropdown.basic-input.cursor-pointer
         (r/merge-props {:read-only   true
                         :on-key-down prevent-key-scrolling
                         :spell-check false
-                        :on-focus    focus!
                         :on-blur     blur!
                         :ref         input-ref}
                        (dissoc input-props :ref))]
-       [:i.fas.fa-caret-down.text-sm.md:text-base.absolute.bottom-2.right-1.transition-transform
-        {:class (when dropdown-focused? "text-purple text-opacity-100 flip-y")}]
-       (when (and dropdown-focused? (not-empty options*))
+       [:i.fas.fa-caret-down.text-base.md:text-lg.absolute.bottom-2.right-1.transition-transform.pointer-events-none
+        {:class (when @dropdown-focused? "text-purple text-opacity-100 flip-y")}]
+       (when (and @dropdown-focused? (not-empty options*))
          [:f> options
           {:options     options*
            :make-option make-option

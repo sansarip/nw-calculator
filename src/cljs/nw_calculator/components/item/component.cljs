@@ -14,16 +14,16 @@
         (fn []
           (when (and (not @popup-ele) popup-target-ele)
             (let [new-popup-ele (util/html->ele
-                                              (fmt/render
-                                                "<img class=\"hidden max-w-3xl w-48 h-48 object-cover absolute z-10 bg-light-blue rounded-full rounded-tl-none border-purple border-opacity-30 border-2 bg-white\" src=\"{{src}}\" style=\"top: {{top}}px; left: {{left}}px\" />"
-                                                (let [[left top] (util/get-ele-offsets popup-target-ele)]
-                                                  {:src  src
-                                                   :left (+ left 20)
-                                                   :top  (+ top 20)})))]
-                 (reset! popup-ele new-popup-ele)
-                 (js/document.body.appendChild new-popup-ele)))
+                                  (fmt/render
+                                    "<img class=\"hidden max-w-3xl w-48 h-48 object-cover absolute z-10 bg-light-blue rounded-full rounded-tl-none border-purple border-opacity-30 border-2 bg-white\" src=\"{{src}}\" style=\"top: {{top}}px; left: {{left}}px\" />"
+                                    (let [[left top] (util/get-ele-offsets popup-target-ele)]
+                                      {:src  src
+                                       :left (+ left 20)
+                                       :top  (+ top 20)})))]
+              (reset! popup-ele new-popup-ele)
+              (js/document.body.appendChild new-popup-ele)))
           (when-let [popup-ele* @popup-ele]
-            (if  popup-target-ele
+            (if popup-target-ele
               (.. popup-ele* -classList (remove "hidden"))
               (.. popup-ele* -classList (add "hidden"))))
           #(when-let [popup-ele* @popup-ele]
@@ -44,15 +44,16 @@
    [:i.text-purple.text-opacity-50.fa-1x.text-2xl.fas.fa-question]])
 
 (defn item
-  [{:keys          [popup-on-hover?
-                    custom-name
-                    custom-quantity
-                    container-props]
-    {:keys [quantity
-            png-url
-            name
-            xp
-            tier]} :item-map}]
+  [{:keys             [popup-on-hover?
+                       custom-name
+                       custom-quantity
+                       container-props]
+    {:keys     [quantity
+                png-url
+                xp
+                category-name
+                tier]
+     item-name :name} :item-map}]
   (r/with-let [labels-key (str "labels_" (util/short-uuid-str))]
     [:div.flex.gap-4.relative
      container-props
@@ -66,11 +67,11 @@
       (or custom-quantity quantity)
       " "
       [:div.bg-inherit.w-full.flex.flex-col.gap-2
-       (or custom-name name)
+       (or custom-name item-name)
        [:span.basic-info.text-sm.align-text-bottom.whitespace-nowrap
         (let [tier-label (when tier (str "T" tier))
               xp-label (when xp (str xp "XP"))
-              basic-info (->> [tier-label xp-label]
+              basic-info (->> [category-name tier-label xp-label]
                               (filter identity)
                               (string/join " ")
                               not-empty)]
