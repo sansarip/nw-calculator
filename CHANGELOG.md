@@ -4,35 +4,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2021.09.21.5]
-### Added
+## [2021.09.21.6]
+### Changed
+- Hide "remove all items" button when only one item
 
+### Fixed
+- Fix not being able to select item with enter key
+
+## [2021.09.21.5]
 ### Changed
 - Lowercase image URLs
-
-### Removed
 
 ## [2021.09.21.4]
 ### Added
 - Add vercel configuration
 
-### Changed
-
 ### Removed
 - Remove unused css and data
 
-
 ## [2021.09.21.3]
-### Added
-
-### Changed
-
 ### Removed
 - Remove old, unused images in build
 
 ## [2021.09.21.2]
-### Added
-
 ### Changed
 - Replace accidentally deployed dev build with prod build
 

@@ -344,7 +344,7 @@ var select_result_BANG_ = ((((init29071) || (cljs.core.not(with_let29070.hasOwnP
 var G__29073_29080 = (get_value.cljs$core$IFn$_invoke$arity$1 ? get_value.cljs$core$IFn$_invoke$arity$1(result) : get_value.call(null,result));
 (set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1(G__29073_29080) : set_input_value_BANG_.call(null,G__29073_29080));
 
-return input_ref.current.focus();
+return (blur_BANG_.cljs$core$IFn$_invoke$arity$0 ? blur_BANG_.cljs$core$IFn$_invoke$arity$0() : blur_BANG_.call(null));
 })):(with_let29070[(4)]));
 var toggle_dropdown_BANG_ = ((((init29071) || (cljs.core.not(with_let29070.hasOwnProperty((5))))))?(with_let29070[(5)] = (function (){
 if(cljs.core.truth_(cljs.core.deref(dropdown_focused_QMARK_))){
