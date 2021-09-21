@@ -4,18 +4,19 @@ Web app for calculating item crafting ingredients in [New World](https://www.new
 
 View it at [newworldcraft.io](https://newworldcraft.io).
 
+Data scraped from [nwdb.info](nwdb.info) 🙇
+
 PRs are welcome! You can find me for collaboration [here on Discord](https://discord.gg/FCqzwycR23).
 
 ## Current State of the App
 
 For simplicity's sake, all item data is in the [items.json file](https://github.com/sansarip/nw-calculator/blob/main/resources/public/data/items.json). 
-If you notice an issue, you can make a PR to add/edit the data in the aformentioned JSON file. 
+If you notice an issue, you can make a PR to add/edit the data in the aforementioned JSON file. 
 If your changes include adding/editing an image url of an item, then you must also put a corresponding 50x25 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images).
 
 ## Future Goals
 
 * Right now, builds and releases involve manually running `make release`. I'd like to implement CI/CD pipeline to build and auto-update the site on push/merge to main.
-* Until Amazon provides a public API for the New World game, item data management will have to be a community-driven effort. Updating the [items.json file](https://github.com/sansarip/nw-calculator/blob/main/resources/public/data/items.json) is not a particularily community friendly way of handling things. I'd like to leverage the community efforts involved with the [Tradesman's Bible](https://docs.google.com/spreadsheets/d/1l_S7Ykl6QDmv-a7ntqZn8LUXq2Uo0mkLXb_ymAkxBi0/edit#gid=431530116) spreadsheet and point the site to use the data available in that spreadsheet.
 
 ## Dev
 
@@ -35,7 +36,7 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 
 ### Scraper
 
-The scraper may not work as expected anymore as it was based on an older version of https://newworldfans.com/.
+The scraper graciously pulls data from [nwdb.info](nwdb.info) in a single-threaded, throttled fashion.
 
 `lein scrape`
 
