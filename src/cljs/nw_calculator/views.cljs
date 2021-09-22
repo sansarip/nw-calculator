@@ -266,8 +266,9 @@
 (defn loader []
   (when @(rf/subscribe [::subs/loading?])
     [:div.absolute.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
-     [nwc/loader-component {:class "fa-6x pt-72"}]
-     [:h3 "Steering ship"]]))
+     [:div.absolute.top-72
+      [nwc/loader-component {:class "fa-6x"}]]
+     [:h3.absolute.top-120 "Steering ship"]]))
 
 (defn background []
   [:div.absolute.z-10.bg-inherit.w-full.h-full])

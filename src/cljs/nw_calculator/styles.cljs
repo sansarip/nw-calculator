@@ -22,6 +22,8 @@
                        :16  "4rem"
                        :18  "4.5rem"
                        :96  "24rem"
+                       :112 "28rem"
+                       :120 "30rem"
                        :128 "32rem"
                        :160 "40rem"
                        :176 "44rem"}}})
@@ -50,8 +52,12 @@
   (-> config :sizes :relative :18))
 (def relative-96
   (-> config :sizes :relative :96))
+(def relative-112
+  (-> config :sizes :relative :112))
+(def relative-120
+  (-> config :sizes :relative :120))
 (def relative-128
-  (-> config :size :relative :128))
+  (-> config :sizes :relative :128))
 (def relative-176
   (-> config :sizes :relative :176))
 (def off-white
@@ -87,6 +93,7 @@
   [:.w-128 {:width relative-128}]
   [:.w-176 {:width relative-176}]
   [:.mb-18 {:margin-bottom relative-18}]
+  [:.top-120 {:top relative-120}]
   [:input.basic-input {:padding-bottom relative-0
                        :padding-top    relative-0
                        :padding-right  relative-0
