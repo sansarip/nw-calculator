@@ -56,25 +56,25 @@ var ajax$json$make_json_response_format_$_json_response_format = null;
 var ajax$json$make_json_response_format_$_json_response_format__0 = (function (){
 return ajax$json$make_json_response_format_$_json_response_format.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentArrayMap.EMPTY);
 });
-var ajax$json$make_json_response_format_$_json_response_format__1 = (function (p__13966){
-var map__13967 = p__13966;
-var map__13967__$1 = cljs.core.__destructure_map(map__13967);
-var prefix = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13967__$1,cljs.core.cst$kw$prefix);
-var keywords_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13967__$1,cljs.core.cst$kw$keywords_QMARK_);
-var raw = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13967__$1,cljs.core.cst$kw$raw);
+var ajax$json$make_json_response_format_$_json_response_format__1 = (function (p__13921){
+var map__13922 = p__13921;
+var map__13922__$1 = cljs.core.__destructure_map(map__13922);
+var prefix = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13922__$1,cljs.core.cst$kw$prefix);
+var keywords_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13922__$1,cljs.core.cst$kw$keywords_QMARK_);
+var raw = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13922__$1,cljs.core.cst$kw$raw);
 return ajax.interceptors.map__GT_ResponseFormat(new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$read,(function ajax$json$make_json_response_format_$_json_response_format_$_json_read_response_format(xhrio){
-var G__13968 = raw;
-var G__13969 = keywords_QMARK_;
-var G__13970 = ajax.json.strip_prefix(prefix,ajax.protocols._body(xhrio));
-return (read_json.cljs$core$IFn$_invoke$arity$3 ? read_json.cljs$core$IFn$_invoke$arity$3(G__13968,G__13969,G__13970) : read_json.call(null,G__13968,G__13969,G__13970));
+var G__13923 = raw;
+var G__13924 = keywords_QMARK_;
+var G__13925 = ajax.json.strip_prefix(prefix,ajax.protocols._body(xhrio));
+return (read_json.cljs$core$IFn$_invoke$arity$3 ? read_json.cljs$core$IFn$_invoke$arity$3(G__13923,G__13924,G__13925) : read_json.call(null,G__13923,G__13924,G__13925));
 }),cljs.core.cst$kw$description,["JSON",(cljs.core.truth_(prefix)?[" prefix '",cljs.core.str.cljs$core$IFn$_invoke$arity$1(prefix),"'"].join(''):null),(cljs.core.truth_(keywords_QMARK_)?" keywordize":null)].join(''),cljs.core.cst$kw$content_DASH_type,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["application/json"], null)], null));
 });
-ajax$json$make_json_response_format_$_json_response_format = function(p__13966){
+ajax$json$make_json_response_format_$_json_response_format = function(p__13921){
 switch(arguments.length){
 case 0:
 return ajax$json$make_json_response_format_$_json_response_format__0.call(this);
 case 1:
-return ajax$json$make_json_response_format_$_json_response_format__1.call(this,p__13966);
+return ajax$json$make_json_response_format_$_json_response_format__1.call(this,p__13921);
 }
 throw(new Error('Invalid arity: ' + arguments.length));
 };

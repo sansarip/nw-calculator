@@ -4,14 +4,14 @@ goog.require('cljs.core');
 goog.require('cljs.core.constants');
 nw_calculator.components.card.component.card = (function nw_calculator$components$card$component$card(var_args){
 var args__4824__auto__ = [];
-var len__4818__auto___29087 = arguments.length;
-var i__4819__auto___29088 = (0);
+var len__4818__auto___29176 = arguments.length;
+var i__4819__auto___29177 = (0);
 while(true){
-if((i__4819__auto___29088 < len__4818__auto___29087)){
-args__4824__auto__.push((arguments[i__4819__auto___29088]));
+if((i__4819__auto___29177 < len__4818__auto___29176)){
+args__4824__auto__.push((arguments[i__4819__auto___29177]));
 
-var G__29089 = (i__4819__auto___29088 + (1));
-i__4819__auto___29088 = G__29089;
+var G__29178 = (i__4819__auto___29177 + (1));
+i__4819__auto___29177 = G__29178;
 continue;
 } else {
 }
@@ -23,16 +23,16 @@ return nw_calculator.components.card.component.card.cljs$core$IFn$_invoke$arity$
 });
 
 (nw_calculator.components.card.component.card.cljs$core$IFn$_invoke$arity$variadic = (function (props,children){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$relative$bg_DASH_white$h_DASH_auto$px_DASH_5$pb_DASH_8$pt_DASH_16$md_COLON_px_DASH_10$md_COLON_pb_DASH_10$w_DASH_128$md_COLON_w_DASH_176_DASH_imp$rounded$shadow_DASH_lg,props,cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$relative$bg_DASH_white$h_DASH_auto$px_DASH_5$pb_DASH_8$pt_DASH_14$md_COLON_px_DASH_10$md_COLON_pb_DASH_10$w_DASH_128$md_COLON_w_DASH_176_DASH_imp$rounded$shadow_DASH_lg,props,cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
 }));
 
 (nw_calculator.components.card.component.card.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(nw_calculator.components.card.component.card.cljs$lang$applyTo = (function (seq29085){
-var G__29086 = cljs.core.first(seq29085);
-var seq29085__$1 = cljs.core.next(seq29085);
+(nw_calculator.components.card.component.card.cljs$lang$applyTo = (function (seq29174){
+var G__29175 = cljs.core.first(seq29174);
+var seq29174__$1 = cljs.core.next(seq29174);
 var self__4805__auto__ = this;
-return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__29086,seq29085__$1);
+return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__29175,seq29174__$1);
 }));
 

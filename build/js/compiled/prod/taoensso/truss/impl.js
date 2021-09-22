@@ -57,8 +57,8 @@ return clojure.set.superset_QMARK_(cljs.core.set(cljs.core.keys(m)),(taoensso.tr
 });
 
 taoensso.truss.impl.ks_nnil_QMARK_ = (function taoensso$truss$impl$ks_nnil_QMARK_(ks,m){
-return taoensso.truss.impl.revery_QMARK_((function (p1__14601_SHARP_){
-return taoensso.truss.impl.some_QMARK_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(m,p1__14601_SHARP_));
+return taoensso.truss.impl.revery_QMARK_((function (p1__15229_SHARP_){
+return taoensso.truss.impl.some_QMARK_(cljs.core.get.cljs$core$IFn$_invoke$arity$2(m,p1__15229_SHARP_));
 }),ks);
 });
 taoensso.truss.impl.default_error_fn = (function taoensso$truss$impl$default_error_fn(data_){
@@ -70,11 +70,11 @@ taoensso.truss.impl._STAR_error_fn_STAR_ = taoensso.truss.impl.default_error_fn;
 taoensso.truss.impl.non_throwing = (function taoensso$truss$impl$non_throwing(pred){
 return (function (x){
 try{return (pred.cljs$core$IFn$_invoke$arity$1 ? pred.cljs$core$IFn$_invoke$arity$1(x) : pred.call(null,x));
-}catch (e14602){if((e14602 instanceof Error)){
-var _ = e14602;
+}catch (e15230){if((e15230 instanceof Error)){
+var _ = e15230;
 return null;
 } else {
-throw e14602;
+throw e15230;
 
 }
 }});
@@ -92,19 +92,19 @@ taoensso.truss.impl._xpred = (function taoensso$truss$impl$_xpred(pred){
 if((!(cljs.core.vector_QMARK_(pred)))){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [pred,taoensso.truss.impl.non_throwing_QMARK_(pred)], null);
 } else {
-var vec__14603 = pred;
-var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14603,(0),null);
-var a1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14603,(1),null);
-var a2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14603,(2),null);
-var a3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14603,(3),null);
+var vec__15231 = pred;
+var type = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15231,(0),null);
+var a1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15231,(1),null);
+var a2 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15231,(2),null);
+var a3 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15231,(3),null);
 if(cljs.core.truth_(a1)){
 } else {
 throw (new Error(["Assert failed: ","Special predicate [<special-type> <arg>] form w/o <arg>","\n","a1"].join('')));
 }
 
-var G__14606 = type;
-var G__14606__$1 = (((G__14606 instanceof cljs.core.Keyword))?G__14606.fqn:null);
-switch (G__14606__$1) {
+var G__15234 = type;
+var G__15234__$1 = (((G__15234 instanceof cljs.core.Keyword))?G__15234.fqn:null);
+switch (G__15234__$1) {
 case "set=":
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.cst$sym$cljs$core_SLASH_fn,null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.cst$sym$cljs$core_SLASH__EQ_,null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.cst$sym$taoensso$truss$impl_SLASH_set_STAR_,null,(1),null)),(new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.cst$sym$taoensso$truss$impl_SLASH_set_STAR_,null,(1),null)),(new cljs.core.List(null,a1,null,(1),null))))),null,(1),null))], 0)))),null,(1),null))], 0)))),false], null);
 
@@ -163,16 +163,16 @@ return (taoensso.truss.impl._xpred.cljs$core$IFn$_invoke$arity$1 ? taoensso.trus
 return null;
 }
 });
-var vec__14607 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [self(a1),self(a2),self(a3)], null);
-var vec__14610 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14607,(0),null);
-var a1__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14610,(0),null);
-var nt_a1_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14610,(1),null);
-var vec__14613 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14607,(1),null);
-var a2__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14613,(0),null);
-var nt_a2_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14613,(1),null);
-var vec__14616 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14607,(2),null);
-var a3__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14616,(0),null);
-var nt_a3_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__14616,(1),null);
+var vec__15235 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [self(a1),self(a2),self(a3)], null);
+var vec__15238 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15235,(0),null);
+var a1__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15238,(0),null);
+var nt_a1_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15238,(1),null);
+var vec__15241 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15235,(1),null);
+var a2__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15241,(0),null);
+var nt_a2_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15241,(1),null);
+var vec__15244 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15235,(2),null);
+var a3__$1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15244,(0),null);
+var nt_a3_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__15244,(1),null);
 var nt_a1 = (cljs.core.truth_(a1__$1)?(cljs.core.truth_(nt_a1_QMARK_)?a1__$1:cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.cst$sym$taoensso$truss$impl_SLASH_non_DASH_throwing,null,(1),null)),(new cljs.core.List(null,a1__$1,null,(1),null)))))):null);
 var nt_a2 = (cljs.core.truth_(a2__$1)?(cljs.core.truth_(nt_a2_QMARK_)?a2__$1:cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.cst$sym$taoensso$truss$impl_SLASH_non_DASH_throwing,null,(1),null)),(new cljs.core.List(null,a2__$1,null,(1),null)))))):null);
 var nt_a3 = (cljs.core.truth_(a3__$1)?(cljs.core.truth_(nt_a3_QMARK_)?a3__$1:cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,cljs.core.cst$sym$taoensso$truss$impl_SLASH_non_DASH_throwing,null,(1),null)),(new cljs.core.List(null,a3__$1,null,(1),null)))))):null);
@@ -194,9 +194,9 @@ return nt_a2_QMARK_;
 return and__4210__auto__;
 }
 })():(cljs.core.truth_(a1__$1)?nt_a1_QMARK_:null)));
-var G__14619 = type;
-var G__14619__$1 = (((G__14619 instanceof cljs.core.Keyword))?G__14619.fqn:null);
-switch (G__14619__$1) {
+var G__15247 = type;
+var G__15247__$1 = (((G__15247 instanceof cljs.core.Keyword))?G__15247.fqn:null);
+switch (G__15247__$1) {
 case "and":
 if(cljs.core.truth_(a3__$1)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.cst$sym$cljs$core_SLASH_fn,null,(1),null)),(new cljs.core.List(null,cljs.core.vec(cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$1((new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null)))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic((new cljs.core.List(null,cljs.core.cst$sym$cljs$core_SLASH_and,null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,a1__$1,null,(1),null)),(new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null))))),null,(1),null)),cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,a2__$1,null,(1),null)),(new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null))))),null,(1),null)),(new cljs.core.List(null,cljs.core.sequence.cljs$core$IFn$_invoke$arity$1(cljs.core.seq(cljs.core.concat.cljs$core$IFn$_invoke$arity$2((new cljs.core.List(null,a3__$1,null,(1),null)),(new cljs.core.List(null,cljs.core.cst$sym$x,null,(1),null))))),null,(1),null))], 0)))),null,(1),null))], 0)))),nt_comp_QMARK_], null);
@@ -246,7 +246,7 @@ return null;
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__14619__$1)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__15247__$1)].join('')));
 
 }
 
@@ -291,7 +291,7 @@ taoensso.truss.impl._invar_violation_BANG_ = (function taoensso$truss$impl$_inva
 var temp__5753__auto__ = taoensso.truss.impl._STAR_error_fn_STAR_;
 if(cljs.core.truth_(temp__5753__auto__)){
 var error_fn = temp__5753__auto__;
-var G__14624 = (new cljs.core.Delay((function (){
+var G__15252 = (new cljs.core.Delay((function (){
 var instant = (new Date());
 var line_str = (function (){var or__4212__auto__ = _QMARK_line;
 if(cljs.core.truth_(or__4212__auto__)){
@@ -331,11 +331,11 @@ var _QMARK_data = (function (){var temp__5753__auto____$1 = _QMARK_data_fn;
 if(cljs.core.truth_(temp__5753__auto____$1)){
 var data_fn = temp__5753__auto____$1;
 try{return (data_fn.cljs$core$IFn$_invoke$arity$0 ? data_fn.cljs$core$IFn$_invoke$arity$0() : data_fn.call(null));
-}catch (e14625){if((e14625 instanceof Error)){
-var e = e14625;
+}catch (e15253){if((e15253 instanceof Error)){
+var e = e15253;
 return new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$data_DASH_error,e], null);
 } else {
-throw e14625;
+throw e15253;
 
 }
 }} else {
@@ -344,7 +344,7 @@ return null;
 })();
 return cljs.core.PersistentHashMap.fromArrays([cljs.core.cst$kw$_STAR__QMARK_data_STAR_,cljs.core.cst$kw$msg_,cljs.core.cst$kw$elidable_QMARK_,cljs.core.cst$kw$dt,cljs.core.cst$kw$val,cljs.core.cst$kw$ns_DASH_str,cljs.core.cst$kw$val_DASH_type,cljs.core.cst$kw$_QMARK_err,cljs.core.cst$kw$_STAR_assert_STAR_,cljs.core.cst$kw$_QMARK_data,cljs.core.cst$kw$_QMARK_line,cljs.core.cst$kw$form_DASH_str],[taoensso.truss.impl._STAR__QMARK_data_STAR_,msg_,elidable_QMARK_,instant,((undefn_val_QMARK_)?cljs.core.cst$sym$truss_SLASH_undefined_DASH_val:val),ns_str,((undefn_val_QMARK_)?cljs.core.cst$sym$truss_SLASH_undefined_DASH_val:cljs.core.type(val)),_QMARK_err__$1,cljs.core._STAR_assert_STAR_,_QMARK_data,_QMARK_line,form_str]);
 }),null));
-return (error_fn.cljs$core$IFn$_invoke$arity$1 ? error_fn.cljs$core$IFn$_invoke$arity$1(G__14624) : error_fn.call(null,G__14624));
+return (error_fn.cljs$core$IFn$_invoke$arity$1 ? error_fn.cljs$core$IFn$_invoke$arity$1(G__15252) : error_fn.call(null,G__15252));
 } else {
 return null;
 }
