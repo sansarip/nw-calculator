@@ -1,6 +1,6 @@
 (defproject
  nw-calculator
- "2021.09.22.1"
+ "2021.09.22.2"
  :description
  "New World game crafting calculator web application"
  :url

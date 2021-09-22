@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2021.09.22.1
+## [2021.09.22.2]
+### Added
+- Google Analytics
+
+### Fixed
+- Fixed loading text so that it doesn't shift when the loading SVG is displayed
+
+## [2021.09.22.1]
 ### Added
 - Add ingredients-summary card
 
