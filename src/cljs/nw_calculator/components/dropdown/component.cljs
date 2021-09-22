@@ -8,15 +8,15 @@
     [nw-calculator.components.dropdown.styles :as styles]))
 
 (defn option
-  [{:keys [on-select on-hover option-index option]} & _]
-  (letfn [(select-option [& _] (on-select option))
-          (hover-option [& _] (on-hover option-index))]
-    (fn [{:keys [option-index]} & children]
-      [:dt.bg-inherit.transition-colors.bg-opacity-20.m-0.p-4.cursor-pointer
-       {:data-option-index option-index
-        :on-mouse-over     hover-option
-        :on-mouse-down     select-option}
-       (into [:<>] children)])))
+  [{:keys [on-select on-hover option-index option]} & children]
+  (r/with-let [select-option (fn [event] (.stopPropagation event) (on-select option))
+               hover-option (fn [& _] (on-hover option-index))]
+    [:dt.bg-inherit.transition-colors.bg-opacity-20.m-0.p-4.cursor-pointer
+     {:data-option-index option-index
+      :on-mouse-over     hover-option
+      :on-mouse-down     select-option
+      :on-touch-start    select-option}
+     (into [:<>] children)]))
 
 (defn options
   "Returns a list of dropdown options, navigated by keyboard and mouse.
@@ -119,8 +119,8 @@
         #js [escape-key-pressed?])
       [:div.flex-grow.relative.cursor-pointer
        (r/merge-props
-         {:class (styles/dropdown-class)
-          :on-click    toggle-dropdown!}
+         {:class    (styles/dropdown-class)
+          :on-click toggle-dropdown!}
          container-props)
        [:input.dropdown.basic-input.cursor-pointer
         (r/merge-props {:read-only   true
