@@ -1,4 +1,6 @@
-(ns nw-calculator.business-logic)
+(ns nw-calculator.business-logic
+  (:require [compound2.core :as c]
+            [nw-calculator.defaults :as df]))
 
 (defn category? [{item-type :type}]
   (boolean (#{"category"} item-type)))
@@ -63,4 +65,20 @@
              (cond-> ingredients (update :ingredients recur-on-items))
              (assoc :quantity product)
              (cond-> (number? xp) (assoc :xp (* multiplier xp)))))))))
+
+(def merge-items
+  (memoize
+    (fn [items]
+      (let [merged-items (reduce
+                           (fn [coll {:keys [png-url] item-ingredients :ingredients :as item}]
+                             (-> coll
+                                 (cond-> png-url (update :png-urls conj png-url))
+                                 (update :items conj (dissoc item :ingredients))
+                                 (update :ingredients c/add-items item-ingredients)))
+                           {:id          :items-summary
+                            :png-urls    #{}
+                            :items       #{}
+                            :ingredients df/cumulative-items-index}
+                           items)]
+        (update merged-items :ingredients (comp vec vals :by-id))))))
 

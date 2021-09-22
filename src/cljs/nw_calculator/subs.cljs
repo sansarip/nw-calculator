@@ -15,6 +15,11 @@
   (fn [selected-items]
     (count selected-items)))
 
+(rf/reg-sub ::num-resolved-selected-items
+  :<- [::selected-items]
+  (fn [selected-items]
+    (count (filter (comp :name :item) selected-items))))
+
 (rf/reg-sub ::items-by-id
   (fn [db]
     (-> db :items :by-id)))
@@ -64,3 +69,10 @@
   :<- [::selected-items]
   (fn [selected-items [_ item-index]]
     (get-in selected-items [item-index :quantity-multiplier])))
+
+(rf/reg-sub ::selected-items-summary
+  :<- [::num-selected-items]
+  (fn [num-selected-items]
+    (when (> num-selected-items 1)
+      (let [resolved-items (map #(deref (rf/subscribe [::resolved-selected-item %])) (range num-selected-items))]
+        (bsns/merge-items resolved-items)))))

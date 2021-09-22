@@ -9,6 +9,7 @@
     [nw-calculator.utilities :as util]
     [nw-calculator.styles :as styles]
     [nw-calculator.config :as cfg]
+    [nw-calculator.components.item.component :as item-component]
     [react]))
 
 (defn basic-item [item-map]
@@ -96,6 +97,12 @@
             [:a.whitespace-nowrap {:href external-url :target "_blank"} name*]
             [:span.whitespace-nowrap name*])))
 
+(defn custom-item-images
+  [image-urls]
+  (r/with-let [image-with-popup (fn [url] [:f> item-component/image-with-popup {:src url}])]
+    [:div.flex.flex-grow.gap-4
+     (into [:<>] (map image-with-popup) image-urls)]))
+
 (defn item
   [{{:keys [quantity path] :as item-map} :node
     :keys                                [root-node?]
@@ -149,6 +156,44 @@
            [:i.fas.fa-compress-arrows-alt]
            " Collapse all"]])])))
 
+(defn summary-item-tree []
+  (r/with-let [collapsed-item-updaters (atom {})
+               set-collapsed-updater! (fn [id updater]
+                                        (swap! collapsed-item-updaters assoc id updater))
+               unset-collapsed-updater! (fn [id]
+                                          (swap! collapsed-item-updaters dissoc id))
+               expand-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
+                              (set-collapsed-item false))
+               collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
+                                (set-collapsed-item true))
+               item* (fn [{{:keys [png-urls] :as item-map} :node}]
+                       [nwc/item-component
+                        {:item-map        item-map
+                         :popup-on-hover? true
+                         :custom-image    (when png-urls [custom-item-images png-urls])}])
+               unrenderable? #(:as-is? (meta %))]
+    (if-let [{:keys [ingredients id] :as selected-item} @(rf/subscribe [::subs/selected-items-summary])]
+      ^{:key id}
+      [:div.bg-inherit.flex.flex-col.gap-10.items-center
+       [:> ctc/collapsible-list-provider
+        {:value {:set-collapsed-updater   set-collapsed-updater!
+                 :unset-collapsed-updater unset-collapsed-updater!}}
+        [nwc/collapsible-tree-component
+         {:tree-map  selected-item
+          :children  :ingredients
+          :make-node item*
+          :ignore?   unrenderable?}]]
+       (when (not-empty ingredients)
+         [:div.flex.gap-6
+          [:button.button.button-outline.w-52.md:w-60
+           {:on-click expand-all!}
+           [:i.fas.fa-expand-arrows]
+           " Expand all"]
+          [:button.button.button-outline.w-52.md:w-60
+           {:on-click collapse-all!}
+           [:i.fas.fa-compress-arrows-alt]
+           " Collapse all"]])])))
+
 (defn delete-item-button [item-index]
   (r/with-let [delete-item! #(rf/dispatch [::events/remove-item item-index])]
     (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
@@ -160,13 +205,23 @@
        [:i.fas.fa-trash]])))
 
 (defn item-cards []
-  (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])]
+  (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
+        num-resolved-selected-items @(rf/subscribe [::subs/num-resolved-selected-items])]
     [:<>
      (for [item-index (range num-selected-items)]
        ^{:key item-index}
-       [nwc/card-component
+       [nwc/card-component {}
         [delete-item-button item-index]
-        [searchable-item-tree item-index]])]))
+        [:div.bg-inherit.mt-2
+         [searchable-item-tree item-index]]])
+     (when (> num-resolved-selected-items 1)
+       [nwc/card-component {}
+        [:div.absolute.rounded-t.top-0.left-0.bg-purple.bg-opacity-100.w-full.h-24.shadow-md]
+        [:h4.w-full.absolute.left-0.top-7.text-center.text-white
+         [:i.far.fa-scroll-old.mr-2]
+         "Ingredients Summary"]
+        [:div.mt-20
+         [summary-item-tree]]])]))
 
 (defn actions []
   (r/with-let

@@ -47,6 +47,7 @@
   [{:keys             [popup-on-hover?
                        custom-name
                        custom-quantity
+                       custom-image
                        container-props]
     {:keys     [quantity
                 png-url
@@ -57,11 +58,12 @@
   (r/with-let [labels-key (str "labels_" (util/short-uuid-str))]
     [:div.flex.gap-4.relative
      container-props
-     (if png-url
-       [:f> image-with-popup
-        {:src            png-url
-         :disable-popup? (not popup-on-hover?)}]
-       [placeholder-icon])
+     (or custom-image
+         (if png-url
+           [:f> image-with-popup
+            {:src            png-url
+             :disable-popup? (not popup-on-hover?)}]
+           [placeholder-icon]))
      ^{:key labels-key}
      [:div.bg-inherit.labels.w-full.flex.items-start.gap-4
       (or custom-quantity quantity)
