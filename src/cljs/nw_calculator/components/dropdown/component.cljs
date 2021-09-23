@@ -14,8 +14,7 @@
     [:dt.bg-inherit.transition-colors.bg-opacity-20.m-0.p-4.cursor-pointer
      {:data-option-index option-index
       :on-mouse-over     hover-option
-      :on-mouse-down     select-option
-      :on-touch-start    select-option}
+      :on-click          select-option}
      (into [:<>] children)]))
 
 (defn options
@@ -101,7 +100,7 @@
                 (reset! dropdown-focused? true))
        blur! (fn []
                (.. input-ref -current blur)
-               (reset! dropdown-focused? false))
+               (js/setTimeout #(reset! dropdown-focused? false) 200))
        set-input-value! (fn [input-value]
                           (set! (.. input-ref -current -value) input-value))
        select-result! (fn [result]

@@ -51,7 +51,7 @@
                           (set-input-focused true))
                  blur! (fn []
                          (.. input-ref -current blur)
-                         (set-input-focused false))]
+                         (js/setTimeout #(set-input-focused false) 200))]
       (react/useEffect
         (fn []
           (set-input-value! (.. input-ref -current -value))
