@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.09.23.1]
+### Fixed
+- Fix dropdown-option clicks propagating down to underlying elements
+- Fix long dropdowns being partially obstructed by following items
+- Fix links being clickable beyong their text
+- Fix Fix unmounted-component-update React console error
+
 ## [2021.09.22.4]
 ### Added
 - Google Analytics

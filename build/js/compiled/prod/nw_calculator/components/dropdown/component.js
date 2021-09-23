@@ -78,7 +78,7 @@ G__29100.cljs$core$IFn$_invoke$arity$variadic = G__29100__delegate;
 return G__29100;
 })()
 ):(with_let29092[(1)]));
-var res29094 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$dt$bg_DASH_inherit$transition_DASH_colors$bg_DASH_opacity_DASH_20$m_DASH_0$p_DASH_4$cursor_DASH_pointer,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$data_DASH_option_DASH_index,option_index,cljs.core.cst$kw$on_DASH_mouse_DASH_over,hover_option,cljs.core.cst$kw$on_DASH_mouse_DASH_down,select_option,cljs.core.cst$kw$on_DASH_touch_DASH_start,select_option], null),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
+var res29094 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$dt$bg_DASH_inherit$transition_DASH_colors$bg_DASH_opacity_DASH_20$m_DASH_0$p_DASH_4$cursor_DASH_pointer,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$data_DASH_option_DASH_index,option_index,cljs.core.cst$kw$on_DASH_mouse_DASH_over,hover_option,cljs.core.cst$kw$on_DASH_click,select_option], null),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
 return res29094;
 }));
 
@@ -311,7 +311,9 @@ return cljs.core.reset_BANG_(dropdown_focused_QMARK_,true);
 var blur_BANG_ = ((((init29160) || (cljs.core.not(with_let29159.hasOwnProperty((2))))))?(with_let29159[(2)] = (function (){
 input_ref.current.blur();
 
+return setTimeout((function (){
 return cljs.core.reset_BANG_(dropdown_focused_QMARK_,false);
+}),(200));
 })):(with_let29159[(2)]));
 var set_input_value_BANG_ = ((((init29160) || (cljs.core.not(with_let29159.hasOwnProperty((3))))))?(with_let29159[(3)] = (function (input_value){
 return (input_ref.current.value = input_value);
