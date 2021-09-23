@@ -41,7 +41,7 @@
           #(unset-collapsed-updater uuid)))
       #js [set-collapsed-updater])
     [list-item
-     {:child-container-props {:class (when root-node? "z-10")}}
+     {}
      [:<>
       (when-not root-node?
         [cb/circular-button
