@@ -25,10 +25,10 @@
            get-value   (constantly "")
            make-result identity}}]
   (let [[input-value set-input-value!] (react/useState "")
-        [input-focused? set-input-focused] (react/useState false)
         input-ref (react/useRef)
         escape-key-pressed? (hooks/use-key-press "Escape")]
-    (r/with-let [set-input-value*! (fn [input-value]
+    (r/with-let [input-focused? (r/atom false)
+                 set-input-value*! (fn [input-value]
                                      (set-input-value! input-value)
                                      (set! (.. input-ref -current -value) input-value))
                  search! (fn [event]
@@ -48,10 +48,10 @@
                                       (.. input-ref -current focus))
                  focus! (fn []
                           (.. input-ref -current focus)
-                          (set-input-focused true))
+                          (reset! input-focused? true))
                  blur! (fn []
                          (.. input-ref -current blur)
-                         (js/setTimeout #(set-input-focused false) 200))]
+                         (js/setTimeout #(reset! input-focused? false) 200))]
       (react/useEffect
         (fn []
           (set-input-value! (.. input-ref -current -value))
@@ -80,7 +80,7 @@
        (when loading?
          [lc/loader
           {:class "absolute text-lg md:text-2xl right-2 md:right-3 top-3 md:top-2 flex-none"}])
-       (when (and input-focused? (not-empty results))
+       (when (and @input-focused? (not-empty results))
          [:f> dd/options
           {:on-select   select-result!
            :options     results
