@@ -9,7 +9,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/).
 - Fix dropdown-option clicks propagating down to underlying elements
 - Fix long dropdowns being partially obstructed by following items
 - Fix links being clickable beyong their text
-- Fix Fix unmounted-component-update React console error
+- Fix unmounted-component-update React console error
 
 ## [2021.09.22.4]
 ### Added
