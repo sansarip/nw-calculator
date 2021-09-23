@@ -14,10 +14,6 @@ For simplicity's sake, all item data is in the [items.json file](https://github.
 If you notice an issue, you can make a PR to add/edit the data in the aforementioned JSON file. 
 If your changes include adding/editing an image url of an item, then you must also put a corresponding 128x128 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images).
 
-## Future Goals
-
-* Right now, builds and releases involve manually running `make release`. I'd like to implement CI/CD pipeline to build and auto-update the site on push/merge to main.
-
 ## Dev
 
 ### Prerequisites <a name="prereqs"></a>
