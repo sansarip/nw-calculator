@@ -54,8 +54,8 @@ If you wish to create a release, you'll need the same [prerequites as Dev](#prer
 To compile the Prod JS, run `lein fig:prod`.
 
 Or, you can just run `make release` which will compile Prod JS, 
-overwrite `docs/` (this is where the site is served from), 
-bump the version, and commit the release.
+overwrite `build/` (this is where the site's content is built from), 
+bump the version, prompt for a CHANGELOG update, and commit the release.
 
 
 ## License
