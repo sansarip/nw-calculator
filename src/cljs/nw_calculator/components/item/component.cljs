@@ -69,7 +69,7 @@
       (or custom-quantity quantity)
       " "
       [:div.bg-inherit.w-full.flex.flex-col.gap-2
-       (or custom-name item-name)
+       [:span.bg-inherit (or custom-name item-name)]
        [:span.basic-info.text-sm.align-text-bottom.whitespace-nowrap
         (let [tier-label (when tier (str "T" tier))
               xp-label (when xp (str xp "XP"))
