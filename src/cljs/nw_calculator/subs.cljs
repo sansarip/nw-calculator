@@ -74,5 +74,8 @@
   :<- [::num-selected-items]
   (fn [num-selected-items]
     (when (> num-selected-items 1)
-      (let [resolved-items (map #(deref (rf/subscribe [::resolved-selected-item %])) (range num-selected-items))]
+      (let [resolved-items (into []
+                                 (comp (map #(deref (rf/subscribe [::resolved-selected-item %])))
+                                       (filter :name))
+                                 (range num-selected-items))]
         (bsns/merge-items resolved-items)))))

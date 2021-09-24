@@ -166,11 +166,12 @@
                               (set-collapsed-item false))
                collapse-all! #(doseq [[_ set-collapsed-item] @collapsed-item-updaters]
                                 (set-collapsed-item true))
-               item* (fn [{{:keys [png-urls] :as item-map} :node}]
+               item* (fn [{{:keys [items] :as item-map} :node}]
                        [nwc/item-component
                         {:item-map        item-map
                          :popup-on-hover? true
-                         :custom-image    (when png-urls [custom-item-images png-urls])}])
+                         :custom-image    (if-let [png-urls (not-empty (map :png-url items))]
+                                            [custom-item-images png-urls])}])
                unrenderable? #(:as-is? (meta %))]
     (if-let [{:keys [ingredients id] :as selected-item} @(rf/subscribe [::subs/selected-items-summary])]
       ^{:key id}

@@ -66,19 +66,40 @@
              (assoc :quantity product)
              (cond-> (number? xp) (assoc :xp (* multiplier xp)))))))))
 
-(def merge-items
-  (memoize
-    (fn [items]
-      (let [merged-items (reduce
-                           (fn [coll {:keys [png-url] item-ingredients :ingredients :as item}]
-                             (-> coll
-                                 (cond-> png-url (update :png-urls conj png-url))
-                                 (update :items conj (dissoc item :ingredients))
-                                 (update :ingredients c/add-items item-ingredients)))
-                           {:id          :items-summary
-                            :png-urls    #{}
-                            :items       #{}
-                            :ingredients df/cumulative-items-index}
-                           items)]
-        (update merged-items :ingredients (comp vec vals :by-id))))))
+(defn merge-ingredients
+  [{item-ingredients :ingredients :as item}]
+  (cond-> item
+          (not-empty item-ingredients)
+          (-> (update :ingredients #(group-by :id %))
+              (update :ingredients #(mapv (fn [[_id ingredients]]
+                                            (reduce (fn [item-map-1
+                                                         {ing-2 :ingredients
+                                                          q-2   :quantity}]
+                                                      (merge-ingredients
+                                                        (-> item-map-1
+                                                            (update :quantity + q-2)
+                                                            (cond->
+                                                              ing-2 (update :ingredients into ing-2)))))
+                                                    ingredients))
+                                         %)))))
+
+(defn merge-items
+  "Merges the given items into one item map
+
+  ```clojure
+    {:id          :items-summary
+     :items       #{'...} ; Set of items
+     :ingredients ['...] ; Merged ingredients of given items}
+  ```"
+  [items]
+  (let [merged-items (reduce
+                       (fn [coll {item-ingredients :ingredients :as item}]
+                         (-> coll
+                             (update :items conj (with-meta (dissoc item :ingredients) {:as-is? true}))
+                             (update :ingredients into item-ingredients)))
+                       {:id          :items-summary
+                        :items       #{}
+                        :ingredients []}
+                       items)]
+    (merge-ingredients merged-items)))
 
