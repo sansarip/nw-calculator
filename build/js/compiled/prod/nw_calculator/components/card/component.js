@@ -23,7 +23,7 @@ return nw_calculator.components.card.component.card.cljs$core$IFn$_invoke$arity$
 });
 
 (nw_calculator.components.card.component.card.cljs$core$IFn$_invoke$arity$variadic = (function (props,children){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$relative$bg_DASH_white$h_DASH_auto$px_DASH_5$pb_DASH_8$pt_DASH_14$md_COLON_px_DASH_10$md_COLON_pb_DASH_10$w_DASH_128$md_COLON_w_DASH_176_DASH_imp$rounded$shadow_DASH_lg,props,cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$relative$bg_DASH_white$h_DASH_auto$px_DASH_5$pb_DASH_8$pt_DASH_14$md_COLON_px_DASH_10$md_COLON_pb_DASH_10$min_DASH_w_DASH_128$md_COLON_min_DASH_w_DASH_176_DASH_imp$rounded$shadow_DASH_lg,props,cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
 }));
 
 (nw_calculator.components.card.component.card.cljs$lang$maxFixedArity = (1));
