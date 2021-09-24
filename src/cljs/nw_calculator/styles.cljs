@@ -65,7 +65,7 @@
 
 (spade/defglobal global-styles
   (at-media {:min-width (-> config :sizes :screen :md)}
-            [".md\\:w-176-imp" {:width (with-config "{{sizes.relative.176}} !important")}]
+            [".md\\:min-w-176-imp" {:min-width (with-config "{{sizes.relative.176}} !important")}]
             [".md\\:pr-12-imp" {:padding-right (with-config "{{sizes.relative.12}} !important")}]
             [".md\\:text-7xl-imp" {:font-size "4.5rem !important"}]
             [".md\\:text-5xl-imp" {:font-size "3rem !important"}])
@@ -90,7 +90,7 @@
   [:.w-12-imp {:width (with-config "{{sizes.relative.12}} !important")}]
   [:.min-w-12 {:min-width relative-12}]
   [:.min-w-96 {:min-width relative-96}]
-  [:.w-128 {:width relative-128}]
+  [:.min-w-128 {:min-width relative-128}]
   [:.w-176 {:width relative-176}]
   [:.mb-18 {:margin-bottom relative-18}]
   [:.top-120 {:top relative-120}]
