@@ -16,14 +16,6 @@ If your changes include adding/editing an image url of an item, then you must al
 
 ## Dev
 
-Hop right into an already set up virtual IDE with [Gitpod](https://maroon-bear-p7urwaii.ws-us17.gitpod.io/)!
-
-The below GIF demonstrates how to run the application in dev mode once your Gitpod workspace is ready.
-
-[![Running from Gitpod demonstration](https://i.gyazo.com/809865f96ef19f3fdbe3e12cfe7c145b.gif)](https://gyazo.com/809865f96ef19f3fdbe3e12cfe7c145b)
-
-Alternatively, you may try to follow the (sparse 😅) instructions below to set the project up on your local machine.
-
 ### Prerequisites <a name="prereqs"></a>
 
 * [Clojure](https://clojure.org/guides/getting_started)
