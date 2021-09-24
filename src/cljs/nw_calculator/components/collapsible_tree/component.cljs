@@ -50,7 +50,7 @@
          [:i.fas.fa-chevron-up.text-base.transition-transform
           {:class (when collapsed? "flip-y")}]])
       content]
-     [:dl.bg-inherit.mt-0.mb-0.overflow-x-auto
+     [:dl.bg-inherit.mt-0.mb-0
       {:class (when (and (not root-node?) collapsed?) "hidden")}
       (into [:<>] children)]]))
 
