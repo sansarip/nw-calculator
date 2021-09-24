@@ -4,14 +4,14 @@ goog.require('cljs.core');
 goog.require('cljs.core.constants');
 nw_calculator.components.card.component.card = (function nw_calculator$components$card$component$card(var_args){
 var args__4824__auto__ = [];
-var len__4818__auto___29176 = arguments.length;
-var i__4819__auto___29177 = (0);
+var len__4818__auto___29147 = arguments.length;
+var i__4819__auto___29148 = (0);
 while(true){
-if((i__4819__auto___29177 < len__4818__auto___29176)){
-args__4824__auto__.push((arguments[i__4819__auto___29177]));
+if((i__4819__auto___29148 < len__4818__auto___29147)){
+args__4824__auto__.push((arguments[i__4819__auto___29148]));
 
-var G__29178 = (i__4819__auto___29177 + (1));
-i__4819__auto___29177 = G__29178;
+var G__29149 = (i__4819__auto___29148 + (1));
+i__4819__auto___29148 = G__29149;
 continue;
 } else {
 }
@@ -29,10 +29,10 @@ return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMP
 (nw_calculator.components.card.component.card.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(nw_calculator.components.card.component.card.cljs$lang$applyTo = (function (seq29174){
-var G__29175 = cljs.core.first(seq29174);
-var seq29174__$1 = cljs.core.next(seq29174);
+(nw_calculator.components.card.component.card.cljs$lang$applyTo = (function (seq29145){
+var G__29146 = cljs.core.first(seq29145);
+var seq29145__$1 = cljs.core.next(seq29145);
 var self__4805__auto__ = this;
-return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__29175,seq29174__$1);
+return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__29146,seq29145__$1);
 }));
 

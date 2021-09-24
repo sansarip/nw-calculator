@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.09.24.1]
+### Added
+- Add Gitpod support
+
+### Fixed
+-  Fix incorrect sums in summary
+
 ## [2021.09.23.1]
 ### Fixed
 - Fix dropdown-option clicks propagating down to underlying elements
