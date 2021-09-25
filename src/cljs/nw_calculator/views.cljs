@@ -41,9 +41,8 @@
   [{selected-option-name :name
     category-path        :path
     :keys                [options category-name]}]
-  (r/with-let [select-option! (fn [{option-path :path}]
-                                (let [selected-option @(rf/subscribe [::subs/item-in-resolved-selected-item option-path])]
-                                  (rf/dispatch [::events/select-option category-path selected-option])))]
+  (r/with-let [select-option! (fn [{selected-option-id :id}]
+                                (rf/dispatch [::events/select-option category-path selected-option-id]))]
     [:f> nwc/dropdown-component
      {:input-props     {:placeholder   category-name
                         :default-value selected-option-name}

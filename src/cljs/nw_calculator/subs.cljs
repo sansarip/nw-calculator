@@ -47,12 +47,6 @@
                          :xp (* xp quantity-multiplier)))
           {:ingredients []}))))
 
-(rf/reg-sub ::item-in-resolved-selected-item
-  (fn [_db [_ [item-index :as item-path]]]
-    (->> @(rf/subscribe [::resolved-selected-item item-index])
-         (tree-seq bsns/options-or-ingredients bsns/options-or-ingredients)
-         (some #(when (#{item-path} (:path %)) %)))))
-
 (rf/reg-sub ::loading?
   (fn [{:keys [state]}]
     (= state :loading)))

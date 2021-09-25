@@ -1,12 +1,19 @@
 (ns nw-calculator.business-logic
-  (:require [compound2.core :as c]
-            [nw-calculator.defaults :as df]))
+  (:require [nw-calculator.utilities :as util]))
+
+(defn big-default-xp [{:keys [xp]}]
+  (or xp 1000000))
 
 (defn category? [{item-type :type}]
   (boolean (#{"category"} item-type)))
 
 (defn options-or-ingredients [{:keys [options ingredients]}]
   (or options ingredients))
+
+(def resolve-ref
+  (memoize
+    (fn [items-by-id {id :id :as ref}]
+      (merge (items-by-id id) ref))))
 
 (def resolve-refs
   (memoize
@@ -18,31 +25,32 @@
       ([{:keys [ingredients options id] :as item} items-by-id prev-walked-ids selected-options-by-category-path]
        (when (and items-by-id (not ((set prev-walked-ids) id)))
          (let [path (conj prev-walked-ids id)
-               resolve-ref (fn [{ref-id :id :as ref}] (merge (items-by-id ref-id) ref))
+               resolve-ref* #(resolve-ref items-by-id %)
                recur* (fn [refs & [meta]]
                         (into []
                               (comp
-                                (map resolve-ref)
+                                (map resolve-ref*)
                                 (map #(vary-meta % merge meta))
                                 (map #(resolve-refs % items-by-id path selected-options-by-category-path))
                                 (filter some?))
                               refs))
-               select-option (fn [{:keys            [id category-name category-id]
-                                   name*            :name
-                                   [default-option] :options
-                                   category-path    :path
-                                   :as              category}]
-                               (let [selected-option (selected-options-by-category-path category-path default-option)]
-                                 (merge (cond-> category
-                                                (not category-name) (assoc :category-name name*)
-                                                (not category-id) (assoc :category-id id))
-                                        (dissoc selected-option :path :quantity))))
-               recur-options (fn [options]
-                               ;; Keeps options from being transformed into hiccup
-                               (vec (sort-by (comp #(or % 1000000) :xp) (recur* options {:as-is? true}))))]
+               select-option (fn [{:keys                [id category-name category-id]
+                                   name*                :name
+                                   [default-option-ref] :options
+                                   category-path        :path
+                                   :as                  category}]
+                               (let [[selected-option] (recur* [(selected-options-by-category-path
+                                                                   category-path
+                                                                   default-option-ref)])]
+                                 (merge
+                                   (cond-> category
+                                           (not category-name) (assoc :category-name name*)
+                                           (not category-id) (assoc :category-id id))
+                                   (dissoc selected-option :path :quantity))))]
            (cond-> (assoc item :path path)
                    ingredients (update :ingredients recur*)
-                   options (-> (update :options recur-options)
+                   options (-> (update :options recur* {:as-is? true}) ; Keeps options from being transformed into hiccup
+                               (update :options #(vec (sort-by big-default-xp %)))
                                select-option))))))))
 
 (defn craftable-item [{:keys [ingredients] :as item}]
@@ -81,7 +89,7 @@
                                                             (cond->
                                                               ing-2 (update :ingredients into ing-2)))))
                                                     ingredients))
-                                         %)))))
+                                          %)))))
 
 (defn merge-items
   "Merges the given items into one item map

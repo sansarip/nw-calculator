@@ -89,8 +89,10 @@
 (rf/reg-event-db
   ::select-option
   (tr/fn-traced
-    [db [_ [item-index :as category-path] option]]
-    (assoc-in db [:selected-items item-index :selected-options category-path] option)))
+    [{{items-by-id :by-id} :items :as db} [_ [item-index :as category-path] option-id]]
+    (assoc-in db
+              [:selected-items item-index :selected-options category-path]
+              (get items-by-id option-id))))
 
 (rf/reg-event-db
   ::set-quantity-multiplier
