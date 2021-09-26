@@ -15,6 +15,7 @@
 (defn -main [content output snapshot?]
   (let [project-date-version (-> (:nw-calculator-version env)
                                  (string/split #"\.")
+                                 (update 3 (comp first (string/split % #"-")))
                                  (->> (mapv #(Integer/parseInt %)))
                                  (update 3 inc))
         now (LocalDate/now (ZoneId/of "UTC"))
