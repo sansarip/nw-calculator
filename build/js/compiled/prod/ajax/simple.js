@@ -24,10 +24,10 @@ var processed = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(ajax.simple.proce
 return (handler.cljs$core$IFn$_invoke$arity$1 ? handler.cljs$core$IFn$_invoke$arity$1(processed) : handler.call(null,processed));
 });
 });
-ajax.simple.base_handler = (function ajax$simple$base_handler(interceptors,p__13936){
-var map__13937 = p__13936;
-var map__13937__$1 = cljs.core.__destructure_map(map__13937);
-var handler = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13937__$1,cljs.core.cst$kw$handler);
+ajax.simple.base_handler = (function ajax$simple$base_handler(interceptors,p__15208){
+var map__15209 = p__15208;
+var map__15209__$1 = cljs.core.__destructure_map(map__15209);
+var handler = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15209__$1,cljs.core.cst$kw$handler);
 if(cljs.core.truth_(handler)){
 return ajax.simple.make_js_handler(handler,interceptors);
 } else {
@@ -37,8 +37,8 @@ return ajax.util.throw_error("No ajax handler provided.");
 ajax.simple.default_interceptors = cljs.core.atom.cljs$core$IFn$_invoke$arity$1(cljs.core.PersistentVector.EMPTY);
 ajax.simple.normalize_request = (function ajax$simple$normalize_request(request){
 var response_format = ajax.interceptors.get_response_format(ajax.formats.detect_response_format,request);
-return cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(request,cljs.core.cst$kw$method,ajax.simple.normalize_method),cljs.core.cst$kw$interceptors,(function (p1__13938_SHARP_){
-return cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [response_format], null),(function (){var or__4212__auto__ = p1__13938_SHARP_;
+return cljs.core.update.cljs$core$IFn$_invoke$arity$3(cljs.core.update.cljs$core$IFn$_invoke$arity$3(request,cljs.core.cst$kw$method,ajax.simple.normalize_method),cljs.core.cst$kw$interceptors,(function (p1__15210_SHARP_){
+return cljs.core.concat.cljs$core$IFn$_invoke$arity$variadic(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [response_format], null),(function (){var or__4212__auto__ = p1__15210_SHARP_;
 if(cljs.core.truth_(or__4212__auto__)){
 return or__4212__auto__;
 } else {
@@ -59,11 +59,11 @@ return ajax.protocols._process_request(interceptor,request);
 /**
  * The main request function.
  */
-ajax.simple.raw_ajax_request = (function ajax$simple$raw_ajax_request(p__13939){
-var map__13940 = p__13939;
-var map__13940__$1 = cljs.core.__destructure_map(map__13940);
-var request = map__13940__$1;
-var interceptors = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__13940__$1,cljs.core.cst$kw$interceptors);
+ajax.simple.raw_ajax_request = (function ajax$simple$raw_ajax_request(p__15211){
+var map__15212 = p__15211;
+var map__15212__$1 = cljs.core.__destructure_map(map__15212);
+var request = map__15212__$1;
+var interceptors = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__15212__$1,cljs.core.cst$kw$interceptors);
 var request__$1 = cljs.core.reduce.cljs$core$IFn$_invoke$arity$3(ajax.simple.process_request,request,interceptors);
 var handler = ajax.simple.base_handler(cljs.core.reverse(interceptors),request__$1);
 var api = (function (){var or__4212__auto__ = cljs.core.cst$kw$api.cljs$core$IFn$_invoke$arity$1(request__$1);

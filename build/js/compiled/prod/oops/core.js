@@ -16,21 +16,21 @@ return null;
 } else {
 oops.state.mark_error_reported_BANG_();
 
-var G__27041 = oops.config.get_error_reporting();
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$throw,G__27041)){
+var G__28849 = oops.config.get_error_reporting();
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$throw,G__28849)){
 throw oops.state.prepare_error_from_call_site(msg,oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data));
 } else {
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$console,G__27041)){
-var G__27043 = (console["error"]);
-var G__27044 = msg;
-var G__27045 = oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data);
-var fexpr__27042 = oops.state.get_console_reporter();
-return (fexpr__27042.cljs$core$IFn$_invoke$arity$3 ? fexpr__27042.cljs$core$IFn$_invoke$arity$3(G__27043,G__27044,G__27045) : fexpr__27042.call(null,G__27043,G__27044,G__27045));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$console,G__28849)){
+var G__28851 = (console["error"]);
+var G__28852 = msg;
+var G__28853 = oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data);
+var fexpr__28850 = oops.state.get_console_reporter();
+return (fexpr__28850.cljs$core$IFn$_invoke$arity$3 ? fexpr__28850.cljs$core$IFn$_invoke$arity$3(G__28851,G__28852,G__28853) : fexpr__28850.call(null,G__28851,G__28852,G__28853));
 } else {
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(false,G__27041)){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(false,G__28849)){
 return null;
 } else {
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27041)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28849)].join('')));
 
 }
 }
@@ -38,21 +38,21 @@ throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$ari
 }
 });
 oops.core.report_warning_dynamically = (function oops$core$report_warning_dynamically(msg,data){
-var G__27046 = oops.config.get_warning_reporting();
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$throw,G__27046)){
+var G__28854 = oops.config.get_warning_reporting();
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$throw,G__28854)){
 throw oops.state.prepare_error_from_call_site(msg,oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data));
 } else {
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$console,G__27046)){
-var G__27048 = (console["warn"]);
-var G__27049 = msg;
-var G__27050 = oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data);
-var fexpr__27047 = oops.state.get_console_reporter();
-return (fexpr__27047.cljs$core$IFn$_invoke$arity$3 ? fexpr__27047.cljs$core$IFn$_invoke$arity$3(G__27048,G__27049,G__27050) : fexpr__27047.call(null,G__27048,G__27049,G__27050));
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$console,G__28854)){
+var G__28856 = (console["warn"]);
+var G__28857 = msg;
+var G__28858 = oops.helpers.wrap_data_in_enveloper_if_possible(oops.config.use_envelope_QMARK_(),data);
+var fexpr__28855 = oops.state.get_console_reporter();
+return (fexpr__28855.cljs$core$IFn$_invoke$arity$3 ? fexpr__28855.cljs$core$IFn$_invoke$arity$3(G__28856,G__28857,G__28858) : fexpr__28855.call(null,G__28856,G__28857,G__28858));
 } else {
-if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(false,G__27046)){
+if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(false,G__28854)){
 return null;
 } else {
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27046)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28854)].join('')));
 
 }
 }
@@ -60,14 +60,14 @@ throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$ari
 });
 oops.core.report_if_needed_dynamically = (function oops$core$report_if_needed_dynamically(var_args){
 var args__4824__auto__ = [];
-var len__4818__auto___27057 = arguments.length;
-var i__4819__auto___27058 = (0);
+var len__4818__auto___28865 = arguments.length;
+var i__4819__auto___28866 = (0);
 while(true){
-if((i__4819__auto___27058 < len__4818__auto___27057)){
-args__4824__auto__.push((arguments[i__4819__auto___27058]));
+if((i__4819__auto___28866 < len__4818__auto___28865)){
+args__4824__auto__.push((arguments[i__4819__auto___28866]));
 
-var G__27059 = (i__4819__auto___27058 + (1));
-i__4819__auto___27058 = G__27059;
+var G__28867 = (i__4819__auto___28866 + (1));
+i__4819__auto___28866 = G__28867;
 continue;
 } else {
 }
@@ -78,20 +78,20 @@ var argseq__4825__auto__ = ((((1) < args__4824__auto__.length))?(new cljs.core.I
 return oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4825__auto__);
 });
 
-(oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$variadic = (function (msg_id,p__27053){
-var vec__27054 = p__27053;
-var info = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__27054,(0),null);
+(oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$variadic = (function (msg_id,p__28861){
+var vec__28862 = p__28861;
+var info = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28862,(0),null);
 return null;
 }));
 
 (oops.core.report_if_needed_dynamically.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(oops.core.report_if_needed_dynamically.cljs$lang$applyTo = (function (seq27051){
-var G__27052 = cljs.core.first(seq27051);
-var seq27051__$1 = cljs.core.next(seq27051);
+(oops.core.report_if_needed_dynamically.cljs$lang$applyTo = (function (seq28859){
+var G__28860 = cljs.core.first(seq28859);
+var seq28859__$1 = cljs.core.next(seq28859);
 var self__4805__auto__ = this;
-return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__27052,seq27051__$1);
+return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__28860,seq28859__$1);
 }));
 
 oops.core.validate_object_access_dynamically = (function oops$core$validate_object_access_dynamically(obj,mode,key,push_QMARK_,check_key_read_QMARK_,check_key_write_QMARK_){
@@ -165,13 +165,13 @@ return true;
 }
 }
 } else {
-var descriptor_27060 = temp__5755__auto__;
-var temp__5755__auto____$1 = oops.helpers.determine_property_non_writable_reason(descriptor_27060);
+var descriptor_28868 = temp__5755__auto__;
+var temp__5755__auto____$1 = oops.helpers.determine_property_non_writable_reason(descriptor_28868);
 if((temp__5755__auto____$1 == null)){
 return true;
 } else {
-var reason_27061 = temp__5755__auto____$1;
-return (oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$2 ? oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$object_DASH_key_DASH_not_DASH_writable,new cljs.core.PersistentArrayMap(null, 5, [cljs.core.cst$kw$path,oops.state.get_key_path_str(),cljs.core.cst$kw$key,key,cljs.core.cst$kw$frozen_QMARK_,oops.helpers.is_object_frozen_QMARK_(obj),cljs.core.cst$kw$reason,reason_27061,cljs.core.cst$kw$obj,oops.state.get_target_object()], null)) : oops.core.report_if_needed_dynamically.call(null,cljs.core.cst$kw$object_DASH_key_DASH_not_DASH_writable,new cljs.core.PersistentArrayMap(null, 5, [cljs.core.cst$kw$path,oops.state.get_key_path_str(),cljs.core.cst$kw$key,key,cljs.core.cst$kw$frozen_QMARK_,oops.helpers.is_object_frozen_QMARK_(obj),cljs.core.cst$kw$reason,reason_27061,cljs.core.cst$kw$obj,oops.state.get_target_object()], null)));
+var reason_28869 = temp__5755__auto____$1;
+return (oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$2 ? oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$object_DASH_key_DASH_not_DASH_writable,new cljs.core.PersistentArrayMap(null, 5, [cljs.core.cst$kw$path,oops.state.get_key_path_str(),cljs.core.cst$kw$key,key,cljs.core.cst$kw$frozen_QMARK_,oops.helpers.is_object_frozen_QMARK_(obj),cljs.core.cst$kw$reason,reason_28869,cljs.core.cst$kw$obj,oops.state.get_target_object()], null)) : oops.core.report_if_needed_dynamically.call(null,cljs.core.cst$kw$object_DASH_key_DASH_not_DASH_writable,new cljs.core.PersistentArrayMap(null, 5, [cljs.core.cst$kw$path,oops.state.get_key_path_str(),cljs.core.cst$kw$key,key,cljs.core.cst$kw$frozen_QMARK_,oops.helpers.is_object_frozen_QMARK_(obj),cljs.core.cst$kw$reason,reason_28869,cljs.core.cst$kw$obj,oops.state.get_target_object()], null)));
 }
 }
 } else {
@@ -197,10 +197,10 @@ return (oops.core.report_if_needed_dynamically.cljs$core$IFn$_invoke$arity$2 ? o
 }
 });
 oops.core.punch_key_dynamically_BANG_ = (function oops$core$punch_key_dynamically_BANG_(obj,key){
-var child_factory_27063 = oops.config.get_child_factory();
-var child_factory_27063__$1 = (function (){var G__27064 = child_factory_27063;
-var G__27064__$1 = (((G__27064 instanceof cljs.core.Keyword))?G__27064.fqn:null);
-switch (G__27064__$1) {
+var child_factory_28871 = oops.config.get_child_factory();
+var child_factory_28871__$1 = (function (){var G__28872 = child_factory_28871;
+var G__28872__$1 = (((G__28872 instanceof cljs.core.Keyword))?G__28872.fqn:null);
+switch (G__28872__$1) {
 case "js-obj":
 return (function (){
 return ({});
@@ -214,27 +214,27 @@ return [];
 
 break;
 default:
-return child_factory_27063;
+return child_factory_28871;
 
 }
 })();
 
-var child_obj_27062 = (child_factory_27063__$1.cljs$core$IFn$_invoke$arity$2 ? child_factory_27063__$1.cljs$core$IFn$_invoke$arity$2(obj,key) : child_factory_27063__$1.call(null,obj,key));
-(obj[key] = child_obj_27062);
+var child_obj_28870 = (child_factory_28871__$1.cljs$core$IFn$_invoke$arity$2 ? child_factory_28871__$1.cljs$core$IFn$_invoke$arity$2(obj,key) : child_factory_28871__$1.call(null,obj,key));
+(obj[key] = child_obj_28870);
 
-return child_obj_27062;
+return child_obj_28870;
 });
 oops.core.build_path_dynamically = (function oops$core$build_path_dynamically(selector){
 if(((typeof selector === 'string') || ((selector instanceof cljs.core.Keyword)))){
-var selector_path_27068 = [];
-oops.schema.prepare_simple_path_BANG_(selector,selector_path_27068);
+var selector_path_28876 = [];
+oops.schema.prepare_simple_path_BANG_(selector,selector_path_28876);
 
-return selector_path_27068;
+return selector_path_28876;
 } else {
-var selector_path_27069 = [];
-oops.schema.prepare_path_BANG_(selector,selector_path_27069);
+var selector_path_28877 = [];
+oops.schema.prepare_path_BANG_(selector,selector_path_28877);
 
-return selector_path_27069;
+return selector_path_28877;
 
 }
 });
@@ -243,8 +243,8 @@ var temp__5757__auto__ = oops.schema.check_dynamic_path_BANG_(path,op);
 if((temp__5757__auto__ == null)){
 return null;
 } else {
-var issue_27070 = temp__5757__auto__;
-return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(oops.core.report_if_needed_dynamically,issue_27070);
+var issue_28878 = temp__5757__auto__;
+return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(oops.core.report_if_needed_dynamically,issue_28878);
 }
 });
 oops.core.get_key_dynamically = (function oops$core$get_key_dynamically(obj,key,mode){
@@ -254,34 +254,34 @@ oops.core.set_key_dynamically = (function oops$core$set_key_dynamically(obj,key,
 return (obj[key] = val);
 });
 oops.core.get_selector_dynamically = (function oops$core$get_selector_dynamically(obj,selector){
-var path_27072 = (function (){var path_27071 = oops.core.build_path_dynamically(selector);
+var path_28880 = (function (){var path_28879 = oops.core.build_path_dynamically(selector);
 
-return path_27071;
+return path_28879;
 })();
-var len_27073 = path_27072.length;
-var i_27074 = (0);
-var obj_27075 = obj;
+var len_28881 = path_28880.length;
+var i_28882 = (0);
+var obj_28883 = obj;
 while(true){
-if((i_27074 < len_27073)){
-var mode_27076 = (path_27072[i_27074]);
-var key_27077 = (path_27072[(i_27074 + (1))]);
-var next_obj_27078 = oops.core.get_key_dynamically(obj_27075,key_27077,mode_27076);
-var G__27079 = mode_27076;
-switch (G__27079) {
+if((i_28882 < len_28881)){
+var mode_28884 = (path_28880[i_28882]);
+var key_28885 = (path_28880[(i_28882 + (1))]);
+var next_obj_28886 = oops.core.get_key_dynamically(obj_28883,key_28885,mode_28884);
+var G__28887 = mode_28884;
+switch (G__28887) {
 case (0):
-var G__27081 = (i_27074 + (2));
-var G__27082 = next_obj_27078;
-i_27074 = G__27081;
-obj_27075 = G__27082;
+var G__28889 = (i_28882 + (2));
+var G__28890 = next_obj_28886;
+i_28882 = G__28889;
+obj_28883 = G__28890;
 continue;
 
 break;
 case (1):
-if((!((next_obj_27078 == null)))){
-var G__27083 = (i_27074 + (2));
-var G__27084 = next_obj_27078;
-i_27074 = G__27083;
-obj_27075 = G__27084;
+if((!((next_obj_28886 == null)))){
+var G__28891 = (i_28882 + (2));
+var G__28892 = next_obj_28886;
+i_28882 = G__28891;
+obj_28883 = G__28892;
 continue;
 } else {
 return null;
@@ -289,63 +289,63 @@ return null;
 
 break;
 case (2):
-if((!((next_obj_27078 == null)))){
-var G__27085 = (i_27074 + (2));
-var G__27086 = next_obj_27078;
-i_27074 = G__27085;
-obj_27075 = G__27086;
+if((!((next_obj_28886 == null)))){
+var G__28893 = (i_28882 + (2));
+var G__28894 = next_obj_28886;
+i_28882 = G__28893;
+obj_28883 = G__28894;
 continue;
 } else {
-var G__27087 = (i_27074 + (2));
-var G__27088 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_27075,key_27077) : oops.core.punch_key_dynamically_BANG_.call(null,obj_27075,key_27077));
-i_27074 = G__27087;
-obj_27075 = G__27088;
+var G__28895 = (i_28882 + (2));
+var G__28896 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_28883,key_28885) : oops.core.punch_key_dynamically_BANG_.call(null,obj_28883,key_28885));
+i_28882 = G__28895;
+obj_28883 = G__28896;
 continue;
 }
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27079)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28887)].join('')));
 
 }
 } else {
-return obj_27075;
+return obj_28883;
 }
 break;
 }
 });
 oops.core.get_selector_call_info_dynamically = (function oops$core$get_selector_call_info_dynamically(obj,selector){
-var path_27090 = (function (){var path_27089 = oops.core.build_path_dynamically(selector);
+var path_28898 = (function (){var path_28897 = oops.core.build_path_dynamically(selector);
 
-return path_27089;
+return path_28897;
 })();
-var len_27091 = path_27090.length;
-if((len_27091 < (4))){
-return [obj,(function (){var path_27093 = path_27090;
-var len_27094 = path_27093.length;
-var i_27095 = (0);
-var obj_27096 = obj;
+var len_28899 = path_28898.length;
+if((len_28899 < (4))){
+return [obj,(function (){var path_28901 = path_28898;
+var len_28902 = path_28901.length;
+var i_28903 = (0);
+var obj_28904 = obj;
 while(true){
-if((i_27095 < len_27094)){
-var mode_27097 = (path_27093[i_27095]);
-var key_27098 = (path_27093[(i_27095 + (1))]);
-var next_obj_27099 = oops.core.get_key_dynamically(obj_27096,key_27098,mode_27097);
-var G__27114 = mode_27097;
-switch (G__27114) {
+if((i_28903 < len_28902)){
+var mode_28905 = (path_28901[i_28903]);
+var key_28906 = (path_28901[(i_28903 + (1))]);
+var next_obj_28907 = oops.core.get_key_dynamically(obj_28904,key_28906,mode_28905);
+var G__28922 = mode_28905;
+switch (G__28922) {
 case (0):
-var G__27118 = (i_27095 + (2));
-var G__27119 = next_obj_27099;
-i_27095 = G__27118;
-obj_27096 = G__27119;
+var G__28926 = (i_28903 + (2));
+var G__28927 = next_obj_28907;
+i_28903 = G__28926;
+obj_28904 = G__28927;
 continue;
 
 break;
 case (1):
-if((!((next_obj_27099 == null)))){
-var G__27120 = (i_27095 + (2));
-var G__27121 = next_obj_27099;
-i_27095 = G__27120;
-obj_27096 = G__27121;
+if((!((next_obj_28907 == null)))){
+var G__28928 = (i_28903 + (2));
+var G__28929 = next_obj_28907;
+i_28903 = G__28928;
+obj_28904 = G__28929;
 continue;
 } else {
 return null;
@@ -353,57 +353,57 @@ return null;
 
 break;
 case (2):
-if((!((next_obj_27099 == null)))){
-var G__27122 = (i_27095 + (2));
-var G__27123 = next_obj_27099;
-i_27095 = G__27122;
-obj_27096 = G__27123;
+if((!((next_obj_28907 == null)))){
+var G__28930 = (i_28903 + (2));
+var G__28931 = next_obj_28907;
+i_28903 = G__28930;
+obj_28904 = G__28931;
 continue;
 } else {
-var G__27124 = (i_27095 + (2));
-var G__27125 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_27096,key_27098) : oops.core.punch_key_dynamically_BANG_.call(null,obj_27096,key_27098));
-i_27095 = G__27124;
-obj_27096 = G__27125;
+var G__28932 = (i_28903 + (2));
+var G__28933 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_28904,key_28906) : oops.core.punch_key_dynamically_BANG_.call(null,obj_28904,key_28906));
+i_28903 = G__28932;
+obj_28904 = G__28933;
 continue;
 }
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27114)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28922)].join('')));
 
 }
 } else {
-return obj_27096;
+return obj_28904;
 }
 break;
 }
 })()];
 } else {
-var target_obj_27092 = (function (){var path_27100 = path_27090.slice((0),(len_27091 - (2)));
-var len_27101 = path_27100.length;
-var i_27102 = (0);
-var obj_27103 = obj;
+var target_obj_28900 = (function (){var path_28908 = path_28898.slice((0),(len_28899 - (2)));
+var len_28909 = path_28908.length;
+var i_28910 = (0);
+var obj_28911 = obj;
 while(true){
-if((i_27102 < len_27101)){
-var mode_27104 = (path_27100[i_27102]);
-var key_27105 = (path_27100[(i_27102 + (1))]);
-var next_obj_27106 = oops.core.get_key_dynamically(obj_27103,key_27105,mode_27104);
-var G__27115 = mode_27104;
-switch (G__27115) {
+if((i_28910 < len_28909)){
+var mode_28912 = (path_28908[i_28910]);
+var key_28913 = (path_28908[(i_28910 + (1))]);
+var next_obj_28914 = oops.core.get_key_dynamically(obj_28911,key_28913,mode_28912);
+var G__28923 = mode_28912;
+switch (G__28923) {
 case (0):
-var G__27127 = (i_27102 + (2));
-var G__27128 = next_obj_27106;
-i_27102 = G__27127;
-obj_27103 = G__27128;
+var G__28935 = (i_28910 + (2));
+var G__28936 = next_obj_28914;
+i_28910 = G__28935;
+obj_28911 = G__28936;
 continue;
 
 break;
 case (1):
-if((!((next_obj_27106 == null)))){
-var G__27129 = (i_27102 + (2));
-var G__27130 = next_obj_27106;
-i_27102 = G__27129;
-obj_27103 = G__27130;
+if((!((next_obj_28914 == null)))){
+var G__28937 = (i_28910 + (2));
+var G__28938 = next_obj_28914;
+i_28910 = G__28937;
+obj_28911 = G__28938;
 continue;
 } else {
 return null;
@@ -411,56 +411,56 @@ return null;
 
 break;
 case (2):
-if((!((next_obj_27106 == null)))){
-var G__27131 = (i_27102 + (2));
-var G__27132 = next_obj_27106;
-i_27102 = G__27131;
-obj_27103 = G__27132;
+if((!((next_obj_28914 == null)))){
+var G__28939 = (i_28910 + (2));
+var G__28940 = next_obj_28914;
+i_28910 = G__28939;
+obj_28911 = G__28940;
 continue;
 } else {
-var G__27133 = (i_27102 + (2));
-var G__27134 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_27103,key_27105) : oops.core.punch_key_dynamically_BANG_.call(null,obj_27103,key_27105));
-i_27102 = G__27133;
-obj_27103 = G__27134;
+var G__28941 = (i_28910 + (2));
+var G__28942 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_28911,key_28913) : oops.core.punch_key_dynamically_BANG_.call(null,obj_28911,key_28913));
+i_28910 = G__28941;
+obj_28911 = G__28942;
 continue;
 }
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27115)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28923)].join('')));
 
 }
 } else {
-return obj_27103;
+return obj_28911;
 }
 break;
 }
 })();
-return [target_obj_27092,(function (){var path_27107 = [(path_27090[(len_27091 - (2))]),(path_27090[(len_27091 - (1))])];
-var len_27108 = path_27107.length;
-var i_27109 = (0);
-var obj_27110 = target_obj_27092;
+return [target_obj_28900,(function (){var path_28915 = [(path_28898[(len_28899 - (2))]),(path_28898[(len_28899 - (1))])];
+var len_28916 = path_28915.length;
+var i_28917 = (0);
+var obj_28918 = target_obj_28900;
 while(true){
-if((i_27109 < len_27108)){
-var mode_27111 = (path_27107[i_27109]);
-var key_27112 = (path_27107[(i_27109 + (1))]);
-var next_obj_27113 = oops.core.get_key_dynamically(obj_27110,key_27112,mode_27111);
-var G__27116 = mode_27111;
-switch (G__27116) {
+if((i_28917 < len_28916)){
+var mode_28919 = (path_28915[i_28917]);
+var key_28920 = (path_28915[(i_28917 + (1))]);
+var next_obj_28921 = oops.core.get_key_dynamically(obj_28918,key_28920,mode_28919);
+var G__28924 = mode_28919;
+switch (G__28924) {
 case (0):
-var G__27136 = (i_27109 + (2));
-var G__27137 = next_obj_27113;
-i_27109 = G__27136;
-obj_27110 = G__27137;
+var G__28944 = (i_28917 + (2));
+var G__28945 = next_obj_28921;
+i_28917 = G__28944;
+obj_28918 = G__28945;
 continue;
 
 break;
 case (1):
-if((!((next_obj_27113 == null)))){
-var G__27138 = (i_27109 + (2));
-var G__27139 = next_obj_27113;
-i_27109 = G__27138;
-obj_27110 = G__27139;
+if((!((next_obj_28921 == null)))){
+var G__28946 = (i_28917 + (2));
+var G__28947 = next_obj_28921;
+i_28917 = G__28946;
+obj_28918 = G__28947;
 continue;
 } else {
 return null;
@@ -468,27 +468,27 @@ return null;
 
 break;
 case (2):
-if((!((next_obj_27113 == null)))){
-var G__27140 = (i_27109 + (2));
-var G__27141 = next_obj_27113;
-i_27109 = G__27140;
-obj_27110 = G__27141;
+if((!((next_obj_28921 == null)))){
+var G__28948 = (i_28917 + (2));
+var G__28949 = next_obj_28921;
+i_28917 = G__28948;
+obj_28918 = G__28949;
 continue;
 } else {
-var G__27142 = (i_27109 + (2));
-var G__27143 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_27110,key_27112) : oops.core.punch_key_dynamically_BANG_.call(null,obj_27110,key_27112));
-i_27109 = G__27142;
-obj_27110 = G__27143;
+var G__28950 = (i_28917 + (2));
+var G__28951 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_28918,key_28920) : oops.core.punch_key_dynamically_BANG_.call(null,obj_28918,key_28920));
+i_28917 = G__28950;
+obj_28918 = G__28951;
 continue;
 }
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27116)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28924)].join('')));
 
 }
 } else {
-return obj_27110;
+return obj_28918;
 }
 break;
 }
@@ -496,39 +496,39 @@ break;
 }
 });
 oops.core.set_selector_dynamically = (function oops$core$set_selector_dynamically(obj,selector,val){
-var path_27145 = (function (){var path_27144 = oops.core.build_path_dynamically(selector);
+var path_28953 = (function (){var path_28952 = oops.core.build_path_dynamically(selector);
 
-return path_27144;
+return path_28952;
 })();
-var len_27148 = path_27145.length;
-var parent_obj_path_27149 = path_27145.slice((0),(len_27148 - (2)));
-var key_27146 = (path_27145[(len_27148 - (1))]);
-var mode_27147 = (path_27145[(len_27148 - (2))]);
-var parent_obj_27150 = (function (){var path_27151 = parent_obj_path_27149;
-var len_27152 = path_27151.length;
-var i_27153 = (0);
-var obj_27154 = obj;
+var len_28956 = path_28953.length;
+var parent_obj_path_28957 = path_28953.slice((0),(len_28956 - (2)));
+var key_28954 = (path_28953[(len_28956 - (1))]);
+var mode_28955 = (path_28953[(len_28956 - (2))]);
+var parent_obj_28958 = (function (){var path_28959 = parent_obj_path_28957;
+var len_28960 = path_28959.length;
+var i_28961 = (0);
+var obj_28962 = obj;
 while(true){
-if((i_27153 < len_27152)){
-var mode_27155 = (path_27151[i_27153]);
-var key_27156 = (path_27151[(i_27153 + (1))]);
-var next_obj_27157 = oops.core.get_key_dynamically(obj_27154,key_27156,mode_27155);
-var G__27158 = mode_27155;
-switch (G__27158) {
+if((i_28961 < len_28960)){
+var mode_28963 = (path_28959[i_28961]);
+var key_28964 = (path_28959[(i_28961 + (1))]);
+var next_obj_28965 = oops.core.get_key_dynamically(obj_28962,key_28964,mode_28963);
+var G__28966 = mode_28963;
+switch (G__28966) {
 case (0):
-var G__27160 = (i_27153 + (2));
-var G__27161 = next_obj_27157;
-i_27153 = G__27160;
-obj_27154 = G__27161;
+var G__28968 = (i_28961 + (2));
+var G__28969 = next_obj_28965;
+i_28961 = G__28968;
+obj_28962 = G__28969;
 continue;
 
 break;
 case (1):
-if((!((next_obj_27157 == null)))){
-var G__27162 = (i_27153 + (2));
-var G__27163 = next_obj_27157;
-i_27153 = G__27162;
-obj_27154 = G__27163;
+if((!((next_obj_28965 == null)))){
+var G__28970 = (i_28961 + (2));
+var G__28971 = next_obj_28965;
+i_28961 = G__28970;
+obj_28962 = G__28971;
 continue;
 } else {
 return null;
@@ -536,30 +536,30 @@ return null;
 
 break;
 case (2):
-if((!((next_obj_27157 == null)))){
-var G__27164 = (i_27153 + (2));
-var G__27165 = next_obj_27157;
-i_27153 = G__27164;
-obj_27154 = G__27165;
+if((!((next_obj_28965 == null)))){
+var G__28972 = (i_28961 + (2));
+var G__28973 = next_obj_28965;
+i_28961 = G__28972;
+obj_28962 = G__28973;
 continue;
 } else {
-var G__27166 = (i_27153 + (2));
-var G__27167 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_27154,key_27156) : oops.core.punch_key_dynamically_BANG_.call(null,obj_27154,key_27156));
-i_27153 = G__27166;
-obj_27154 = G__27167;
+var G__28974 = (i_28961 + (2));
+var G__28975 = (oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2 ? oops.core.punch_key_dynamically_BANG_.cljs$core$IFn$_invoke$arity$2(obj_28962,key_28964) : oops.core.punch_key_dynamically_BANG_.call(null,obj_28962,key_28964));
+i_28961 = G__28974;
+obj_28962 = G__28975;
 continue;
 }
 
 break;
 default:
-throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__27158)].join('')));
+throw (new Error(["No matching clause: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__28966)].join('')));
 
 }
 } else {
-return obj_27154;
+return obj_28962;
 }
 break;
 }
 })();
-return oops.core.set_key_dynamically(parent_obj_27150,key_27146,val,mode_27147);
+return oops.core.set_key_dynamically(parent_obj_28958,key_28954,val,mode_28955);
 });

@@ -10,29 +10,29 @@ goog.require('nw_calculator.components.loader.component');
 goog.require('nw_calculator.components.dropdown.component');
 goog.require('nw_calculator.hooks');
 nw_calculator.components.search.component.global$module$react = goog.global["React"];
-nw_calculator.components.search.component.search = (function nw_calculator$components$search$component$search(p__29184){
-var map__29185 = p__29184;
-var map__29185__$1 = cljs.core.__destructure_map(map__29185);
-var make_result = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__29185__$1,cljs.core.cst$kw$make_DASH_result,cljs.core.identity);
-var props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__29185__$1,cljs.core.cst$kw$props);
-var results = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__29185__$1,cljs.core.cst$kw$results);
-var on_clear = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__29185__$1,cljs.core.cst$kw$on_DASH_clear,nw_calculator.utilities.no_op);
-var loading_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__29185__$1,cljs.core.cst$kw$loading_QMARK_);
-var get_value = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__29185__$1,cljs.core.cst$kw$get_DASH_value,cljs.core.constantly(""));
-var on_search = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__29185__$1,cljs.core.cst$kw$on_DASH_search,nw_calculator.utilities.no_op);
-var on_select = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__29185__$1,cljs.core.cst$kw$on_DASH_select,nw_calculator.utilities.no_op);
-var input_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__29185__$1,cljs.core.cst$kw$input_DASH_props);
-var vec__29186 = nw_calculator.components.search.component.global$module$react.useState("");
-var input_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__29186,(0),null);
-var set_input_value_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__29186,(1),null);
+nw_calculator.components.search.component.search = (function nw_calculator$components$search$component$search(p__30992){
+var map__30993 = p__30992;
+var map__30993__$1 = cljs.core.__destructure_map(map__30993);
+var make_result = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__30993__$1,cljs.core.cst$kw$make_DASH_result,cljs.core.identity);
+var props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30993__$1,cljs.core.cst$kw$props);
+var results = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30993__$1,cljs.core.cst$kw$results);
+var on_clear = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__30993__$1,cljs.core.cst$kw$on_DASH_clear,nw_calculator.utilities.no_op);
+var loading_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30993__$1,cljs.core.cst$kw$loading_QMARK_);
+var get_value = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__30993__$1,cljs.core.cst$kw$get_DASH_value,cljs.core.constantly(""));
+var on_search = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__30993__$1,cljs.core.cst$kw$on_DASH_search,nw_calculator.utilities.no_op);
+var on_select = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__30993__$1,cljs.core.cst$kw$on_DASH_select,nw_calculator.utilities.no_op);
+var input_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30993__$1,cljs.core.cst$kw$input_DASH_props);
+var vec__30994 = nw_calculator.components.search.component.global$module$react.useState("");
+var input_value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30994,(0),null);
+var set_input_value_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__30994,(1),null);
 var input_ref = nw_calculator.components.search.component.global$module$react.useRef();
 var escape_key_pressed_QMARK_ = nw_calculator.hooks.use_key_press("Escape");
-var with_let29189 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let29189);
-var temp__5757__auto___29199 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5757__auto___29199 == null)){
+var with_let30997 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let30997);
+var temp__5757__auto___31007 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5757__auto___31007 == null)){
 } else {
-var c__13075__auto___29200 = temp__5757__auto___29199;
-if((with_let29189.generation === c__13075__auto___29200.ratomGeneration)){
+var c__14347__auto___31008 = temp__5757__auto___31007;
+if((with_let30997.generation === c__14347__auto___31008.ratomGeneration)){
 if(cljs.core.truth_(reagent.debug.has_console)){
 (cljs.core.truth_(reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -40,85 +40,85 @@ if(cljs.core.truth_(reagent.debug.has_console)){
 } else {
 }
 
-(with_let29189.generation = c__13075__auto___29200.ratomGeneration);
+(with_let30997.generation = c__14347__auto___31008.ratomGeneration);
 }
 
-var init29190 = (with_let29189.length === (0));
-var input_focused_QMARK_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((0))))))?(with_let29189[(0)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(false)):(with_let29189[(0)]));
-var set_input_value_STAR__BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((1))))))?(with_let29189[(1)] = (function (input_value__$1){
+var init30998 = (with_let30997.length === (0));
+var input_focused_QMARK_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((0))))))?(with_let30997[(0)] = reagent.core.atom.cljs$core$IFn$_invoke$arity$1(false)):(with_let30997[(0)]));
+var set_input_value_STAR__BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((1))))))?(with_let30997[(1)] = (function (input_value__$1){
 (set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1(input_value__$1) : set_input_value_BANG_.call(null,input_value__$1));
 
 return (input_ref.current.value = input_value__$1);
-})):(with_let29189[(1)]));
-var search_BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((2))))))?(with_let29189[(2)] = (function (event){
+})):(with_let30997[(1)]));
+var search_BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((2))))))?(with_let30997[(2)] = (function (event){
 var input_value__$1 = event.target.value;
 (set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1(input_value__$1) : set_input_value_BANG_.call(null,input_value__$1));
 
-var fexpr__29192 = ((cljs.core.empty_QMARK_(input_value__$1))?on_clear:on_search);
-return (fexpr__29192.cljs$core$IFn$_invoke$arity$1 ? fexpr__29192.cljs$core$IFn$_invoke$arity$1(input_value__$1) : fexpr__29192.call(null,input_value__$1));
-})):(with_let29189[(2)]));
-var select_result_BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((3))))))?(with_let29189[(3)] = (function (result){
+var fexpr__31000 = ((cljs.core.empty_QMARK_(input_value__$1))?on_clear:on_search);
+return (fexpr__31000.cljs$core$IFn$_invoke$arity$1 ? fexpr__31000.cljs$core$IFn$_invoke$arity$1(input_value__$1) : fexpr__31000.call(null,input_value__$1));
+})):(with_let30997[(2)]));
+var select_result_BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((3))))))?(with_let30997[(3)] = (function (result){
 (on_select.cljs$core$IFn$_invoke$arity$1 ? on_select.cljs$core$IFn$_invoke$arity$1(result) : on_select.call(null,result));
 
-var G__29193_29201 = (get_value.cljs$core$IFn$_invoke$arity$1 ? get_value.cljs$core$IFn$_invoke$arity$1(result) : get_value.call(null,result));
-(set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1(G__29193_29201) : set_input_value_STAR__BANG_.call(null,G__29193_29201));
+var G__31001_31009 = (get_value.cljs$core$IFn$_invoke$arity$1 ? get_value.cljs$core$IFn$_invoke$arity$1(result) : get_value.call(null,result));
+(set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1(G__31001_31009) : set_input_value_STAR__BANG_.call(null,G__31001_31009));
 
 return input_ref.current.focus();
-})):(with_let29189[(3)]));
-var clear_input_value_BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((4))))))?(with_let29189[(4)] = (function() { 
-var G__29202__delegate = function (_){
+})):(with_let30997[(3)]));
+var clear_input_value_BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((4))))))?(with_let30997[(4)] = (function() { 
+var G__31010__delegate = function (_){
 (on_clear.cljs$core$IFn$_invoke$arity$0 ? on_clear.cljs$core$IFn$_invoke$arity$0() : on_clear.call(null));
 
 (set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_STAR__BANG_.cljs$core$IFn$_invoke$arity$1("") : set_input_value_STAR__BANG_.call(null,""));
 
 return input_ref.current.focus();
 };
-var G__29202 = function (var_args){
+var G__31010 = function (var_args){
 var _ = null;
 if (arguments.length > 0) {
-var G__29203__i = 0, G__29203__a = new Array(arguments.length -  0);
-while (G__29203__i < G__29203__a.length) {G__29203__a[G__29203__i] = arguments[G__29203__i + 0]; ++G__29203__i;}
-  _ = new cljs.core.IndexedSeq(G__29203__a,0,null);
+var G__31011__i = 0, G__31011__a = new Array(arguments.length -  0);
+while (G__31011__i < G__31011__a.length) {G__31011__a[G__31011__i] = arguments[G__31011__i + 0]; ++G__31011__i;}
+  _ = new cljs.core.IndexedSeq(G__31011__a,0,null);
 } 
-return G__29202__delegate.call(this,_);};
-G__29202.cljs$lang$maxFixedArity = 0;
-G__29202.cljs$lang$applyTo = (function (arglist__29204){
-var _ = cljs.core.seq(arglist__29204);
-return G__29202__delegate(_);
+return G__31010__delegate.call(this,_);};
+G__31010.cljs$lang$maxFixedArity = 0;
+G__31010.cljs$lang$applyTo = (function (arglist__31012){
+var _ = cljs.core.seq(arglist__31012);
+return G__31010__delegate(_);
 });
-G__29202.cljs$core$IFn$_invoke$arity$variadic = G__29202__delegate;
-return G__29202;
+G__31010.cljs$core$IFn$_invoke$arity$variadic = G__31010__delegate;
+return G__31010;
 })()
-):(with_let29189[(4)]));
-var focus_BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((5))))))?(with_let29189[(5)] = (function (){
+):(with_let30997[(4)]));
+var focus_BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((5))))))?(with_let30997[(5)] = (function (){
 input_ref.current.focus();
 
 return cljs.core.reset_BANG_(input_focused_QMARK_,true);
-})):(with_let29189[(5)]));
-var blur_BANG_ = ((((init29190) || (cljs.core.not(with_let29189.hasOwnProperty((6))))))?(with_let29189[(6)] = (function (){
+})):(with_let30997[(5)]));
+var blur_BANG_ = ((((init30998) || (cljs.core.not(with_let30997.hasOwnProperty((6))))))?(with_let30997[(6)] = (function (){
 input_ref.current.blur();
 
 return setTimeout((function (){
 return cljs.core.reset_BANG_(input_focused_QMARK_,false);
 }),(200));
-})):(with_let29189[(6)]));
-var res29191 = (function (){
-var G__29194_29205 = (function (){
-var G__29196_29207 = input_ref.current.value;
-(set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1(G__29196_29207) : set_input_value_BANG_.call(null,G__29196_29207));
+})):(with_let30997[(6)]));
+var res30999 = (function (){
+var G__31002_31013 = (function (){
+var G__31004_31015 = input_ref.current.value;
+(set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_input_value_BANG_.cljs$core$IFn$_invoke$arity$1(G__31004_31015) : set_input_value_BANG_.call(null,G__31004_31015));
 
 return nw_calculator.utilities.no_op;
 });
-var G__29195_29206 = [input_ref];
-nw_calculator.components.search.component.global$module$react.useEffect(G__29194_29205,G__29195_29206);
+var G__31003_31014 = [input_ref];
+nw_calculator.components.search.component.global$module$react.useEffect(G__31002_31013,G__31003_31014);
 
-var G__29197_29208 = (function (){
+var G__31005_31016 = (function (){
 (blur_BANG_.cljs$core$IFn$_invoke$arity$0 ? blur_BANG_.cljs$core$IFn$_invoke$arity$0() : blur_BANG_.call(null));
 
 return nw_calculator.utilities.no_op;
 });
-var G__29198_29209 = [escape_key_pressed_QMARK_];
-nw_calculator.components.search.component.global$module$react.useEffect(G__29197_29208,G__29198_29209);
+var G__31006_31017 = [escape_key_pressed_QMARK_];
+nw_calculator.components.search.component.global$module$react.useEffect(G__31005_31016,G__31006_31017);
 
 return new cljs.core.PersistentVector(null, 6, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$bg_DASH_inherit$relative$w_DASH_full,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,nw_calculator.components.search.styles.search_class()], null),props),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$input$basic_DASH_input$search$w_DASH_full$flex_DASH_grow$md_COLON_pr_DASH_12_DASH_imp,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 6, [cljs.core.cst$kw$spell_DASH_check,false,cljs.core.cst$kw$ref,input_ref,cljs.core.cst$kw$placeholder,"Search something \uD83D\uDD0D",cljs.core.cst$kw$on_DASH_focus,focus_BANG_,cljs.core.cst$kw$on_DASH_blur,blur_BANG_,cljs.core.cst$kw$on_DASH_input,search_BANG_], null),cljs.core.dissoc.cljs$core$IFn$_invoke$arity$variadic(input_props,cljs.core.cst$kw$ref,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.cst$kw$on_DASH_input,cljs.core.cst$kw$on_DASH_focus_DASH_out,cljs.core.cst$kw$on_DASH_focus], 0)))], null),(cljs.core.truth_((function (){var and__4210__auto__ = cljs.core.not_empty(input_value);
 if(cljs.core.truth_(and__4210__auto__)){
@@ -135,5 +135,5 @@ return and__4210__auto__;
 })())?new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$f_GT_,nw_calculator.components.dropdown.component.options,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$on_DASH_select,select_result_BANG_,cljs.core.cst$kw$options,results,cljs.core.cst$kw$make_DASH_option,make_result], null)], null):null)], null);
 })()
 ;
-return res29191;
+return res30999;
 });

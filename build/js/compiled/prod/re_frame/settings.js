@@ -31,11 +31,11 @@ return cljs.core.conj.cljs$core$IFn$_invoke$arity$2(ret,existing_interceptor);
 }
 }),re_frame.interop.empty_queue,global_interceptors);
 });
-re_frame.settings.reg_global_interceptor = (function re_frame$settings$reg_global_interceptor(p__20462){
-var map__20463 = p__20462;
-var map__20463__$1 = cljs.core.__destructure_map(map__20463);
-var interceptor = map__20463__$1;
-var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20463__$1,cljs.core.cst$kw$id);
+re_frame.settings.reg_global_interceptor = (function re_frame$settings$reg_global_interceptor(p__21560){
+var map__21561 = p__21560;
+var map__21561__$1 = cljs.core.__destructure_map(map__21561);
+var interceptor = map__21561__$1;
+var id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__21561__$1,cljs.core.cst$kw$id);
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(re_frame.settings.store,cljs.core.update,cljs.core.cst$kw$global_DASH_interceptors,(function (global_interceptors){
 var ids = cljs.core.map.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$id,global_interceptors);
 if(cljs.core.truth_(cljs.core.some(cljs.core.PersistentHashSet.createAsIfByAssoc([id]),ids))){
@@ -49,8 +49,8 @@ re_frame.settings.get_global_interceptors = (function re_frame$settings$get_glob
 return cljs.core.cst$kw$global_DASH_interceptors.cljs$core$IFn$_invoke$arity$1(cljs.core.deref(re_frame.settings.store));
 });
 re_frame.settings.clear_global_interceptors = (function re_frame$settings$clear_global_interceptors(var_args){
-var G__20466 = arguments.length;
-switch (G__20466) {
+var G__21564 = arguments.length;
+switch (G__21564) {
 case 0:
 return re_frame.settings.clear_global_interceptors.cljs$core$IFn$_invoke$arity$0();
 
@@ -71,8 +71,8 @@ return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(re_frame.settings.stor
 
 (re_frame.settings.clear_global_interceptors.cljs$core$IFn$_invoke$arity$1 = (function (id){
 return cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(re_frame.settings.store,cljs.core.update,cljs.core.cst$kw$global_DASH_interceptors,(function (global_interceptors){
-return cljs.core.into.cljs$core$IFn$_invoke$arity$2(re_frame.interop.empty_queue,cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__20464_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(id,cljs.core.cst$kw$id.cljs$core$IFn$_invoke$arity$1(p1__20464_SHARP_));
+return cljs.core.into.cljs$core$IFn$_invoke$arity$2(re_frame.interop.empty_queue,cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__21562_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(id,cljs.core.cst$kw$id.cljs$core$IFn$_invoke$arity$1(p1__21562_SHARP_));
 }),global_interceptors));
 }));
 }));
