@@ -12,7 +12,7 @@
   (cond->> s
            (< (count s) 2) (str "0")))
 
-(defn -main [content output]
+(defn -main [content output snapshot?]
   (let [project-date-version (-> (:nw-calculator-version env)
                                  (string/split #"\.")
                                  (->> (mapv #(Integer/parseInt %)))
@@ -29,7 +29,8 @@
         version (-> (drop-last 1 bumped-version)
                     (->> (mapv (comp pad-zero str)))
                     (conj build)
-                    (->> (string/join ".")))]
+                    (->> (string/join "."))
+                    (cond-> (Boolean/parseBoolean snapshot?) (str "-SNAPSHOT")))]
     (spit output (fmt/render content {:version version}))
     (-> (slurp "project.clj")
         read-string
