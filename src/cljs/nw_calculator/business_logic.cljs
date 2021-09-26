@@ -3,9 +3,6 @@
 (defn category? [{item-type :type}]
   (boolean (#{"category"} item-type)))
 
-(defn options-or-ingredients [{:keys [options ingredients]}]
-  (or options ingredients))
-
 (def resolve-ref
   (memoize
     (fn [items-by-id {id :id :as ref}]
