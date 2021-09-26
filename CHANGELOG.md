@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.09.26.1]
+### Changed
+- Change how category options are defaulte, hopefully an improvement
+
+### Added
+- Implement URL-based routing, copy and paste away!
+
+###
+
 ## [2021.09.24.2]
 ### Changed
 - Cards are now free to grow as wide as they please
