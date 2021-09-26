@@ -5,12 +5,12 @@
     [re-frame.core :as rf]
     [nw-calculator.events :as events]
     [nw-calculator.views :as views]
-    [nw-calculator.utilities :as util]))
+    [nw-calculator.router :as router]
+    [nw-calculator.defaults :as df]))
 
-(defn dev-setup []
-  (when js/goog.DEBUG
-    (enable-console-print!)
-    (timbre/info "\uD83D\uDC77 Dev mode!")))
+(defn dev-mode! []
+  (enable-console-print!)
+  (timbre/info "\uD83D\uDC77 Dev mode!"))
 
 (defn ^:after-load initialize-app! []
   (rf/clear-subscription-cache!)
@@ -18,7 +18,8 @@
              (.getElementById js/document "app")))
 
 (defn ^:export main []
-  (dev-setup)
-  (rf/dispatch-sync [::events/initialize-db])
-  (rf/dispatch [::events/fetch-items])
+  (when js/goog.DEBUG
+    (dev-mode!))
+  (rf/dispatch-sync [::events/initialize-db df/default-db])
+  (router/init-routes!)
   (initialize-app!))

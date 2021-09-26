@@ -9,12 +9,25 @@
     [ajax.core :as ajax]
     [day8.re-frame.http-fx]
     [compound2.core :as c]
+    [reitit.frontend.controllers :as rfc]
     [nw-calculator.utilities :as util]))
 
 (rf/reg-event-db
   ::initialize-db
-  (tr/fn-traced [_ [_ default-overrides]]
-    (merge df/default-db default-overrides)))
+  (tr/fn-traced [_ [_ default-db]]
+    default-db))
+
+(rf/reg-event-fx
+  ::navigate
+  (fn [_ [_ & route]]
+    {::effects/navigate! route}))
+
+(rf/reg-event-db
+  ::navigated
+  (fn [{{:keys [controllers]} :current-route :as db} [_ new-match]]
+    (let [new-route (assoc new-match
+                      :controllers (rfc/apply-controllers controllers new-match))]
+      (assoc db :current-route new-route))))
 
 (rf/reg-event-db
   ::set-state
@@ -28,7 +41,7 @@
     (-> db
         (update :items c/add-items items-edn)
         (handlers/next-state
-          []
+          [:state]
           fsm/app-fsm
           :success))))
 
@@ -50,7 +63,7 @@
                            :uri             "/data/items.json"
                            :on-success      [::fetch-items-success]
                            :on-failure      [::fetch-items-failure]}}
-      [:db]
+      [:db :state]
       fsm/app-fsm
       :fetch-item-data)))
 
@@ -64,64 +77,71 @@
   ::search
   (tr/fn-traced
     [{{{items-by-id :by-id} :items :as db} :db} [_ item-index query]]
-    {:db              db
-     ::effects/search {:query       query
-                       :items-by-id items-by-id
-                       :on-success  [::search-success item-index]}}))
+    {:db               db
+     ::effects/search! {:query       query
+                        :items-by-id items-by-id
+                        :on-success  [::search-success item-index]}}))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::clear-search
   (tr/fn-traced
-    [db [_ item-index]]
-    (-> db
-        (assoc-in [:selected-items item-index :item] {})
-        (assoc-in [:search-results item-index] []))))
+    [{{:keys [selected-item-refs] :as db} :db} [_ item-index]]
+    (handlers/navigate-with-selected-item-refs
+      {:db (handlers/clear-search db item-index)}
+      (update selected-item-refs item-index dissoc :id))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::select-item
   (tr/fn-traced
-    [db [_ item-index item]]
-    (-> db
-        (assoc-in [:selected-items item-index :item] item)
-        (update-in [:selected-items item-index :quantity-multiplier] #(or % 1))
-        (assoc-in [:search-results item-index] []))))
+    [{{:keys [selected-item-refs] :as db} :db} [_ item-index item-id]]
+    (handlers/navigate-with-selected-item-refs
+      {:db (handlers/clear-search db item-index)}
+      (assoc-in selected-item-refs [item-index :id] item-id))))
 
 (rf/reg-event-db
+  ::set-selected-item-refs
+  (tr/fn-traced
+    [db [_ selected-items]]
+    (handlers/set-selected-item-refs db selected-items)))
+
+(rf/reg-event-fx
   ::select-option
   (tr/fn-traced
-    [{{items-by-id :by-id} :items :as db} [_ [item-index :as category-path] option-id]]
-    (assoc-in db
-              [:selected-items item-index :selected-options category-path]
-              (get items-by-id option-id))))
+    [{{:keys [selected-item-refs]} :db} [_ [item-index :as category-path] option-id]]
+    (handlers/navigate-with-selected-item-refs
+      {}
+      (assoc-in selected-item-refs
+                [item-index :selected-options category-path :id]
+                option-id))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::set-quantity-multiplier
   (tr/fn-traced
-    [db [_ item-index multiplier]]
-    (assoc-in db
-              [:selected-items item-index :quantity-multiplier]
-              multiplier)))
+    [{{:keys [selected-item-refs]} :db} [_ item-index multiplier]]
+    (handlers/navigate-with-selected-item-refs
+      {}
+      (assoc-in selected-item-refs [item-index :quantity-multiplier] multiplier))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::add-empty-item
   (tr/fn-traced
-    [db _]
-    (-> db
-        (update :selected-items conj df/empty-selected-item)
-        (update :search-results conj []))))
+    [{{:keys [selected-item-refs] :as db} :db} _]
+    (handlers/navigate-with-selected-item-refs
+      {:db (update db :search-results conj [])}
+      (conj selected-item-refs df/empty-selected-item-ref))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::remove-item
   (tr/fn-traced
-    [db [_ item-index]]
-    (-> db
-        (update :selected-items util/vec-remove-nth item-index)
-        (update :search-results util/vec-remove-nth item-index))))
+    [{{:keys [selected-item-refs] :as db} :db} [_ item-index]]
+    (handlers/navigate-with-selected-item-refs
+      {:db (update db :search-results util/vec-remove-nth item-index)}
+      (util/vec-remove-nth selected-item-refs item-index))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   ::remove-all-items
   (tr/fn-traced
-    [db _]
-    (assoc db
-      :selected-items [df/empty-selected-item]
-      :search-results [])))
+    [{db :db} _]
+    (handlers/navigate-with-selected-item-refs
+      {:db (handlers/clear-search db)}
+      [df/empty-selected-item-ref])))

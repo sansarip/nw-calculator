@@ -7,35 +7,35 @@
   (fn [{:keys [search-results]} [_ item-index]]
     (get search-results item-index)))
 
-(rf/reg-sub ::selected-items
-  :selected-items)
+(rf/reg-sub ::selected-item-refs
+  :selected-item-refs)
 
-(rf/reg-sub ::num-selected-items
-  :<- [::selected-items]
-  (fn [selected-items]
-    (count selected-items)))
+(rf/reg-sub ::num-selected-item-refs
+  :<- [::selected-item-refs]
+  (fn [selected-item-refs]
+    (count selected-item-refs)))
 
 (rf/reg-sub ::num-resolved-selected-items
-  :<- [::selected-items]
+  :<- [::selected-item-refs]
   (fn [selected-items]
-    (count (filter (comp :name :item) selected-items))))
+    (count (filter :id selected-items))))
 
 (rf/reg-sub ::items-by-id
   (fn [db]
     (-> db :items :by-id)))
 
 (rf/reg-sub ::selected-option
-  :<- [::selected-items]
-  (fn [selected-items [_ [item-index :as option-path]]]
-    (get-in selected-items [item-index :selected-options option-path])))
+  :<- [::selected-item-refs]
+  (fn [selected-item-refs [_ [item-index :as option-path]]]
+    (get-in selected-item-refs [item-index :selected-options option-path])))
 
 (rf/reg-sub ::resolved-selected-item
-  :<- [::selected-items]
+  :<- [::selected-item-refs]
   :<- [::items-by-id]
-  (fn [[selected-items items-by-id] [_ item-index]]
-    (let [{:keys                  [quantity-multiplier selected-options]
-           :or                    {selected-options {}}
-           {selected-item-id :id} :item} (get selected-items item-index)
+  (fn [[selected-item-refs items-by-id] [_ item-index]]
+    (let [{:keys            [quantity-multiplier selected-options]
+           :or              {selected-options {}}
+           selected-item-id :id} (get selected-item-refs item-index)
           {:keys [quantity xp] :as item} (get items-by-id selected-item-id)]
       (or (some-> item
                   not-empty
@@ -60,12 +60,12 @@
     (= state :searching)))
 
 (rf/reg-sub ::quantity-multiplier
-  :<- [::selected-items]
+  :<- [::selected-item-refs]
   (fn [selected-items [_ item-index]]
     (get-in selected-items [item-index :quantity-multiplier])))
 
 (rf/reg-sub ::selected-items-summary
-  :<- [::num-selected-items]
+  :<- [::num-selected-item-refs]
   (fn [num-selected-items]
     (when (> num-selected-items 1)
       (let [resolved-items (into []

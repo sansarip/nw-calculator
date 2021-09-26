@@ -21,7 +21,7 @@
   (r/with-let [search! (util/debounce
                          (fn [query] (rf/dispatch [::events/search item-index query]))
                          100)
-               select-item! (fn [item] (rf/dispatch [::events/select-item item-index item]))
+               select-item! (fn [{:keys [id]}] (rf/dispatch [::events/select-item item-index id]))
                clear-search! #(rf/dispatch [::events/clear-search item-index])]
     (let [results @(rf/subscribe [::subs/search-results item-index])
           {item-name :name} @(rf/subscribe [::subs/resolved-selected-item item-index])
@@ -196,7 +196,7 @@
 
 (defn delete-item-button [item-index]
   (r/with-let [delete-item! #(rf/dispatch [::events/remove-item item-index])]
-    (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
+    (let [num-selected-items @(rf/subscribe [::subs/num-selected-item-refs])
           disable-delete-button? (= 1 num-selected-items)]
       [nwc/circular-button-component
        {:class    "absolute text-xl top-2 right-0 border-0 flex-none"
@@ -205,7 +205,7 @@
        [:i.fas.fa-trash]])))
 
 (defn item-cards []
-  (let [num-selected-items @(rf/subscribe [::subs/num-selected-items])
+  (let [num-selected-items @(rf/subscribe [::subs/num-selected-item-refs])
         num-resolved-selected-items @(rf/subscribe [::subs/num-resolved-selected-items])]
     [:<>
      (for [item-index (range num-selected-items)]
@@ -227,7 +227,7 @@
   (r/with-let
     [add-empty-item! #(rf/dispatch [::events/add-empty-item])
      remove-items! #(rf/dispatch [::events/remove-all-items])]
-    (let [num-items @(rf/subscribe [::subs/num-selected-items])]
+    (let [num-items @(rf/subscribe [::subs/num-selected-item-refs])]
       [:div.flex.gap-6.md:gap-8.flex-wrap.justify-center
        [:button.button.w-64
         {:on-click add-empty-item!}

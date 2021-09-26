@@ -24,6 +24,8 @@
   [riverford/compound "2020.01.09"]
   [cljstache "2.0.6"]
   [binaryage/oops "0.7.1"]
+  [metosin/reitit "0.5.15"]
+  [com.cognitect/transit-cljs "0.8.269"]
   [peanuts "0.7.2"]]
  :repl-options
  {:init-ns nw-calculator.core}

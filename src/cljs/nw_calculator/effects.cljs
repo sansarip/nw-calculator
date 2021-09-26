@@ -3,7 +3,8 @@
     [re-frame.core :as rf]
     [taoensso.timbre :as timbre]
     [nw-calculator.utilities :as util]
-    [nw-calculator.business-logic :as bsns]))
+    [nw-calculator.business-logic :as bsns]
+    [reitit.frontend.easy :as rfe]))
 
 (rf/reg-fx
   ::log-info
@@ -11,7 +12,12 @@
     (apply timbre/info msgs)))
 
 (rf/reg-fx
-  ::search
+  ::navigate!
+  (fn [route]
+    (apply rfe/push-state route)))
+
+(rf/reg-fx
+  ::search!
   (fn [{:keys [items-by-id
                query
                on-success]}]
