@@ -7,14 +7,14 @@ goog.require('reagent.core');
 goog.require('nw_calculator.utilities');
 nw_calculator.components.toggle.component.toggle = (function nw_calculator$components$toggle$component$toggle(var_args){
 var args__4824__auto__ = [];
-var len__4818__auto___30975 = arguments.length;
-var i__4819__auto___30976 = (0);
+var len__4818__auto___30973 = arguments.length;
+var i__4819__auto___30974 = (0);
 while(true){
-if((i__4819__auto___30976 < len__4818__auto___30975)){
-args__4824__auto__.push((arguments[i__4819__auto___30976]));
+if((i__4819__auto___30974 < len__4818__auto___30973)){
+args__4824__auto__.push((arguments[i__4819__auto___30974]));
 
-var G__30977 = (i__4819__auto___30976 + (1));
-i__4819__auto___30976 = G__30977;
+var G__30975 = (i__4819__auto___30974 + (1));
+i__4819__auto___30974 = G__30975;
 continue;
 } else {
 }
@@ -25,19 +25,19 @@ var argseq__4825__auto__ = ((((1) < args__4824__auto__.length))?(new cljs.core.I
 return nw_calculator.components.toggle.component.toggle.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__4825__auto__);
 });
 
-(nw_calculator.components.toggle.component.toggle.cljs$core$IFn$_invoke$arity$variadic = (function (p__30970,children){
-var map__30971 = p__30970;
-var map__30971__$1 = cljs.core.__destructure_map(map__30971);
-var container_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30971__$1,cljs.core.cst$kw$container_DASH_props);
-var checkbox_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30971__$1,cljs.core.cst$kw$checkbox_DASH_props);
-var on = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30971__$1,cljs.core.cst$kw$on);
-var off = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30971__$1,cljs.core.cst$kw$off);
-var with_let30972 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let30972);
-var temp__5757__auto___30978 = reagent.ratom._STAR_ratom_context_STAR_;
-if((temp__5757__auto___30978 == null)){
+(nw_calculator.components.toggle.component.toggle.cljs$core$IFn$_invoke$arity$variadic = (function (p__30968,children){
+var map__30969 = p__30968;
+var map__30969__$1 = cljs.core.__destructure_map(map__30969);
+var container_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30969__$1,cljs.core.cst$kw$container_DASH_props);
+var checkbox_props = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30969__$1,cljs.core.cst$kw$checkbox_DASH_props);
+var on = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30969__$1,cljs.core.cst$kw$on);
+var off = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__30969__$1,cljs.core.cst$kw$off);
+var with_let30970 = reagent.ratom.with_let_values(cljs.core.cst$kw$with_DASH_let30970);
+var temp__5757__auto___30976 = reagent.ratom._STAR_ratom_context_STAR_;
+if((temp__5757__auto___30976 == null)){
 } else {
-var c__14347__auto___30979 = temp__5757__auto___30978;
-if((with_let30972.generation === c__14347__auto___30979.ratomGeneration)){
+var c__14347__auto___30977 = temp__5757__auto___30976;
+if((with_let30970.generation === c__14347__auto___30977.ratomGeneration)){
 if(cljs.core.truth_(reagent.debug.has_console)){
 (cljs.core.truth_(reagent.debug.tracking)?reagent.debug.track_console:console).error(["Warning: The same with-let is being used more ","than once in the same reactive context."].join(''));
 } else {
@@ -45,22 +45,22 @@ if(cljs.core.truth_(reagent.debug.has_console)){
 } else {
 }
 
-(with_let30972.generation = c__14347__auto___30979.ratomGeneration);
+(with_let30970.generation = c__14347__auto___30977.ratomGeneration);
 }
 
-var init30973 = (with_let30972.length === (0));
-var input_id = ((((init30973) || (cljs.core.not(with_let30972.hasOwnProperty((0))))))?(with_let30972[(0)] = ["toggle_",nw_calculator.utilities.short_uuid_str()].join('')):(with_let30972[(0)]));
-var res30974 = new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$label$block$relative$cursor_DASH_pointer$border_DASH_2$border_DASH_purple$border_DASH_opacity_DASH_100$rounded_DASH_full,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$for,input_id,cljs.core.cst$kw$class,nw_calculator.components.toggle.styles.toggle_class()], null),container_props),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$input$sr_DASH_only,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$id,input_id,cljs.core.cst$kw$type,"checkbox"], null),checkbox_props)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$absolute$ball$rounded_DASH_full$transition$z_DASH_50$bg_DASH_purple$bg_DASH_opacity_DASH_100], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$on$absolute$w_DASH_6$h_DASH_6$flex$items_DASH_center$z_DASH_40,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,"transform -translate-y-1/2 top-9/25"], null),on], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$off$absolute$w_DASH_6$h_DASH_6$flex$items_DASH_center$z_DASH_40,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,"transform -translate-y-1/2 top-9/25"], null),off], null),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
-return res30974;
+var init30971 = (with_let30970.length === (0));
+var input_id = ((((init30971) || (cljs.core.not(with_let30970.hasOwnProperty((0))))))?(with_let30970[(0)] = ["toggle_",nw_calculator.utilities.short_uuid_str()].join('')):(with_let30970[(0)]));
+var res30972 = new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$label$block$relative$cursor_DASH_pointer$border_DASH_2$border_DASH_purple$border_DASH_opacity_DASH_100$rounded_DASH_full,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$for,input_id,cljs.core.cst$kw$class,nw_calculator.components.toggle.styles.toggle_class()], null),container_props),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$input$sr_DASH_only,reagent.core.merge_props.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$id,input_id,cljs.core.cst$kw$type,"checkbox"], null),checkbox_props)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$absolute$ball$rounded_DASH_full$transition$z_DASH_50$bg_DASH_purple$bg_DASH_opacity_DASH_100], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$on$absolute$w_DASH_6$h_DASH_6$flex$items_DASH_center$z_DASH_40,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,"transform -translate-y-1/2 top-9/25"], null),on], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$off$absolute$w_DASH_6$h_DASH_6$flex$items_DASH_center$z_DASH_40,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$class,"transform -translate-y-1/2 top-9/25"], null),off], null),cljs.core.into.cljs$core$IFn$_invoke$arity$2(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_LT__GT_], null),children)], null);
+return res30972;
 }));
 
 (nw_calculator.components.toggle.component.toggle.cljs$lang$maxFixedArity = (1));
 
 /** @this {Function} */
-(nw_calculator.components.toggle.component.toggle.cljs$lang$applyTo = (function (seq30968){
-var G__30969 = cljs.core.first(seq30968);
-var seq30968__$1 = cljs.core.next(seq30968);
+(nw_calculator.components.toggle.component.toggle.cljs$lang$applyTo = (function (seq30966){
+var G__30967 = cljs.core.first(seq30966);
+var seq30966__$1 = cljs.core.next(seq30966);
 var self__4805__auto__ = this;
-return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30969,seq30968__$1);
+return self__4805__auto__.cljs$core$IFn$_invoke$arity$variadic(G__30967,seq30966__$1);
 }));
 

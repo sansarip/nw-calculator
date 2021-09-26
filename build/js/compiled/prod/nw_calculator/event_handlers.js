@@ -11,8 +11,8 @@ var new_state = cljs.core.get_in.cljs$core$IFn$_invoke$arity$2(fsm,new cljs.core
 return cljs.core.assoc_in(db,path,new_state);
 });
 nw_calculator.event_handlers.clear_search = (function nw_calculator$event_handlers$clear_search(var_args){
-var G__22696 = arguments.length;
-switch (G__22696) {
+var G__22694 = arguments.length;
+switch (G__22694) {
 case 1:
 return nw_calculator.event_handlers.clear_search.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
