@@ -47,14 +47,16 @@
                                 (map #(resolve-refs % items-by-id path selected-options-by-category-path))
                                 (filter some?))
                               refs))
-               select-option (fn [{:keys                [id category-name category-id]
-                                   name*                :name
-                                   [default-option-ref] :options
-                                   category-path        :path
-                                   :as                  category}]
-                               (let [[selected-option] (recur* [(selected-options-by-category-path
-                                                                   category-path
-                                                                   default-option-ref)])]
+               select-option (fn [{:keys            [id category-name category-id]
+                                   name*            :name
+                                   [default-option] :options
+                                   category-path    :path
+                                   :as              category}]
+                               (let [selected-option (or (some-> (selected-options-by-category-path category-path)
+                                                                 vector
+                                                                 recur*
+                                                                 first) ; Selected options need to be resolved
+                                                         default-option)]
                                  (merge
                                    (cond-> category
                                            (not category-name) (assoc :category-name name*)
