@@ -1,8 +1,4 @@
-(ns nw-calculator.business-logic
-  (:require [nw-calculator.utilities :as util]))
-
-(defn big-default-xp [{:keys [xp]}]
-  (or xp 1000000))
+(ns nw-calculator.business-logic)
 
 (defn category? [{item-type :type}]
   (boolean (#{"category"} item-type)))
@@ -14,6 +10,26 @@
   (memoize
     (fn [items-by-id {id :id :as ref}]
       (merge (items-by-id id) ref))))
+
+(defn compare-and-prioritize-nils [a b]
+  (let [c (compare a b)]
+    (cond
+      (nil? a) 1
+      (nil? b) -1
+      :else c)))
+
+(defn sort-by-ascending-tier-and-xp
+  "Sorts by ascending tier and xp"
+  ([items]
+   (sort
+     sort-by-ascending-tier-and-xp
+     items))
+  ([{tier-a :tier xp-a :xp}
+    {tier-b :tier xp-b :xp}]
+   (let [c (compare-and-prioritize-nils tier-a tier-b)]
+     (if (zero? c)
+       (compare-and-prioritize-nils xp-a xp-b)
+       c))))
 
 (def resolve-refs
   (memoize
@@ -50,7 +66,7 @@
            (cond-> (assoc item :path path)
                    ingredients (update :ingredients recur*)
                    options (-> (update :options recur* {:as-is? true}) ; Keeps options from being transformed into hiccup
-                               (update :options #(vec (sort-by big-default-xp %)))
+                               (update :options #(vec (sort-by-ascending-tier-and-xp %)))
                                select-option))))))))
 
 (defn craftable-item [{:keys [ingredients] :as item}]
