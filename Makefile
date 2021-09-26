@@ -28,6 +28,6 @@ commit-version:
 	echo "Committing changes and tagging release"
 	./scripts/commit_version.clj
 
-release-snapshot: build-prod bump-snapshot-version template commit-version
+release-snapshot: build-prod bump-snapshot-version template copy-to-build commit-version
 
-release: build-prod bump-version template commit-version
+release: build-prod bump-version template copy-to-build commit-version
