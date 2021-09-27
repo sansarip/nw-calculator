@@ -237,7 +237,9 @@
          [:button.button.w-64
           {:on-click remove-items!}
           [:i.fas.fa-trash]
-          " Remove all items"])])))
+          " Remove all items"])
+       [:f> nwc/copy-link-component]])))
+
 
 (defn header []
   [:div.flex.flex-col.items-center
