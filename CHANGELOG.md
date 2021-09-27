@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.09.27.2]
+### Added
+- Implement ability to copy shareable link as a button
+
 ## [2021.09.26.3]
 ### Fixed
 - Fix missing category options e.g. Sand Flux
