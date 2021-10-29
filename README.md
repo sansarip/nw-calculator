@@ -16,6 +16,8 @@ If your changes include adding/editing an image url of an item, then you must al
 
 ## Dev
 
+Get a no-strings-attached dev environment with [Gitpod](https://gitpod.io/#https://github.com/sansarip/nw-calculator) 💥 (it may take a while to build initially) _or_ read the info below to set up your dev environment locally.
+
 ### Prerequisites <a name="prereqs"></a>
 
 * [Clojure](https://clojure.org/guides/getting_started)
