@@ -69787,9 +69787,9 @@
   "name" : "Coarse Leather",
   "png-url" : "images/icons/items/resource/leathert2.png",
   "ingredients" : [ {
-    "id" : "-1544375071",
-    "name" : "Rawhide Scraps",
-    "quantity" : 3
+    "id" : "1092522207",
+    "name" : "Rawhide",
+    "quantity" : 4
   } ],
   "id" : "379562519",
   "xp" : 3,
