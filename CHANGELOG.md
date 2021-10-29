@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2021.10.29.1-SNAPSHOT]
+### Fixed
+- Fix coarse leather recipe
+
+### Removed
+- Remove references to rawhide scraps
+
 ## [2021.09.27.2]
 ### Added
 - Implement ability to copy shareable link as a button
