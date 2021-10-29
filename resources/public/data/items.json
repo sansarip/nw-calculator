@@ -57802,13 +57802,6 @@
   "rarity" : 0,
   "external-url" : "https://nwdb.info/db/recipe/dyeb148"
 }, {
-  "id" : "-1544375071",
-  "name" : "Rawhide Scraps",
-  "tier" : 0,
-  "rarity" : 0,
-  "png-url" : "images/icons/items/resource/rawhidet0.png",
-  "external-url" : "https://nwdb.info/db/item/rawhidet0"
-}, {
   "tier" : 4,
   "name" : "Deepwatcher Musket",
   "png-url" : "images/icons/items/weapon/2hmusketnagacorruptedt5.png",
