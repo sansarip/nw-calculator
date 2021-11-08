@@ -18,7 +18,7 @@
                        :png-url "images/icons/currency_repairpartst1.png"})})
 
 (defn write-items-json! [extracted-item-data]
-  (let [output-file-path (util/prepend-data-path "items.json")]
+  (let [output-file-path (util/prepend-data-path "items.raw.json")]
     (timbre/info "✍️ Writing item data to" output-file-path)
     (spit output-file-path (json/generate-string extracted-item-data {:pretty true})))
   extracted-item-data)
