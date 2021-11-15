@@ -1,0 +1,60 @@
+{
+  "create": [
+    {
+      "item": {
+        "tier": 4,
+        "name": "Starmetal Harvesting Sickle",
+        "png-url": "images/icons/items/weapon/1hsicklet4.png",
+        "ingredients": [
+          {
+            "id": "-1168378842",
+            "name": "Refined Wood",
+            "quantity": 2
+          },
+          {
+            "id": "-321953326",
+            "name": "Leathers",
+            "quantity": 1
+          },
+          {
+            "id": "69791201",
+            "name": "Tier 4 Metals",
+            "quantity": 9
+          }
+        ],
+        "id": "-1520227578",
+        "xp": 900,
+        "quantity": 1,
+        "rarity": 0
+      }
+    },
+    {
+      "item": {
+        "tier": 4,
+        "name": "Starmetal Skinning Knife",
+        "png-url": "images/icons/items/weapon/1hskinningknifet4.png",
+        "ingredients": [
+          {
+            "id": "-1168378842",
+            "name": "Refined Wood",
+            "quantity": 2
+          },
+          {
+            "id": "-321953326",
+            "name": "Leathers",
+            "quantity": 1
+          },
+          {
+            "id": "69791201",
+            "name": "Tier 4 Metals",
+            "quantity": 9
+          }
+        ],
+        "id": "-20485420",
+        "xp": 900,
+        "quantity": 1,
+        "rarity": 0
+      }
+    }
+  ]
+}
