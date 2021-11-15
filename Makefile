@@ -4,7 +4,13 @@ build-prod:
 	lein clean
 	lein fig:prod
 
+scrape-data:
+	lein scrape
+
 # Requires Babashka
+patch-data:
+	./scripts/patch_items.clj
+
 get-version:
 	./scripts/get_version.clj
 
@@ -28,6 +34,6 @@ commit-version:
 	echo "Committing changes and tagging release"
 	./scripts/commit_version.clj
 
-release-snapshot: build-prod bump-snapshot-version template copy-to-build commit-version
+release-snapshot: build-prod bump-snapshot-version template patch-data copy-to-build commit-version
 
-release: build-prod bump-version template copy-to-build commit-version
+release: build-prod bump-version template patch-data copy-to-build commit-version

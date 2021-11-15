@@ -11,8 +11,11 @@ PRs are welcome! You can find me for collaboration [here on Discord](https://dis
 ## Current State of the App
 
 For simplicity's sake, all item data is in the [items.json file](https://github.com/sansarip/nw-calculator/blob/main/resources/public/data/items.json). 
-If you notice an issue, you can make a PR to add/edit the data in the aforementioned JSON file. 
-If your changes include adding/editing an image url of an item, then you must also put a corresponding 128x128 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images).
+If you notice an issue, then you should drop a `<date>-<description>.patch.json` file in the the `resources/data` dir 
+containing your desired changes. If your changes include adding/editing an image url of an item, 
+then you must also put a corresponding 128x128 image in the [images directory](https://github.com/sansarip/nw-calculator/tree/main/resources/public/images). 
+Once your patch file is ready, then you can run `make patch-data` in order to patch the `items.json` file with your changes. 
+You'll need [Babashka](https://github.com/babashka/babashka) installed before running the aforementioned Make command.
 
 ## Dev
 
@@ -36,7 +39,11 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 
 The scraper graciously pulls data from [nwdb.info](nwdb.info) in a single-threaded, throttled fashion.
 
-`lein scrape`
+`lein scrape` _or_ `make scrape`
+
+Afterwards, you can patch _known_ data discrepancies with `make patch-data` which will output the 
+finalized `resources/public/data/items.json` file. 
+`make patch` will look at the patch files in `resources/data/` in order to know what to patch.
 
 ## Prod
 
