@@ -1,4 +1,4 @@
-# New World Crafting Calculator (👷 WIP)
+# New World Crafting Calculator
 
 Web app for calculating item crafting ingredients in [New World](https://www.newworld.com/en-us/). 
 
