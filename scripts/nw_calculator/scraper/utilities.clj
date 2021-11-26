@@ -14,6 +14,9 @@
 (defn prepend-data-path [filename]
   (str config/item-data-path (with-separator filename)))
 
+(defn prepend-images-path [filename]
+ (str config/images-path (with-separator filename)))
+
 (defn uppercase-hash
   "Upper-cases and hashes a string"
   [s]
@@ -24,11 +27,6 @@
 
 (defn repeat* [n f]
   (apply comp (repeat n f)))
-
-(defn parse-int [s]
-  (some->> s
-           (re-find #"\d+")
-           Integer/parseInt))
 
 (defn hash-name [{:keys [name] :as data}]
   (assoc data :id (uppercase-hash name)))
