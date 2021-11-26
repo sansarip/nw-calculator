@@ -37,9 +37,13 @@ view the main app and http://localhost:9500/devcards.html to view the devcards.
 
 ### Scraper
 
-The scraper graciously pulls data from [nwdb.info](nwdb.info) in a single-threaded, throttled fashion.
+The scraper graciously pulls data from [nwdb.info](nwdb.info) in a single-threaded, throttled fashion. 
+The following command will download item data _and_ item images.
 
 `lein scrape` _or_ `make scrape`
+
+If you only want item data then run `make scrape-data`, 
+and if you only want item images then run `make scrape-images`.
 
 Afterwards, you can patch _known_ data discrepancies with `make patch-data` which will output the 
 finalized `resources/public/data/items.json` file. 
