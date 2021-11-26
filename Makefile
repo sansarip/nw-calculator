@@ -5,7 +5,12 @@ build-prod:
 	lein fig:prod
 
 scrape-data:
-	lein scrape
+	lein scrape --download-item-data=true --download-item-images=false
+
+scrape-images:
+	lein scrape --download-item-data=false --download-item-images=true
+
+scrape: scrape-data scrape-images
 
 # Requires Babashka
 patch-data:

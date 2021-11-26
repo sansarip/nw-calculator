@@ -2,11 +2,8 @@
   (:require [clj-http.client :as client]
             [taoensso.timbre :as timbre]
             [slingshot.slingshot :refer [try+ throw+]]
-            [clojure.string :as string])
-  (:import (java.io ByteArrayInputStream ByteArrayOutputStream BufferedOutputStream FileOutputStream)
-           (javax.imageio ImageIO)
-           (java.awt Image)
-           (java.awt.image BufferedImage)))
+            [net.cgrand.enlive-html :as enlive])
+  (:import (java.io BufferedOutputStream FileOutputStream)))
 
 (defn http-get [url & [opts]]
   (try+ (->> opts
@@ -16,7 +13,8 @@
                      :accept                :json})
              (client/get url)
              :body)
-        (catch [:status 404] _)))
+        (catch [:status 404] _)
+        (catch [:status 403] _)))
 
 (defn throttled-http-get
   [url & [{:keys [retry-attempt
@@ -47,29 +45,17 @@
                      :sleep-time-ms next-sleep-time-ms}))
               (throw+))))))
 
-(defn download-png! [url output-path]
-  (when (not-empty url)
-    (let [data (:body (throttled-http-get url {:http-opts {:as :byte-array}}))
-          width 38
-          height 38
-          filename (last (string/split url #"/"))
-          output-path (str output-path "/" filename)]
-      (with-open [input-stream (ByteArrayInputStream. data)
-                  buffer (ByteArrayOutputStream.)
-                  output-stream (BufferedOutputStream. (FileOutputStream. output-path))]
-        (let [scaled-image (.getScaledInstance
-                             (ImageIO/read input-stream)
-                             width
-                             height
-                             Image/SCALE_SMOOTH)
-              image-buffer (BufferedImage.
-                             width,
-                             height,
-                             BufferedImage/TYPE_INT_ARGB)
-              graphics (.getGraphics image-buffer)]
-          (doto graphics
-            (.drawImage scaled-image 0 0 nil)
-            .dispose)
-          (ImageIO/write image-buffer "png" buffer)
-          (.write output-stream (.toByteArray buffer))))))
-  url)
+(defn throttled-fetch-html [url]
+  (some-> (throttled-http-get url {:http-opts {:as :string
+                                               :accept "text/html"}})
+      enlive/html-snippet))
+(def test-file
+  (client/get "http://placehold.it/350x150" {:as :byte-array}))
+
+(defn copy-uri-to-file [uri file]
+  (with-open [w (BufferedOutputStream. (FileOutputStream. file))]
+    (when-let [image (throttled-http-get uri {:http-opts {:as     :byte-array
+                                                          :accept nil}})]
+      (.write w image)
+      true)))
+

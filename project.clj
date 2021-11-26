@@ -74,6 +74,7 @@
   {:source-paths ["scripts"],
    :dependencies
    [[clj-http "3.12.3"]
+    [enlive "1.1.1"]
     [cheshire "5.10.0"]
     [progrock "0.1.2"]
     [slingshot "0.12.2"]],
