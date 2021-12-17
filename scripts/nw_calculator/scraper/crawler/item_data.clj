@@ -36,6 +36,12 @@
 (defn default-quantity [quantity]
   (or quantity 1))
 
+(defn extract-fq-png-url
+  ([icon]
+   (extract-fq-png-url icon nil))
+  ([icon default]
+   (or (re-find #"images/.+\.png$" (str icon)) default)))
+
 (def extract-recipe
   "Extracts recipe relevant information if available"
   (memoize
@@ -48,8 +54,9 @@
               has-png? (and itemType icon)]
           (cond-> {:external-url (util/prepend-origin "db/recipe/" recipe-id)
                    :quantity     (default-quantity quantity)}
-                  has-png? (assoc :png-url (string/lower-case
-                                             (str "images/icons/items/" itemType "/" icon ".png")))
+                  has-png? (assoc :png-url (->> (str "images/icons/items/" itemType "/" icon ".png")
+                                                (extract-fq-png-url icon)
+                                                string/lower-case))
                   has-xp? (assoc :xp (->> (map (comp default-quantity :quantity) ingredients)
                                           (reduce +)
                                           (* progress)))
@@ -61,12 +68,6 @@
       (-> (util/prepend-origin "/db/item/" item-id ".json")
           http/throttled-http-get
           :data))))
-
-(defn extract-fq-png-url
-  ([icon]
-   (extract-fq-png-url icon nil))
-  ([icon default]
-   (or (re-find #"images/.+\.png$" (str icon)) default)))
 
 (def extract-item
   "Extracts relevant item data, including recipe information if available"
