@@ -98,7 +98,9 @@
     (assoc (make-item-ref ingredient)
       :type item-type
       :quantity 1
-      :png-url (string/lower-case (str "images/" icon ".png"))
+      :png-url (string/lower-case
+                 (or (re-find #"images/.+\.png$" (str icon))
+                     (str "images/" icon ".png")))
       :options (map #(assoc % :quantity 1) (:ingredient-refs (crawl-ingredients subIngredients))))
     (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)]
       (cond-> extracted-item
