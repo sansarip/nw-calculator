@@ -77,6 +77,7 @@
     [enlive "1.1.1"]
     [cheshire "5.10.0"]
     [progrock "0.1.2"]
-    [slingshot "0.12.2"]],
+    [slingshot "0.12.2"]
+    [enlive "1.1.6"]],
    :main nw-calculator.scraper.main,
    :repl-options {:init-ns nw-calculator.scraper.main}}})
