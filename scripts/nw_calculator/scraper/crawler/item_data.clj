@@ -62,6 +62,12 @@
           http/throttled-http-get
           :data))))
 
+(defn extract-fq-png-url
+  ([icon]
+   (extract-fq-png-url icon nil))
+  ([icon default]
+   (or (re-find #"images/.+\.png$" (str icon)) default)))
+
 (def extract-item
   "Extracts relevant item data, including recipe information if available"
   (memoize
@@ -74,8 +80,9 @@
            :name         name*
            :tier         tier
            :rarity       rarity
-           :png-url      (string/lower-case
-                           (str "images/icons/items/" itemType "/" icon ".png"))
+           :png-url      (->> (str "images/icons/items/" itemType "/" icon ".png")
+                              (extract-fq-png-url icon)
+                              string/lower-case)
            :external-url (util/prepend-origin "db/item/" item-id)}
           (extract-recipe recipe-id))
         (get unknown-item-lookup item-id)))))
@@ -98,9 +105,9 @@
     (assoc (make-item-ref ingredient)
       :type item-type
       :quantity 1
-      :png-url (string/lower-case
-                 (or (re-find #"images/.+\.png$" (str icon))
-                     (str "images/" icon ".png")))
+      :png-url (->> (str "images/" icon ".png")
+                    (extract-fq-png-url icon)
+                    string/lower-case)
       :options (map #(assoc % :quantity 1) (:ingredient-refs (crawl-ingredients subIngredients))))
     (let [{:keys [ingredients] :as extracted-item} (extract-item item-id)]
       (cond-> extracted-item
