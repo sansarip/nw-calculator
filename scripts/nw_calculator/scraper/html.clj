@@ -1,13 +1,6 @@
 (ns nw-calculator.scraper.html
   (:require [clojure.zip :as z]
-            [net.cgrand.enlive-html :as enlive]
-            [nw-calculator.scraper.utilities :as util]))
-
-(defn make-row-zipper [row-map]
-  (z/zipper :content
-            (comp seq :content)
-            (fn [_ c] c)
-            row-map))
+            [net.cgrand.enlive-html :as enlive]))
 
 (defn extract-first-href [node]
   (some-> node :content first :attrs :href))
