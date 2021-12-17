@@ -4,11 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2021.11.26.1-SNAPSHOT]
+## [2021.12.17.1-SNAPSHOT]
+### Added
+- Add missing items from latest version
+
+## [2021.11.26.3]
 ### Added
 - Add missing items from patch 1.1+
 
-## [2021.11.15.1-SNAPSHOT]
+## [2021.11.15.2]
 ### Fixed
 - Fix missing starmetal gathering and skinning starmetal tools
 
