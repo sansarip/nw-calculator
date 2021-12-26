@@ -25,8 +25,8 @@
           hash
           str))
 
-(defn repeat* [n f]
-  (apply comp (repeat n f)))
-
-(defn hash-name [{:keys [name] :as data}]
-  (assoc data :id (uppercase-hash name)))
+(defn make-id
+  ([item-name]
+   (make-id "" item-name))
+  ([item-type item-name]
+   (uppercase-hash (str item-type item-name))))

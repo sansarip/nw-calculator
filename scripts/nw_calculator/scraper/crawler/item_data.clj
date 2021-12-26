@@ -11,11 +11,11 @@
 (def unknown-item-lookup
   {"azoth_currency" (let [name* "Azoth"]
                       {:name    name*
-                       :id      (util/uppercase-hash name*)
+                       :id      (util/make-id "currency" name*)
                        :png-url "images/icons/currency_azoth.png"})
    "repair_t1"      (let [name* "Repair Parts"]
                       {:name    name*
-                       :id      (util/uppercase-hash name*)
+                       :id      (util/make-id "currency" name*)
                        :png-url "images/icons/currency_repairpartst1.png"})})
 
 (defn write-items-json! [extracted-item-data]
@@ -77,7 +77,8 @@
                 :keys             [tier itemType icon rarity]
                 name*             :name} (get-item item-id)]
         (merge
-          {:id           (util/uppercase-hash name*)
+          {:id           (util/make-id itemType name*)
+           :item-type    itemType
            :name         name*
            :tier         tier
            :rarity       rarity
@@ -88,8 +89,8 @@
           (extract-recipe recipe-id))
         (get unknown-item-lookup item-id)))))
 
-(defn make-item-ref [{name* :name :keys [quantity]}]
-  {:id       (util/uppercase-hash name*)
+(defn make-item-ref [{name* :name :keys [itemType quantity]}]
+  {:id       (util/make-id itemType name*)
    :name     name*
    :quantity (or quantity 1)})
 
@@ -117,11 +118,12 @@
 (defn crawl-ingredients [ingredients]
   (loop [result {:ingredient-refs         #{}
                  :transformed-ingredients #{}}
-         [{:keys [quantity] :as ingredient} & ingredients] ingredients]
+         [{:keys [quantity itemType] :as ingredient} & ingredients] ingredients]
     (let [transformed-ingredient (transform-ingredient ingredient)
           ingredient-ref (make-item-ref                     ; This assoc accounts for unknown entities like Azoth
                            (assoc transformed-ingredient
-                             :quantity quantity))]
+                             :quantity quantity
+                             :itemType itemType))]
       (if ingredient
         (recur
           (-> result
