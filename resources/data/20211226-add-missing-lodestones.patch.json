@@ -1,0 +1,70 @@
+{
+  "create": [
+    {
+      "item": {
+        "id": "-2130214412",
+        "item-type": "resource",
+        "name": "Freezing Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestonewatert1.png",
+        "external-url": "https://nwdb.info/db/item/lodestonewatert1"
+      }
+    },
+    {
+      "item": {
+        "id": "-478304683",
+        "item-type": "resource",
+        "name": "Loamy Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestoneeartht1.png",
+        "external-url": "https://nwdb.info/db/item/lodestoneeartht1"
+      }
+    },
+    {
+      "item": {
+        "id": "-1286088633",
+        "item-type": "resource",
+        "name": "Molten Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestonefiret1.png",
+        "external-url": "https://nwdb.info/db/item/lodestonefiret1"
+      }
+    },
+    {
+      "item": {
+        "id": "516306038",
+        "item-type": "resource",
+        "name": "Gleaming Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestonelifet1.png",
+        "external-url": "https://nwdb.info/db/item/lodestonelifet1"
+      }
+    },
+    {
+      "item": {
+        "id": "1876945410",
+        "item-type": "resource",
+        "name": "Putrid Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestonedeatht1.png",
+        "external-url": "https://nwdb.info/db/item/lodestonedeatht1"
+      }
+    },
+    {
+      "item": {
+        "id": "-386998696",
+        "item-type": "resource",
+        "name": "Crystalline Lodestone",
+        "tier": 3,
+        "rarity": 1,
+        "png-url": "images/icons/items/resource/lodestonesoult1.png",
+        "external-url": "https://nwdb.info/db/item/lodestonesoult1"
+      }
+    }
+  ]
+}
