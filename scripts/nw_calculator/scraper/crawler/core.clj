@@ -16,7 +16,7 @@
            [page-number & page-numbers] (range starting-page-number (inc page-count))]
       (if page-number
         (do
-          (timbre/info "\uD83D\uDD77️ Crawling images on page" (str page-number "/" page-count))
+          (timbre/info "\uD83D\uDD77️ Crawling page" (str page-number "/" page-count))
           (recur (into result (page-fn page-number)) page-numbers))
         result))))
 

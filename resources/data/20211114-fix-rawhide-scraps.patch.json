@@ -3,7 +3,7 @@
     {
       "_comment": "Delete Rawhide Scraps",
       "match": {
-        "id": "-1544375071"
+        "id": "-1251082609"
       }
     }
   ],
@@ -11,10 +11,10 @@
     {
       "_comment": "Update references from Rawhide Scraps to Rawhide and fix quantity",
       "match-ingredients": {
-        "id": "-1544375071"
+        "id": "-1251082609"
       },
       "changeset": {
-        "id": "1092522207",
+        "id": "-1938902018",
         "name": "Rawhide",
         "quantity": 4
       }
