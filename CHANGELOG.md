@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2022.01.04.1]
+### Fixed
+- Fix items like satchels not showing up in search by increasing the fuzzy search threshold
+
 ## [2021.12.26.1]
 ### Fixed
 - Fix incorrect Lodestone data due to duplicate Lodestone IDs

@@ -99,7 +99,7 @@ return G__14737;
 ;
 });
 nw_calculator.utilities.fuzzy_search = (function nw_calculator$utilities$fuzzy_search(items,substr){
-var fuse = (new Fuse(cljs.core.clj__GT_js(items),({"threshold": 0.15, "useExtendedSearch": true})));
+var fuse = (new Fuse(cljs.core.clj__GT_js(items),({"threshold": 0.3, "useExtendedSearch": true})));
 return cljs.core.into.cljs$core$IFn$_invoke$arity$3(cljs.core.PersistentVector.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$1((function (p1__14740_SHARP_){
 return p1__14740_SHARP_.item;
 })),fuse.search(substr));
