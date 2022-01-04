@@ -17,7 +17,7 @@
     (fn [& args] (.apply (.-fire dbnc) dbnc (to-array args)))))
 
 (defn fuzzy-search [items substr]
-  (let [fuse (new js/Fuse (clj->js items) #js {:threshold 0.15 :useExtendedSearch true})]
+  (let [fuse (new js/Fuse (clj->js items) #js {:threshold 0.3 :useExtendedSearch true})]
     (into [] (map #(.-item %)) (.search fuse substr))))
 
 (defn short-uuid-str []
