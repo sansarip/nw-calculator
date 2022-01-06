@@ -18,17 +18,16 @@
 
 (rf/reg-fx
   ::search!
-  (fn [{:keys [items-by-id
+  (fn [{:keys [items
                query
                on-success]}]
-    (let [search-results (->> items-by-id
-                              vals
+    (let [search-results (->> items
+                              bsns/sort-items-by-name
                               (filter
-                                (comp
-                                  first
-                                  #(util/fuzzy-search [%] query)
-                                  :name
-                                  bsns/craftable-item))
+                                (comp first
+                                      #(util/fuzzy-search [%] query)
+                                      :name
+                                      bsns/craftable-item))
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))

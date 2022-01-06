@@ -78,9 +78,9 @@
   (tr/fn-traced
     [{{{items-by-id :by-id} :items :as db} :db} [_ item-index query]]
     {:db               db
-     ::effects/search! {:query       query
-                        :items-by-id items-by-id
-                        :on-success  [::search-success item-index]}}))
+     ::effects/search! {:query      query
+                        :items      (vals items-by-id)
+                        :on-success [::search-success item-index]}}))
 
 (rf/reg-event-fx
   ::clear-search

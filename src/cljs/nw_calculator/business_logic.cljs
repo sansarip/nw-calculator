@@ -126,3 +126,9 @@
                        items)]
     (merge-ingredients merged-items)))
 
+(def sort-items-by-name
+  (memoize
+    (fn [items]
+      (sort-by :name items))))
+
+
