@@ -16,11 +16,11 @@ return cljs.core.apply.cljs$core$IFn$_invoke$arity$2(reitit.frontend.easy.push_s
 re_frame.core.reg_fx(cljs.core.cst$kw$nw_DASH_calculator$effects_SLASH_search_BANG_,(function (p__22107){
 var map__22108 = p__22107;
 var map__22108__$1 = cljs.core.__destructure_map(map__22108);
-var items_by_id = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22108__$1,cljs.core.cst$kw$items_DASH_by_DASH_id);
+var items = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22108__$1,cljs.core.cst$kw$items);
 var query = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22108__$1,cljs.core.cst$kw$query);
 var on_success = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22108__$1,cljs.core.cst$kw$on_DASH_success);
 var search_results = cljs.core.vec(cljs.core.take.cljs$core$IFn$_invoke$arity$2((10),cljs.core.filter.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$variadic(cljs.core.first,(function (p1__22106_SHARP_){
 return nw_calculator.utilities.fuzzy_search(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__22106_SHARP_], null),query);
-}),cljs.core.cst$kw$name,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([nw_calculator.business_logic.craftable_item], 0)),cljs.core.vals(items_by_id))));
+}),cljs.core.cst$kw$name,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([nw_calculator.business_logic.craftable_item], 0)),(nw_calculator.business_logic.sort_items_by_name.cljs$core$IFn$_invoke$arity$1 ? nw_calculator.business_logic.sort_items_by_name.cljs$core$IFn$_invoke$arity$1(items) : nw_calculator.business_logic.sort_items_by_name.call(null,items)))));
 return re_frame.core.dispatch(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(on_success,search_results));
 }));

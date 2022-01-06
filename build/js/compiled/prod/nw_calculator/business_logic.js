@@ -318,3 +318,6 @@ return cljs.core.update.cljs$core$IFn$_invoke$arity$4(cljs.core.update.cljs$core
 }),new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,cljs.core.cst$kw$items_DASH_summary,cljs.core.cst$kw$items,cljs.core.PersistentHashSet.EMPTY,cljs.core.cst$kw$ingredients,cljs.core.PersistentVector.EMPTY], null),items);
 return nw_calculator.business_logic.merge_ingredients(merged_items);
 });
+nw_calculator.business_logic.sort_items_by_name = cljs.core.memoize((function (items){
+return cljs.core.sort_by.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$name,items);
+}));

@@ -12,9 +12,9 @@ goog.require('nw_calculator.defaults');
 nw_calculator.core.dev_mode_BANG_ = (function nw_calculator$core$dev_mode_BANG_(){
 cljs.core.enable_console_print_BANG_();
 
-return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init6444728325911522341.clj",13,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
+return taoensso.timbre._log_BANG_.cljs$core$IFn$_invoke$arity$11(taoensso.timbre._STAR_config_STAR_,cljs.core.cst$kw$info,"nw-calculator.core","/private/var/folders/sb/g6t896vs227cr9lgx60z75jc0000gp/T/form-init1998624538564224028.clj",13,cljs.core.cst$kw$p,cljs.core.cst$kw$auto,(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["\uD83D\uDC77 Dev mode!"], null);
-}),null)),null,2073585312,null);
+}),null)),null,-1010378965,null);
 });
 nw_calculator.core.initialize_app_BANG_ = (function nw_calculator$core$initialize_app_BANG_(){
 re_frame.core.clear_subscription_cache_BANG_();
