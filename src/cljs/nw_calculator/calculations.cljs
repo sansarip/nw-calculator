@@ -1,7 +1,5 @@
-
-(defn category? [{item-type :type}]
-  (boolean (#{"category"} item-type)))
 (ns nw-calculator.calculations
+  "Calculator utilities related to item resolution and quantities")
 
 (def resolve-ref
   (memoize
@@ -29,6 +27,8 @@
        c))))
 
 (def resolve-refs
+  "Given an item and a map of items by id,
+  returns recursively resolved ingredient refs"
   (memoize
     (fn
       ([item items-by-id]
@@ -68,11 +68,16 @@
                                (update :options #(vec (sort-by-ascending-tier-and-xp %)))
                                select-option))))))))
 
-(defn craftable-item [{:keys [ingredients] :as item}]
+(defn craftable-item
+  "Given an item,
+  returns the given item if the item has ingredients"
+  [{:keys [ingredients] :as item}]
   (when (not-empty ingredients)
     item))
 
 (def multiply-quantities
+  "Given an item and a map of items by id,
+  returns the given item with its ingredients multiplied by its quantity"
   (memoize
     (fn
       ([item items-by-id] (multiply-quantities item items-by-id 1))
@@ -90,6 +95,8 @@
              (cond-> (number? xp) (assoc :xp (* multiplier xp)))))))))
 
 (defn merge-ingredients
+  "Given an item,
+  merges the item's ingredients of the same kind"
   [{item-ingredients :ingredients :as item}]
   (cond-> item
           (not-empty item-ingredients)
