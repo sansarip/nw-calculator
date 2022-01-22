@@ -3,7 +3,7 @@
     [re-frame.core :as rf]
     [taoensso.timbre :as timbre]
     [nw-calculator.utilities :as util]
-    [nw-calculator.business-logic :as bsns]
+    [nw-calculator.calculations :as calc]
     [reitit.frontend.easy :as rfe]))
 
 (rf/reg-fx
@@ -22,12 +22,12 @@
                query
                on-success]}]
     (let [search-results (->> items
-                              bsns/sort-items-by-name
+                              calc/sort-items-by-name
                               (filter
                                 (comp first
                                       #(util/fuzzy-search [%] query)
                                       :name
-                                      bsns/craftable-item))
+                                      calc/craftable-item))
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))

@@ -1,7 +1,7 @@
-(ns nw-calculator.business-logic)
 
 (defn category? [{item-type :type}]
   (boolean (#{"category"} item-type)))
+(ns nw-calculator.calculations
 
 (def resolve-ref
   (memoize

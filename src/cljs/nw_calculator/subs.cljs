@@ -1,7 +1,7 @@
 (ns nw-calculator.subs
   (:require
     [re-frame.core :as rf]
-    [nw-calculator.business-logic :as bsns]))
+    [nw-calculator.calculations :as calc]))
 
 (rf/reg-sub ::search-results
   (fn [{:keys [search-results]} [_ item-index]]
@@ -39,8 +39,8 @@
           {:keys [quantity xp] :as item} (get items-by-id selected-item-id)]
       (or (some-> item
                   not-empty
-                  (bsns/resolve-refs items-by-id [item-index] selected-options)
-                  (bsns/multiply-quantities items-by-id quantity-multiplier)
+                  (calc/resolve-refs items-by-id [item-index] selected-options)
+                  (calc/multiply-quantities items-by-id quantity-multiplier)
                   ;; This is to prevent erroneous calculation with items
                   ;; that output more than one quantity when crafted
                   (assoc :quantity quantity
@@ -72,4 +72,4 @@
                                  (comp (map #(deref (rf/subscribe [::resolved-selected-item %])))
                                        (filter :name))
                                  (range num-selected-items))]
-        (bsns/merge-items resolved-items)))))
+        (calc/merge-items resolved-items)))))
