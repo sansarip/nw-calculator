@@ -1,3 +1,3 @@
 var config = {
-  version: "2022.01.25.1"
+  version: "2022.01.25.2"
 }
