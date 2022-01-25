@@ -51,7 +51,11 @@
       (or (some-> item
                   not-empty
                   (calc/resolve-refs items-by-id [item-index] selected-options)
-                  (calc/multiply-quantities items-by-id trade-skill-bonuses additional-item-bonuses? quantity-multiplier)
+                  (calc/multiply-quantities
+                    items-by-id
+                    trade-skill-bonuses
+                    {:additional-item-bonuses? additional-item-bonuses?
+                     :multiplier               quantity-multiplier})
                   ;; This is to prevent erroneous calculation with items
                   ;; that output more than one quantity when crafted
                   (assoc :quantity quantity

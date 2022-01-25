@@ -80,7 +80,7 @@
                [:span quantity]
                (when (and (> discount 0) additional-item-bonuses?)
                  [:span.absolute.-bottom-5.right-0.text-green-500.text-base
-                  "+" discount])]))))
+                  "-" discount])]))))
 
 (defn custom-item-name
   [{{{:keys [external-url options]
@@ -119,10 +119,10 @@
     :item-map        item-map
     :custom-quantity ^{:key (conj path "quantity")}
                      [custom-item-quantity
-                      {:editable?  root-node?
-                       :discount   discount
-                       :quantity   quantity
-                       :item-index item-index}]
+                      {:editable?              root-node?
+                       :discount               discount
+                       :quantity               quantity
+                       :item-index             item-index}]
     :custom-name     ^{:key path}
                      [custom-item-name
                       {:node-data  node-data

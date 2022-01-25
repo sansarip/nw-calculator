@@ -105,36 +105,55 @@
   (memoize
     (fn
       ([item items-by-id trade-skill-bonuses]
-       (multiply-quantities item items-by-id trade-skill-bonuses true))
-      ([item items-by-id trade-skill-bonuses additional-item-bonuses?]
-       (multiply-quantities item items-by-id trade-skill-bonuses additional-item-bonuses? 1))
+       (multiply-quantities
+         item
+         items-by-id
+         trade-skill-bonuses
+         {:multiplier               1
+          :additional-item-bonuses? true}))
       ([{:keys [quantity xp qty-bonus ingredients id tier trade-skill]
          :or   {quantity  1
                 qty-bonus 0}
          :as   item}
         items-by-id
         trade-skill-bonuses
-        additional-item-bonuses?
-        multiplier]
-       (let [{base-multiplier :quantity
+        {:keys [multiplier
+                parent-item
+                additional-item-bonuses?]}]
+       (let [{parent-quantity    :quantity
+              parent-tier        :tier
+              parent-trade-skill :trade-skill
+              parent-qty-bonus   :qty-bonus
+              parent-ingredients :ingredients
+              :or                {parent-quantity    quantity
+                                  parent-tier        tier
+                                  parent-trade-skill trade-skill
+                                  parent-qty-bonus   qty-bonus
+                                  parent-ingredients ingredients}} parent-item
+             {base-multiplier :quantity
               :or             {base-multiplier 1}} (items-by-id id)
-             refining-agent-bonus (some-> (some refining-agent ingredients)
+             refining-agent-bonus (some-> (some refining-agent parent-ingredients)
                                           :tier
-                                          (as-> $ (get-in refining-agent-bonuses [tier $])))
-             trade-skill-bonus (get trade-skill-bonuses (keyword trade-skill))
+                                          (as-> $ (get-in refining-agent-bonuses [parent-tier $])))
+             trade-skill-bonus (get trade-skill-bonuses (keyword parent-trade-skill))
              additional-item-chance (if additional-item-bonuses?
-                                      (min (max (+ trade-skill-bonus qty-bonus refining-agent-bonus) 0) 1)
+                                      (min (max (+ trade-skill-bonus parent-qty-bonus refining-agent-bonus) 0) 1)
                                       0)
              multiplier*quantity (* multiplier quantity)
              discount (* (int (/ (* multiplier additional-item-chance) 2)) quantity)
              multiplier*quantity-surplus (- multiplier*quantity discount)
              next-multiplier (-> (/ multiplier*quantity-surplus base-multiplier) Math/ceil int)
-             recur* #(multiply-quantities % items-by-id trade-skill-bonuses additional-item-bonuses? next-multiplier)
+             recur* #(multiply-quantities
+                       %
+                       items-by-id
+                       trade-skill-bonuses
+                       {:multiplier               next-multiplier
+                        :additional-item-bonuses? additional-item-bonuses?
+                        :parent-item              item})
              recur-on-items (fn [items] (into #{} (map recur*) items))]
          (-> item
              (cond-> ingredients (update :ingredients recur-on-items))
-             (assoc :quantity multiplier*quantity-surplus
-                    :discount discount)
+             (assoc :quantity multiplier*quantity-surplus :discount discount)
              (cond-> (number? xp) (assoc :xp (* next-multiplier xp)))))))))
 
 (defn merge-ingredients
