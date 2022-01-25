@@ -346,7 +346,7 @@
 (defn profile []
   (let [additional-item-bonuses? @(rf/subscribe [::subs/additional-item-bonuses?])]
     [nwc/drawer-component
-     {:container-props {:class "z-40 overflow-x-hidden"}}
+     {:container-props {:class "z-40 overflow-x-hidden animate__animated animate__slideInRight animate__delay-1s"}}
      [:div.grid.gap-y-12.gap-x-8.md:max-w-3xl
       {:style {:grid-template-columns "auto 7rem 1fr"}}
       [:header.col-span-3
