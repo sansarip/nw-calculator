@@ -10,6 +10,7 @@
     [nw-calculator.styles :as styles]
     [nw-calculator.config :as cfg]
     [nw-calculator.components.item.component :as item-component]
+    [oops.core :refer [oget]]
     [react]))
 
 (defn basic-item [item-map]
@@ -54,7 +55,7 @@
 
 (defn custom-item-quantity [{:keys [editable? discount quantity item-index]}]
   (r/with-let [set-quantity-multiplier! (fn [event]
-                                          (let [multiplier (util/parse-pos (.. event -target -value))]
+                                          (let [multiplier (util/parse-pos (oget event :?target.?value))]
                                             (rf/dispatch [::events/set-quantity-multiplier item-index multiplier])))
                min-quantity-multiplier 1]
     (let [quantity-multiplier* @(rf/subscribe [::subs/quantity-multiplier item-index])
@@ -335,8 +336,8 @@
       [:span.color-gray.self-center "%"]]]))
 
 (defn set-trade-skill-bonus [event]
-  (let [skill (keyword (.. event -target -id))
-        value (.. event -target -value)]
+  (let [skill (keyword (oget event :?target.?id))
+        value (oget event :?target.?value)]
     (rf/dispatch [::events/set-trade-skill-bonus skill (/ (util/parse-pos value) 100)])))
 
 (defn toggle-additional-item-bonuses []
