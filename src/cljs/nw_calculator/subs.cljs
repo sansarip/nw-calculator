@@ -29,10 +29,21 @@
   (fn [selected-item-refs [_ [item-index :as option-path]]]
     (get-in selected-item-refs [item-index :selected-options option-path])))
 
+(rf/reg-sub ::trade-skill-bonuses
+  (fn [db]
+    (:trade-skill-bonuses db)))
+
+(rf/reg-sub ::trade-skill-bonus
+  :<- [::trade-skill-bonuses]
+  (fn [tsb [_ skill]]
+    (get tsb skill 0)))
+
 (rf/reg-sub ::resolved-selected-item
   :<- [::selected-item-refs]
   :<- [::items-by-id]
-  (fn [[selected-item-refs items-by-id] [_ item-index]]
+  :<- [::trade-skill-bonuses]
+  :<- [::additional-item-bonuses?]
+  (fn [[selected-item-refs items-by-id trade-skill-bonuses additional-item-bonuses?] [_ item-index]]
     (let [{:keys            [quantity-multiplier selected-options]
            :or              {selected-options {}}
            selected-item-id :id} (get selected-item-refs item-index)
@@ -40,7 +51,7 @@
       (or (some-> item
                   not-empty
                   (calc/resolve-refs items-by-id [item-index] selected-options)
-                  (calc/multiply-quantities items-by-id quantity-multiplier)
+                  (calc/multiply-quantities items-by-id trade-skill-bonuses additional-item-bonuses? quantity-multiplier)
                   ;; This is to prevent erroneous calculation with items
                   ;; that output more than one quantity when crafted
                   (assoc :quantity quantity
@@ -73,3 +84,7 @@
                                        (filter :name))
                                  (range num-selected-items))]
         (calc/merge-items resolved-items)))))
+
+(rf/reg-sub ::additional-item-bonuses?
+  (fn [db]
+    (:additional-item-bonuses? db)))

@@ -9,7 +9,8 @@
     [nw-calculator.components.toggle.component :as toggle-component]
     [nw-calculator.components.multiplication.component :as multiplication-component]
     [nw-calculator.components.dropdown.component :as dropdown-component]
-    [nw-calculator.components.copy-link.component :as copy-link-component]))
+    [nw-calculator.components.copy-link.component :as copy-link-component]
+    [nw-calculator.components.drawer.component :as drawer-component]))
 
 (def collapsible-tree-component collapsible-tree-component/collapsible-tree)
 (def item-component item-component/item)
@@ -22,3 +23,4 @@
 (def options-component dropdown-component/options)
 (def dropdown-component dropdown-component/dropdown)
 (def copy-link-component copy-link-component/copy-link)
+(def drawer-component drawer-component/drawer)

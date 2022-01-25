@@ -9,7 +9,8 @@
     [nw-calculator.devcards.toggle]
     [nw-calculator.devcards.multiplication]
     [nw-calculator.devcards.dropdown]
-    [nw-calculator.devcards.copy-link]))
+    [nw-calculator.devcards.copy-link]
+    [nw-calculator.devcards.drawer]))
 
 (enable-console-print!)
 

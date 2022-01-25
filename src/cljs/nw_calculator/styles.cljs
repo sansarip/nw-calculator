@@ -5,6 +5,7 @@
 (def config
   {:colors {:purple       {:hex "#9b4dca" :rgb "155,77,202"}
             :off-white    {:hex "#f8f8ff" :rgb "248, 248, 255"}
+            :gray         {:hex "#d1d1d1" :rgb "209, 209, 209"}
             :light-gray   {:hex "#e5e7eb" :rgb "229, 231, 235"}
             :raisin-black {:hex "#282a36" :rgb "40, 42, 54"}}
    :sizes  {:screen   {:md "768px"}
@@ -62,35 +63,47 @@
   (-> config :sizes :relative :176))
 (def off-white
   (-> config :colors :off-white :hex))
+(def light-gray
+  (-> config :colors :light-gray :hex))
+(def gray
+  (-> config :colors :gray :hex))
 
 (spade/defglobal global-styles
   (at-media {:min-width (-> config :sizes :screen :md)}
             [".md\\:min-w-176-imp" {:min-width (with-config "{{sizes.relative.176}} !important")}]
             [".md\\:pr-12-imp" {:padding-right (with-config "{{sizes.relative.12}} !important")}]
             [".md\\:text-7xl-imp" {:font-size "4.5rem !important"}]
-            [".md\\:text-5xl-imp" {:font-size "3rem !important"}])
+            [".md\\:text-5xl-imp" {:font-size "3rem !important"}]
+            [".md\\:w-1\\/3screen" {:width :33.33vw}])
+  (at-media {:max-width (-> config :sizes :screen :md)}
+            [".sm\\:w-19\\/20screen" {:width :95vw}])
   [:body {:font-family "'Roboto', sans-serif"}]
   [:#app {:background :inherit}]
   [:h3 :h2 :h1 {:letter-spacing :0.4rem
-                :color          off-white
                 :text-transform :uppercase
                 :font-family    "'IM Fell English SC', serif"}]
   [:.color-off-white {:color off-white}]
+  [:.color-light-gray {:color light-gray}]
+  [:.color-gray {:color gray}]
   [:.text-8 {:font-size relative-10}]
   [:.text-14 {:font-size relative-14}]
   [:.bg-inherit {:background "inherit"}]
   [:.bg-purple {:background-color (with-config "rgba({{colors.purple.rgb}}, var(--tw-bg-opacity))")}]
+  [:.bg-purple-imp {:background-color (with-config "rgba({{colors.purple.rgb}}, var(--tw-bg-opacity)) !important")}]
   [:.bg-raisin-black {:background-color (with-config "rgba({{colors.raisin-black.rgb}}, var(--tw-bg-opacity))")}]
   [:.bg-off-white {:background-color (with-config "rgba({{colors.off-white.rgb}}, var(--tw-bg-opacity))")}]
+  [:.bg-off-white-imp {:background-color (with-config "rgba({{colors.off-white.rgb}}, var(--tw-bg-opacity)) !important")}]
   [:button.button {:padding (with-config "0px {{sizes.relative.4}} 0px {{sizes.relative.4}}")}]
   [:.border-purple {:border-color (with-config "rgba({{colors.purple.rgb}}, var(--tw-border-opacity))")}]
   [:.text-purple {:color (with-config "rgba({{colors.purple.rgb}}, var(--tw-text-opacity))")}]
   [:.m-0-imp {:margin (with-config "{{sizes.relative.0}} !important")}]
+  [:.p-0-imp {:padding (with-config "{{sizes.relative.0}} !important")}]
   [:.w-11-imp {:width (with-config "{{sizes.relative.11}} !important")}]
   [:.w-12-imp {:width (with-config "{{sizes.relative.12}} !important")}]
   [:.min-w-12 {:min-width relative-12}]
   [:.min-w-96 {:min-width relative-96}]
   [:.min-w-128 {:min-width relative-128}]
+  [:.max-w-half {:max-width :50%}]
   [:.w-176 {:width relative-176}]
   [:.mb-18 {:margin-bottom relative-18}]
   [:.top-120 {:top relative-120}]
@@ -111,7 +124,8 @@
   [:select {:padding (with-config "0px 0px 0px {{sizes.relative.1}}")
             :height  relative-12}]
   [:.bg-white-imp {:background-color "white !important"}]
-  [:.flip-y {:transform "scaleY(-1)"}])
+  [:.flip-y {:transform "scaleY(-1)"}]
+  [:.flip-x {:transform "scaleX(-1)"}])
 
 (spade/defclass search-result-item-class []
   [:.labels {:width          :100%

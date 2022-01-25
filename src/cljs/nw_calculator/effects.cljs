@@ -31,3 +31,11 @@
                               (take 10)
                               vec)]
       (rf/dispatch (conj on-success search-results)))))
+
+(rf/reg-fx
+  ::persist!
+  (fn [db]
+    (-> db
+        (select-keys [:additional-item-bonuses? :trade-skill-bonuses])
+        pr-str
+        (->> (js/localStorage.setItem "db")))))

@@ -10,12 +10,15 @@
     [day8.re-frame.http-fx]
     [compound2.core :as c]
     [reitit.frontend.controllers :as rfc]
-    [nw-calculator.utilities :as util]))
+    [nw-calculator.utilities :as util]
+    [clojure.edn :as edn]))
 
 (rf/reg-event-db
   ::initialize-db
   (tr/fn-traced [_ [_ default-db]]
-    default-db))
+    (->> (js/localStorage.getItem "db")
+         edn/read-string
+         (merge default-db))))
 
 (rf/reg-event-fx
   ::navigate
@@ -145,3 +148,19 @@
     (handlers/navigate-with-selected-item-refs
       {:db (handlers/clear-search db)}
       [df/empty-selected-item-ref])))
+
+(rf/reg-event-fx
+  ::set-trade-skill-bonus
+  (tr/fn-traced
+    [{db :db} [_ skill value]]
+    (let [updated-db (assoc-in db [:trade-skill-bonuses skill] value)]
+      {:db updated-db
+       ::effects/persist! updated-db})))
+
+(rf/reg-event-fx
+  ::toggle-additional-item-bonuses
+  (tr/fn-traced
+    [{db :db} _]
+    (let [updated-db (update db :additional-item-bonuses? not)]
+      {:db updated-db
+       ::effects/persist! updated-db})))

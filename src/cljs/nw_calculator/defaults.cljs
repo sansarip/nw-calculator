@@ -11,7 +11,8 @@
                               :quantity-multiplier 1})
 
 (def default-db
-  {:state              :loading
-   :items              items-index
-   :selected-item-refs [empty-selected-item-ref]
-   :search-results     [[]]})
+  {:state                    :loading
+   :items                    items-index
+   :selected-item-refs       [empty-selected-item-ref]
+   :search-results           [[]]
+   :additional-item-bonuses? true})

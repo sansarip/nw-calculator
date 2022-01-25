@@ -1,5 +1,6 @@
 (ns nw-calculator.calculations
-  "Calculator utilities related to item resolution and quantities")
+  "Calculator utilities related to item resolution and quantities"
+  (:require [clojure.string :as string]))
 
 (def resolve-ref
   (memoize
@@ -75,24 +76,66 @@
   (when (not-empty ingredients)
     item))
 
+(defn refining-agent
+  "Given a resolved item,
+  returns the given item if it is a refining agent"
+  [{cname :category-name :as item}]
+  (when (some->> cname
+                 string/lower-case
+                 (re-find #"flux|reagent|refining"))
+    item))
+
+(def refining-agent-bonuses
+  "{current-item-tier {refining-agent-tier bonus}}"
+  {3 {3 0
+      4 0.5
+      5 0.75}
+   4 {3 -0.05
+      4 0
+      5 0.25}
+   5 {3 -0.1
+      4 -0.05
+      5 0}})
+
 (def multiply-quantities
   "Given an item and a map of items by id,
-  returns the given item with its ingredients multiplied by its quantity"
+  returns the given item with its ingredients multiplied by its quantity
+
+  Trade Skill Bonus + (Base Chance x 100) + (Refining Agent Tier Difference x 100) = Additional Item Chance"
   (memoize
     (fn
-      ([item items-by-id] (multiply-quantities item items-by-id 1))
-      ([{:keys [quantity xp ingredients id] :or {quantity 1} :as item} items-by-id prev-multiplier]
+      ([item items-by-id trade-skill-bonuses]
+       (multiply-quantities item items-by-id trade-skill-bonuses true))
+      ([item items-by-id trade-skill-bonuses additional-item-bonuses?]
+       (multiply-quantities item items-by-id trade-skill-bonuses additional-item-bonuses? 1))
+      ([{:keys [quantity xp qty-bonus ingredients id tier trade-skill]
+         :or   {quantity  1
+                qty-bonus 0}
+         :as   item}
+        items-by-id
+        trade-skill-bonuses
+        additional-item-bonuses?
+        multiplier]
        (let [{base-multiplier :quantity
               :or             {base-multiplier 1}} (items-by-id id)
-             product (* quantity prev-multiplier)
-             multiplier (-> (/ product base-multiplier) Math/ceil int)
-             recur* #(multiply-quantities % items-by-id multiplier)
-             recur-on-items (fn [items]
-                              (into #{} (map recur*) items))]
+             refining-agent-bonus (some-> (some refining-agent ingredients)
+                                          :tier
+                                          (as-> $ (get-in refining-agent-bonuses [tier $])))
+             trade-skill-bonus (get trade-skill-bonuses (keyword trade-skill))
+             additional-item-chance (if additional-item-bonuses?
+                                      (min (max (+ trade-skill-bonus qty-bonus refining-agent-bonus) 0) 1)
+                                      0)
+             multiplier*quantity (* multiplier quantity)
+             discount (* (int (/ (* multiplier additional-item-chance) 2)) quantity)
+             multiplier*quantity-surplus (- multiplier*quantity discount)
+             next-multiplier (-> (/ multiplier*quantity-surplus base-multiplier) Math/ceil int)
+             recur* #(multiply-quantities % items-by-id trade-skill-bonuses additional-item-bonuses? next-multiplier)
+             recur-on-items (fn [items] (into #{} (map recur*) items))]
          (-> item
              (cond-> ingredients (update :ingredients recur-on-items))
-             (assoc :quantity product)
-             (cond-> (number? xp) (assoc :xp (* multiplier xp)))))))))
+             (assoc :quantity multiplier*quantity-surplus
+                    :discount discount)
+             (cond-> (number? xp) (assoc :xp (* next-multiplier xp)))))))))
 
 (defn merge-ingredients
   "Given an item,

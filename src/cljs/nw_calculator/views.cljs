@@ -52,12 +52,13 @@
       :get-value       :name
       :options         options}]))
 
-(defn custom-item-quantity [{:keys [editable? quantity item-index]}]
+(defn custom-item-quantity [{:keys [editable? discount quantity item-index]}]
   (r/with-let [set-quantity-multiplier! (fn [event]
                                           (let [multiplier (util/parse-pos (.. event -target -value))]
                                             (rf/dispatch [::events/set-quantity-multiplier item-index multiplier])))
                min-quantity-multiplier 1]
     (let [quantity-multiplier* @(rf/subscribe [::subs/quantity-multiplier item-index])
+          additional-item-bonuses? @(rf/subscribe [::subs/additional-item-bonuses?])
           quantity-multiplier (if (js/isNaN quantity-multiplier*)
                                 min-quantity-multiplier
                                 quantity-multiplier*)
@@ -74,7 +75,11 @@
                     :default-value quantity-multiplier
                     :placeholder   min-quantity-multiplier
                     :on-input      set-quantity-multiplier!}]
-        :else [:span quantity]))))
+        :else [:div.relative
+               [:span quantity]
+               (when (and (> discount 0) additional-item-bonuses?)
+                 [:span.absolute.-bottom-5.right-0.text-green-500.text-base
+                  "+" discount])]))))
 
 (defn custom-item-name
   [{{{:keys [external-url options]
@@ -103,9 +108,9 @@
      (into [:<>] (map image-with-popup) image-urls)]))
 
 (defn item
-  [{{:keys [quantity path] :as item-map} :node
-    :keys                                [root-node?]
-    :as                                  node-data}
+  [{{:keys [quantity path discount] :as item-map} :node
+    :keys                                         [root-node?]
+    :as                                           node-data}
    item-index]
   [nwc/item-component
    {:popup-on-hover? true
@@ -114,6 +119,7 @@
     :custom-quantity ^{:key (conj path "quantity")}
                      [custom-item-quantity
                       {:editable?  root-node?
+                       :discount   discount
                        :quantity   quantity
                        :item-index item-index}]
     :custom-name     ^{:key path}
@@ -243,9 +249,9 @@
 
 (defn header []
   [:div.flex.flex-col.items-center
-   [:h1.text-14.md:text-7xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower
+   [:h1.color-off-white.text-14.md:text-7xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower
     "New World"]
-   [:h3.text-8.md:text-5xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower.animate__delay-1s
+   [:h2.color-off-white.text-8.md:text-5xl-imp.text-center.animate__animated.animate__fadeIn.animate__slower.animate__delay-1s
     "Crafting Calculator"]])
 
 (defn body []
@@ -281,16 +287,103 @@
      {:src   "https://i.gyazo.com/599d57716f081f1e4e6a8b61f4155981.jpg"
       :class (styles/background-image-class start-animation?)}]))
 
+(def trade-skill-map
+  (sorted-map
+    :armoring {:icon  "fas fa-shield"
+               :label "Armoring"}
+    :arcana {:icon  "fas fa-book-spells"
+             :label "Arcana"}
+    :cooking {:icon  "fas fa-hat-chef"
+              :label "Cooking"}
+    :engineering {:icon  "fas fa-cog"
+                  :label "Engineering"}
+    :furnishing {:icon  "fas fa-chair"
+                 :label "Furnishing"}
+    :jewelcrafting {:icon  "fas fa-gem"
+                    :label "Jewelcrafting"}
+    :leatherworking {:icon  "fas fa-deer"
+                     :label "Leatherworking"}
+    :smelting {:icon  "fas fa-fireplace"
+               :label "Smelting"}
+    :stonecutting {:icon  "fas fa-cube"
+                   :label "Stonecutting"}
+    :weaponsmithing {:icon  "fas fa-sword"
+                     :label "Weaponsmithing"}
+    :weaving {:icon  "fas fa-scarf"
+              :label "Weaving"}
+    :woodworking {:icon  "fas fa-axe"
+                  :label "Woodworking"}))
+
+(defn trade-skill
+  [{:keys [skill on-change]
+    :or   {on-change util/no-op}}]
+  (let [{:keys [icon label]} (trade-skill-map skill)
+        value (* 100 @(rf/subscribe [::subs/trade-skill-bonus skill]))]
+    [:<>
+     [:label.m-0.self-center.align-self-end.col-start-1
+      {:for skill}
+      [:i.mr-4 {:class icon}]
+      label]
+     [:div.flex.col-start-2.gap-2
+      [:span.color-gray.self-center "+"]
+      [:input.basic-input
+       {:default-value value
+        :id            skill
+        :on-change     on-change
+        :type          :number
+        :placeholder   0}]
+      [:span.color-gray.self-center "%"]]]))
+
+(defn set-trade-skill-bonus [event]
+  (let [skill (keyword (.. event -target -id))
+        value (.. event -target -value)]
+    (rf/dispatch [::events/set-trade-skill-bonus skill (/ (util/parse-pos value) 100)])))
+
+(defn toggle-additional-item-bonuses []
+  (rf/dispatch [::events/toggle-additional-item-bonuses]))
+
+(defn profile []
+  (let [additional-item-bonuses? @(rf/subscribe [::subs/additional-item-bonuses?])]
+    [nwc/drawer-component
+     {:container-props {:class "z-40 overflow-x-hidden"}}
+     [:div.grid.gap-y-12.gap-x-8.md:max-w-3xl
+      {:style {:grid-template-columns "auto 7rem 1fr"}}
+      [:header.col-span-3
+       [:h1.text-8.md:text-5xl-imp
+        "Trade Skill Bonuses"]
+       [:p.col-span-3.mt-4
+        "Enter additional-item-chance bonuses gained from your equipment and trade skill level below.
+        See "
+        [:a {:href   "https://nwdb.info/guides/additional-item-chance"
+             :target "_blank"}
+         "here"]
+        " for more info."]]
+      [:label.col-start-1 {:for :trade-skill-bonus-toggle}
+       "Toggle bonuses"]
+      [nwc/toggle-component
+       {:container-props {:class "col-start-2" :id :trade-skill-bonus-toggle}
+        :checkbox-props  {:checked   additional-item-bonuses?
+                          :on-change toggle-additional-item-bonuses}
+        :off             [:i.fas.fa-times.text-red-400.w-full.h-full]
+        :on              [:i.fas.fa-check.text-green-400.w-full.h-full]}]
+      (for [skill (keys trade-skill-map)]
+        ^{:key skill}
+        [trade-skill
+         {:skill     skill
+          :on-change set-trade-skill-bonus}])]]))
+
 (defn content []
   (let [show-content? @(rf/subscribe [::subs/ready?])]
     (when show-content?
-      [:div.relative.h-full.z-30.flex.flex-col.gap-20.pt-40.overflow-y-auto
-       [header]
-       [body]
-       [footer]])))
+      [:<>
+       [profile]
+       [:div.relative.h-full.z-30.flex.flex-col.gap-20.pt-40.overflow-y-auto
+        [header]
+        [body]
+        [footer]]])))
 
 (defn main-panel []
-  [:div.z-10.absolute.bg-opacity-75.relative.h-screen.dark.bg-raisin-black
+  [:div.z-10.absolute.bg-opacity-75.relative.h-screen.dark.bg-raisin-black.overflow-x-hidden
    [loader]
    [background]
    [background-image]
