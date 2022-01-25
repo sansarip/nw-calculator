@@ -46,7 +46,7 @@
   "Extracts recipe relevant information if available"
   (memoize
     (fn [recipe-id]
-      (if-let [{:keys                                    [ingredients itemType icon]
+      (if-let [{:keys                                    [qtyBonus tradeskill ingredients itemType icon]
                 {:keys [quantity]}                       :output
                 {progress :CategoricalProgressionReward} :event} (get-recipe recipe-id)]
         (let [craftable? (not-empty ingredients)
@@ -60,7 +60,9 @@
                   has-xp? (assoc :xp (->> (map (comp default-quantity :quantity) ingredients)
                                           (reduce +)
                                           (* progress)))
-                  craftable? (assoc :ingredients ingredients)))))))
+                  craftable? (assoc :ingredients ingredients
+                                    :trade-skill (string/lower-case tradeskill)
+                                    :qty-bonus qtyBonus)))))))
 
 (def get-item
   (memoize
