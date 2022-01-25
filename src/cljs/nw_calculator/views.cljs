@@ -63,24 +63,37 @@
           quantity-multiplier (if (js/isNaN quantity-multiplier*)
                                 min-quantity-multiplier
                                 quantity-multiplier*)
-          editable-stack? (and editable? (> quantity 1))]
-      (cond
-        editable-stack? [:f> nwc/multiplication-component
-                         {:base            quantity
-                          :container-props {:class "mb-18"}
-                          :input-props     {:default-value quantity-multiplier
-                                            :placeholder   min-quantity-multiplier
-                                            :on-input      set-quantity-multiplier!}}]
-        editable? [:input.basic-input.w-12-imp
-                   {:type          :number
-                    :default-value quantity-multiplier
-                    :placeholder   min-quantity-multiplier
-                    :on-input      set-quantity-multiplier!}]
-        :else [:div.relative
-               [:span quantity]
-               (when (and (> discount 0) additional-item-bonuses?)
-                 [:span.absolute.-bottom-5.right-0.text-green-500.text-base
-                  "-" discount])]))))
+          show-discount? (and (> discount 0) additional-item-bonuses?)
+          editable-stack? (and editable? (> quantity 1))
+          editable-with-discount? (and editable? show-discount?)]
+      [:div.relative.overflow-visible
+       (cond
+         editable-stack? [:<>
+                          [:f> nwc/multiplication-component
+                           {:base            quantity
+                            :container-props {:class "mb-20"}
+                            :input-props     {:default-value quantity-multiplier
+                                              :placeholder   min-quantity-multiplier
+                                              :on-input      set-quantity-multiplier!}}]
+                          (when show-discount?
+                            [:span.absolute.-top-6.left-0.text-green-500.text-base.whitespace-nowrap
+                             (let [quotient (/ discount quantity)]
+                               (str quantity-multiplier " - " quotient  " = " (- quantity-multiplier quotient)))])]
+
+         editable? [:<>
+                    [:input.basic-input.w-12-imp
+                     {:type          :number
+                      :default-value quantity-multiplier
+                      :placeholder   min-quantity-multiplier
+                      :on-input      set-quantity-multiplier!}]
+                    (when show-discount?
+                      [:span.absolute.-top-6.left-0.text-green-500.text-base.whitespace-nowrap
+                       (str quantity-multiplier " - " discount " = " (- quantity-multiplier discount))])]
+         :else [:<>
+                [:span quantity]
+                (when show-discount?
+                  [:span.absolute.-top-6.right-0.text-green-500.text-base.whitespace-nowrap
+                   (str (+ quantity discount) " - " discount)])])])))
 
 (defn custom-item-name
   [{{{:keys [external-url options]
@@ -119,10 +132,10 @@
     :item-map        item-map
     :custom-quantity ^{:key (conj path "quantity")}
                      [custom-item-quantity
-                      {:editable?              root-node?
-                       :discount               discount
-                       :quantity               quantity
-                       :item-index             item-index}]
+                      {:editable?  root-node?
+                       :discount   discount
+                       :quantity   quantity
+                       :item-index item-index}]
     :custom-name     ^{:key path}
                      [custom-item-name
                       {:node-data  node-data
@@ -277,7 +290,7 @@
     [:div.absolute.z-50.h-full.w-full.flex.flex-col.gap-4.items-center
      [:div.absolute.top-72
       [nwc/loader-component {:class "fa-6x"}]]
-     [:h3.absolute.top-120 "Steering ship"]]))
+     [:h3.color-off-white.absolute.top-120 "Steering ship"]]))
 
 (defn background []
   [:div.absolute.z-10.bg-inherit.w-full.h-full])
