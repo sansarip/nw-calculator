@@ -10,19 +10,19 @@ return cljs.core.assoc_in(ast,new cljs.core.PersistentVector(null, 2, 5, cljs.co
 cljs.analyzer.passes.and_or.simple_op_QMARK_ = (function cljs$analyzer$passes$and_or$simple_op_QMARK_(ast){
 return cljs.core.contains_QMARK_(cljs.analyzer.passes.and_or.simple_ops,cljs.core.cst$kw$op.cljs$core$IFn$_invoke$arity$1(ast));
 });
-cljs.analyzer.passes.and_or.simple_test_expr_QMARK_ = (function cljs$analyzer$passes$and_or$simple_test_expr_QMARK_(p__24105){
-var map__24106 = p__24105;
-var map__24106__$1 = cljs.core.__destructure_map(map__24106);
-var ast = map__24106__$1;
-var op = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24106__$1,cljs.core.cst$kw$op);
+cljs.analyzer.passes.and_or.simple_test_expr_QMARK_ = (function cljs$analyzer$passes$and_or$simple_test_expr_QMARK_(p__24116){
+var map__24117 = p__24116;
+var map__24117__$1 = cljs.core.__destructure_map(map__24117);
+var ast = map__24117__$1;
+var op = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24117__$1,cljs.core.cst$kw$op);
 return cljs.core.boolean$((function (){var and__4210__auto__ = cljs.analyzer.passes.and_or.simple_op_QMARK_(ast);
 if(and__4210__auto__){
-var G__24108 = (function (){var or__4212__auto__ = cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(ast);
+var G__24119 = (function (){var or__4212__auto__ = cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(ast);
 if(cljs.core.truth_(or__4212__auto__)){
 return or__4212__auto__;
 } else {
-if(cljs.core.truth_((function (){var fexpr__24109 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$var,null,cljs.core.cst$kw$local,null], null), null);
-return (fexpr__24109.cljs$core$IFn$_invoke$arity$1 ? fexpr__24109.cljs$core$IFn$_invoke$arity$1(op) : fexpr__24109.call(null,op));
+if(cljs.core.truth_((function (){var fexpr__24120 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$kw$var,null,cljs.core.cst$kw$local,null], null), null);
+return (fexpr__24120.cljs$core$IFn$_invoke$arity$1 ? fexpr__24120.cljs$core$IFn$_invoke$arity$1(op) : fexpr__24120.call(null,op));
 })())){
 return cljs.core.cst$kw$tag.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$info.cljs$core$IFn$_invoke$arity$1(ast));
 } else {
@@ -30,8 +30,8 @@ return null;
 }
 }
 })();
-var fexpr__24107 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$sym$seq,"null",cljs.core.cst$sym$boolean,"null"], null), null);
-return (fexpr__24107.cljs$core$IFn$_invoke$arity$1 ? fexpr__24107.cljs$core$IFn$_invoke$arity$1(G__24108) : fexpr__24107.call(null,G__24108));
+var fexpr__24118 = new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 2, [cljs.core.cst$sym$seq,"null",cljs.core.cst$sym$boolean,"null"], null), null);
+return (fexpr__24118.cljs$core$IFn$_invoke$arity$1 ? fexpr__24118.cljs$core$IFn$_invoke$arity$1(G__24119) : fexpr__24118.call(null,G__24119));
 } else {
 return and__4210__auto__;
 }
@@ -71,8 +71,8 @@ cljs.analyzer.passes.and_or.remove_loop_let = (function cljs$analyzer$passes$and
 return cljs.core.update.cljs$core$IFn$_invoke$arity$3(fn_ast,cljs.core.cst$kw$loop_DASH_lets,(function (loop_lets){
 return cljs.core.map.cljs$core$IFn$_invoke$arity$2((function (m){
 return cljs.core.update.cljs$core$IFn$_invoke$arity$3(m,cljs.core.cst$kw$params,(function (xs){
-return cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__24110_SHARP_){
-return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(local,cljs.core.cst$kw$name.cljs$core$IFn$_invoke$arity$1(p1__24110_SHARP_));
+return cljs.core.remove.cljs$core$IFn$_invoke$arity$2((function (p1__24121_SHARP_){
+return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(local,cljs.core.cst$kw$name.cljs$core$IFn$_invoke$arity$1(p1__24121_SHARP_));
 }),xs);
 }));
 }),loop_lets);
@@ -80,26 +80,26 @@ return cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(local,cljs.core.cst$kw$name.
 });
 cljs.analyzer.passes.and_or.remove_local_pass = (function cljs$analyzer$passes$and_or$remove_local_pass(local){
 return (function (env,ast,opts){
-var G__24111 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(ast,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$env,cljs.core.cst$kw$locals], null),cljs.core.dissoc,local);
+var G__24122 = cljs.core.update_in.cljs$core$IFn$_invoke$arity$4(ast,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$env,cljs.core.cst$kw$locals], null),cljs.core.dissoc,local);
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(cljs.core.cst$kw$fn,cljs.core.cst$kw$op.cljs$core$IFn$_invoke$arity$1(ast))){
-return cljs.analyzer.passes.and_or.remove_loop_let(G__24111,local);
+return cljs.analyzer.passes.and_or.remove_loop_let(G__24122,local);
 } else {
-return G__24111;
+return G__24122;
 }
 });
 });
 cljs.analyzer.passes.and_or.optimize_and = (function cljs$analyzer$passes$and_or$optimize_and(ast){
-var map__24112 = cljs.core.first(cljs.core.cst$kw$bindings.cljs$core$IFn$_invoke$arity$1(ast));
-var map__24112__$1 = cljs.core.__destructure_map(map__24112);
-var init = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24112__$1,cljs.core.cst$kw$init);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24112__$1,cljs.core.cst$kw$name);
+var map__24123 = cljs.core.first(cljs.core.cst$kw$bindings.cljs$core$IFn$_invoke$arity$1(ast));
+var map__24123__$1 = cljs.core.__destructure_map(map__24123);
+var init = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24123__$1,cljs.core.cst$kw$init);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24123__$1,cljs.core.cst$kw$name);
 return new cljs.core.PersistentArrayMap(null, 7, [cljs.core.cst$kw$op,cljs.core.cst$kw$js,cljs.core.cst$kw$env,cljs.core.cst$kw$env.cljs$core$IFn$_invoke$arity$1(ast),cljs.core.cst$kw$segs,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["((",") && (","))"], null),cljs.core.cst$kw$args,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [init,cljs.analyzer.passes.walk.cljs$core$IFn$_invoke$arity$2(cljs.analyzer.passes.and_or.__GT_expr_env(cljs.core.cst$kw$then.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$ret.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$body.cljs$core$IFn$_invoke$arity$1(ast)))),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.analyzer.passes.and_or.remove_local_pass(name)], null))], null),cljs.core.cst$kw$form,cljs.core.cst$kw$form.cljs$core$IFn$_invoke$arity$1(ast),cljs.core.cst$kw$children,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$args], null),cljs.core.cst$kw$tag,cljs.core.cst$sym$boolean], null);
 });
 cljs.analyzer.passes.and_or.optimize_or = (function cljs$analyzer$passes$and_or$optimize_or(ast){
-var map__24113 = cljs.core.first(cljs.core.cst$kw$bindings.cljs$core$IFn$_invoke$arity$1(ast));
-var map__24113__$1 = cljs.core.__destructure_map(map__24113);
-var init = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24113__$1,cljs.core.cst$kw$init);
-var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24113__$1,cljs.core.cst$kw$name);
+var map__24124 = cljs.core.first(cljs.core.cst$kw$bindings.cljs$core$IFn$_invoke$arity$1(ast));
+var map__24124__$1 = cljs.core.__destructure_map(map__24124);
+var init = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24124__$1,cljs.core.cst$kw$init);
+var name = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__24124__$1,cljs.core.cst$kw$name);
 return new cljs.core.PersistentArrayMap(null, 7, [cljs.core.cst$kw$op,cljs.core.cst$kw$js,cljs.core.cst$kw$env,cljs.core.cst$kw$env.cljs$core$IFn$_invoke$arity$1(ast),cljs.core.cst$kw$segs,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, ["((",") || (","))"], null),cljs.core.cst$kw$args,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [init,cljs.analyzer.passes.walk.cljs$core$IFn$_invoke$arity$2(cljs.analyzer.passes.and_or.__GT_expr_env(cljs.core.cst$kw$else.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$ret.cljs$core$IFn$_invoke$arity$1(cljs.core.cst$kw$body.cljs$core$IFn$_invoke$arity$1(ast)))),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.analyzer.passes.and_or.remove_local_pass(name)], null))], null),cljs.core.cst$kw$form,cljs.core.cst$kw$form.cljs$core$IFn$_invoke$arity$1(ast),cljs.core.cst$kw$children,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$args], null),cljs.core.cst$kw$tag,cljs.core.cst$sym$boolean], null);
 });
 cljs.analyzer.passes.and_or.optimize = (function cljs$analyzer$passes$and_or$optimize(env,ast,_){

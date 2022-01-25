@@ -4,21 +4,21 @@ goog.require('cljs.core');
 goog.require('cljs.core.constants');
 nw_calculator.hooks.global$module$react = goog.global["React"];
 nw_calculator.hooks.use_toggle = (function nw_calculator$hooks$use_toggle(initial_value){
-var vec__28211 = nw_calculator.hooks.global$module$react.useState(initial_value);
-var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28211,(0),null);
-var set_value_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28211,(1),null);
-var toggle = (function (){var G__28214 = (function (){
-var G__28215 = cljs.core.not(value);
-return (set_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_value_BANG_.cljs$core$IFn$_invoke$arity$1(G__28215) : set_value_BANG_.call(null,G__28215));
+var vec__28222 = nw_calculator.hooks.global$module$react.useState(initial_value);
+var value = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28222,(0),null);
+var set_value_BANG_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28222,(1),null);
+var toggle = (function (){var G__28225 = (function (){
+var G__28226 = cljs.core.not(value);
+return (set_value_BANG_.cljs$core$IFn$_invoke$arity$1 ? set_value_BANG_.cljs$core$IFn$_invoke$arity$1(G__28226) : set_value_BANG_.call(null,G__28226));
 });
-return nw_calculator.hooks.global$module$react.useCallback(G__28214);
+return nw_calculator.hooks.global$module$react.useCallback(G__28225);
 })();
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [value,toggle,set_value_BANG_], null);
 });
 nw_calculator.hooks.use_key_press = (function nw_calculator$hooks$use_key_press(target_key){
-var vec__28216 = nw_calculator.hooks.global$module$react.useState(false);
-var key_pressed_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28216,(0),null);
-var set_key_pressed = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28216,(1),null);
+var vec__28227 = nw_calculator.hooks.global$module$react.useState(false);
+var key_pressed_QMARK_ = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28227,(0),null);
+var set_key_pressed = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__28227,(1),null);
 var press_key_BANG_ = (function nw_calculator$hooks$use_key_press_$_press_key_BANG_(e){
 if(cljs.core._EQ_.cljs$core$IFn$_invoke$arity$2(e.key,target_key)){
 return (set_key_pressed.cljs$core$IFn$_invoke$arity$1 ? set_key_pressed.cljs$core$IFn$_invoke$arity$1(true) : set_key_pressed.call(null,true));
@@ -33,7 +33,7 @@ return (set_key_pressed.cljs$core$IFn$_invoke$arity$1 ? set_key_pressed.cljs$cor
 return null;
 }
 });
-var G__28219_28221 = (function (){
+var G__28230_28232 = (function (){
 window.addEventListener("keydown",press_key_BANG_);
 
 window.addEventListener("keyup",unpress_key_BANG_);
@@ -44,8 +44,8 @@ window.removeEventListener("keydown",press_key_BANG_);
 return window.removeEventListener("keyup",unpress_key_BANG_);
 });
 });
-var G__28220_28222 = [];
-nw_calculator.hooks.global$module$react.useEffect(G__28219_28221,G__28220_28222);
+var G__28231_28233 = [];
+nw_calculator.hooks.global$module$react.useEffect(G__28230_28232,G__28231_28233);
 
 return key_pressed_QMARK_;
 });
