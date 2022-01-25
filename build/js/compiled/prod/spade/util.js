@@ -22,7 +22,7 @@ return clojure.string.replace(cljs.core.str.cljs$core$IFn$_invoke$arity$1(s),/[^
 });
 spade.util.params__GT_key = (function spade$util$params__GT_key(p){
 try{return cljs.core.hash(p);
-}catch (e29624){var _ = e29624;
+}catch (e29651){var _ = e29651;
 return null;
 }});
 spade.util.build_style_name = (function spade$util$build_style_name(base,style_key,params){

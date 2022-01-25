@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2022.01.25.1]
+### Added
+- Add ability to factor in additional-item-chance
+- Add new UI that allows users to enter their additional-item trade-skill bonuses; these values are persisted to local-storage
+
+### Fixed
+- Fix missing silkweave png
+
+### Changed
+- Download smaller pngs
+- Update item data
+
 ## [2022.01.06.1]
 ### Fixed
 - Fix items like `Infused Silk` not showing up due to the search being run on unsorted items
