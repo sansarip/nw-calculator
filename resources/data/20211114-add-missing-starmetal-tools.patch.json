@@ -4,6 +4,7 @@
       "item": {
         "tier": 4,
         "name": "Starmetal Harvesting Sickle",
+        "trade-skill": "engineering",
         "png-url": "images/icons/items/weapon/1hsicklet4.png",
         "ingredients": [
           {
@@ -32,6 +33,7 @@
       "item": {
         "tier": 4,
         "name": "Starmetal Skinning Knife",
+        "trade-skill": "engineering",
         "png-url": "images/icons/items/weapon/1hskinningknifet4.png",
         "ingredients": [
           {
