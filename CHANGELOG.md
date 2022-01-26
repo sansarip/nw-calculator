@@ -4,13 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
-## [2022.01.25.4]
+## [2022.01.26.1]
 ### Added
 - Add ability to factor in additional-item-chance
 - Add new UI that allows users to enter their additional-item trade-skill bonuses; these values are persisted to local-storage
 
 ### Fixed
 - Fix missing silkweave png
+- Fix missing trade-skills from certain patched items
 
 ### Changed
 - Download smaller pngs
