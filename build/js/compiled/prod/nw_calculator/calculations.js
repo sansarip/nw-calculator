@@ -272,7 +272,6 @@ var parent_item = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20543__$1,clj
 var additional_item_bonuses_QMARK_ = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__20543__$1,cljs.core.cst$kw$additional_DASH_item_DASH_bonuses_QMARK_);
 var map__20544 = parent_item;
 var map__20544__$1 = cljs.core.__destructure_map(map__20544);
-var parent_quantity = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__20544__$1,cljs.core.cst$kw$quantity,quantity);
 var parent_tier = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__20544__$1,cljs.core.cst$kw$tier,tier);
 var parent_trade_skill = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__20544__$1,cljs.core.cst$kw$trade_DASH_skill,trade_skill);
 var parent_qty_bonus = cljs.core.get.cljs$core$IFn$_invoke$arity$3(map__20544__$1,cljs.core.cst$kw$qty_DASH_bonus,qty_bonus);
@@ -299,7 +298,7 @@ return ((x__4298__auto__ < y__4299__auto__) ? x__4298__auto__ : y__4299__auto__)
 })():(0));
 var multiplier_STAR_quantity = (multiplier * quantity);
 var discount = ((((multiplier * additional_item_chance) / (2)) | (0)) * quantity);
-var multiplier_STAR_quantity_surplus = (multiplier_STAR_quantity - discount);
+var multiplier_STAR_quantity_surplus = (multiplier_STAR_quantity - (cljs.core.truth_(parent_item)?discount:null));
 var next_multiplier = ((function (){var G__20547 = (multiplier_STAR_quantity_surplus / base_multiplier);
 return Math.ceil(G__20547);
 })() | (0));
