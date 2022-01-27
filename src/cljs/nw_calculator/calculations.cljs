@@ -120,13 +120,11 @@
         {:keys [multiplier
                 parent-item
                 additional-item-bonuses?]}]
-       (let [{parent-quantity    :quantity
-              parent-tier        :tier
+       (let [{parent-tier        :tier
               parent-trade-skill :trade-skill
               parent-qty-bonus   :qty-bonus
               parent-ingredients :ingredients
-              :or                {parent-quantity    quantity
-                                  parent-tier        tier
+              :or                {parent-tier        tier
                                   parent-trade-skill trade-skill
                                   parent-qty-bonus   qty-bonus
                                   parent-ingredients ingredients}} parent-item
@@ -141,7 +139,7 @@
                                       0)
              multiplier*quantity (* multiplier quantity)
              discount (* (int (/ (* multiplier additional-item-chance) 2)) quantity)
-             multiplier*quantity-surplus (- multiplier*quantity discount)
+             multiplier*quantity-surplus (- multiplier*quantity (when parent-item discount))
              next-multiplier (-> (/ multiplier*quantity-surplus base-multiplier) Math/ceil int)
              recur* #(multiply-quantities
                        %
