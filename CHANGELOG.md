@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/).
 
+## [2022.01.28.1]
+### Fixed
+- Fix inability to search for "linen"
+
+### Changed
+- Increase max search results
+- Make search results scrollable 
+
 ## [2022.01.27.1]
 ### Fixed
 - Fix incorrect additional-item-chance discounts for ingredients

@@ -19,9 +19,9 @@ var map__22120__$1 = cljs.core.__destructure_map(map__22120);
 var items = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22120__$1,cljs.core.cst$kw$items);
 var query = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22120__$1,cljs.core.cst$kw$query);
 var on_success = cljs.core.get.cljs$core$IFn$_invoke$arity$2(map__22120__$1,cljs.core.cst$kw$on_DASH_success);
-var search_results = cljs.core.vec(cljs.core.take.cljs$core$IFn$_invoke$arity$2((10),cljs.core.filter.cljs$core$IFn$_invoke$arity$2(cljs.core.comp.cljs$core$IFn$_invoke$arity$variadic(cljs.core.first,(function (p1__22118_SHARP_){
-return nw_calculator.utilities.fuzzy_search(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [p1__22118_SHARP_], null),query);
-}),cljs.core.cst$kw$name,cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([nw_calculator.calculations.craftable_item], 0)),(nw_calculator.calculations.sort_items_by_name.cljs$core$IFn$_invoke$arity$1 ? nw_calculator.calculations.sort_items_by_name.cljs$core$IFn$_invoke$arity$1(items) : nw_calculator.calculations.sort_items_by_name.call(null,items)))));
+var search_results = nw_calculator.utilities.fuzzy_search((function (){var G__22121 = (nw_calculator.calculations.sort_items_by_name.cljs$core$IFn$_invoke$arity$1 ? nw_calculator.calculations.sort_items_by_name.cljs$core$IFn$_invoke$arity$1(items) : nw_calculator.calculations.sort_items_by_name.call(null,items));
+return (nw_calculator.calculations.filter_craftable_items.cljs$core$IFn$_invoke$arity$1 ? nw_calculator.calculations.filter_craftable_items.cljs$core$IFn$_invoke$arity$1(G__22121) : nw_calculator.calculations.filter_craftable_items.call(null,G__22121));
+})(),query,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$name], null));
 return re_frame.core.dispatch(cljs.core.conj.cljs$core$IFn$_invoke$arity$2(on_success,search_results));
 }));
 re_frame.core.reg_fx(cljs.core.cst$kw$nw_DASH_calculator$effects_SLASH_persist_BANG_,(function (db){
