@@ -21,15 +21,10 @@
   (fn [{:keys [items
                query
                on-success]}]
-    (let [search-results (->> items
-                              calc/sort-items-by-name
-                              (filter
-                                (comp first
-                                      #(util/fuzzy-search [%] query)
-                                      :name
-                                      calc/craftable-item))
-                              (take 10)
-                              vec)]
+    (let [search-results (-> items
+                             calc/sort-items-by-name
+                             calc/filter-craftable-items
+                             (util/fuzzy-search query [:name]))]
       (rf/dispatch (conj on-success search-results)))))
 
 (rf/reg-fx

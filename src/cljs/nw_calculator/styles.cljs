@@ -27,7 +27,8 @@
                        :120 "30rem"
                        :128 "32rem"
                        :160 "40rem"
-                       :176 "44rem"}}})
+                       :176 "44rem"
+                       :192 "48rem"}}})
 
 (defn with-config [s] (fmt/render s config))
 
@@ -61,6 +62,8 @@
   (-> config :sizes :relative :128))
 (def relative-176
   (-> config :sizes :relative :176))
+(def relative-192
+  (-> config :sizes :relative :192))
 (def off-white
   (-> config :colors :off-white :hex))
 (def light-gray
@@ -104,6 +107,7 @@
   [:.min-w-96 {:min-width relative-96}]
   [:.min-w-128 {:min-width relative-128}]
   [:.max-w-half {:max-width :50%}]
+  [:.max-h-192 {:max-height relative-192}]
   [:.w-176 {:width relative-176}]
   [:.mb-18 {:margin-bottom relative-18}]
   [:.top-120 {:top relative-120}]

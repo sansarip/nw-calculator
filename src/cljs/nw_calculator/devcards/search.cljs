@@ -19,11 +19,7 @@
                                      state
                                      assoc
                                      :results
-                                     (->> sd/items
-                                          (filter
-                                            (comp #(util/fuzzy-search % search-term) vector :name))
-                                          (take 10)
-                                          vec))
+                                     (util/fuzzy-search sd/items search-term [:name]))
                                    (set-loading! false))
                                  100))
                              100)

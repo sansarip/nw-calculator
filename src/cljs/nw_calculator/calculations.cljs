@@ -198,4 +198,9 @@
     (fn [items]
       (sort-by :name items))))
 
+(def filter-craftable-items
+  (memoize
+    (fn [items]
+      (filterv craftable-item items))))
+
 

@@ -71,7 +71,7 @@
         (fn []
           (highlight-option! active-option-index num-options))
         #js [active-option-index])
-      [:dl.bg-inherit.w-full.max-w-full.absolute.m-0.z-50.bg-inherit.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
+      [:dl.bg-inherit.w-full.max-h-192.overflow-y-auto.absolute.m-0.z-50.bg-inherit.border-2.border-t-0.border-opacity-30.border-purple.rounded-b-md.rounded-t-none
        (map-indexed
          (fn [option-index {:keys [id] :as option*}]
            ^{:key (str "option_" option-index "_" id)}

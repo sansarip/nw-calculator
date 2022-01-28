@@ -59,11 +59,7 @@
                                  state
                                  assoc
                                  :results
-                                 (->> sd/items
-                                      (filter
-                                        (comp #(util/fuzzy-search % search-term) vector :name))
-                                      (take 10)
-                                      vec)))
+                                 (util/fuzzy-search sd/items search-term [:name])))
                              100)
                  clear-results! #(swap! state assoc :results [])
                  on-clear (fn [] (clear-results!) (clear-selected-item!))
